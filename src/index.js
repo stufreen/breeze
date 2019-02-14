@@ -3,10 +3,16 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 import initializeNavigation from './scenes';
+import { fetchAndSetWeather } from './common/weather/weather.actions';
 
+// Create redux store
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
 );
 
+// Fetch current weather and location from APIs on app startup
+store.dispatch(fetchAndSetWeather());
+
+// Register scenes with react-native-navigation
 initializeNavigation(Provider, store);
