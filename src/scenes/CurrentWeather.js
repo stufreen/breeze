@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { getCurrentPosition, getLocationName } from '../services/geocode';
 import { getWeather, farenheitToCelcius } from '../services/weather';
-import LocalizedText from './LocalizedText';
+import LocalizedText from '../components/LocalizedText';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,6 +68,10 @@ export default class CurrentWeather extends Component {
             </Text>
           )
         }
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
       </View>
     );
   }
