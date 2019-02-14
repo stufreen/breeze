@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { getCurrentPosition, getLocationName } from '../services/geocode';
 import { getWeather, farenheitToCelcius } from '../services/weather';
 import LocalizedText from '../components/LocalizedText';
@@ -53,6 +59,7 @@ export default class CurrentWeather extends Component {
 
   render() {
     const { address, weatherInfo } = this.state;
+    const { componentId } = this.props;
     return (
       <View style={styles.container}>
         <LocalizedText style={styles.welcome} textKey="currentWeather" />
@@ -70,7 +77,13 @@ export default class CurrentWeather extends Component {
         }
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
+          onPress={() => {
+            Navigation.push(componentId, {
+              component: {
+                name: 'navigation.playground.Details',
+              },
+            });
+          }}
         />
       </View>
     );
