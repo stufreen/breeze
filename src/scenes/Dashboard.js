@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import DashboardHero from '../components/DashboardHero/DashboardHero';
+import DashboardHero from '../components/DashboardHero';
 import { fetchAndSetWeather } from '../common/weather/weather.actions';
 
 class Dashboard extends Component {
@@ -26,6 +26,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   fetchAndSetWeather: PropTypes.func.isRequired,
+  componentId: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = {

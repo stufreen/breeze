@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import LocalizedText from '../LocalizedText';
-import { farenheitToCelcius } from '../../services/weather';
+import PropTypes from 'prop-types';
+import LocalizedText from './LocalizedText';
+import { farenheitToCelcius } from '../services/weather';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,6 +57,21 @@ const DashboardHero = ({ location, weather, componentId }) => (
     />
   </View>
 );
+
+DashboardHero.defaultProps = {
+  location: null,
+  weather: null,
+};
+
+DashboardHero.propTypes = {
+  location: PropTypes.shape({
+    address: PropTypes.object,
+  }),
+  weather: PropTypes.shape({
+    currently: PropTypes.object,
+  }),
+  componentId: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   weather: state.weather.weather,
