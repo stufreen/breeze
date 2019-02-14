@@ -1,0 +1,4 @@
+export default {
+  SET_LOCATION: 'SET_LOCATION',
+  SET_WEATHER: 'SET_WEATHER',
+};
