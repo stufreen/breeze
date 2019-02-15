@@ -1,61 +1,26 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-} from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import LocalizedText from './LocalizedText';
 import { farenheitToCelcius } from '../services/weather';
+import BigTemp from './BigTemp';
+import { Box, Script } from './design-system';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-const DashboardHero = ({ location, weather, componentId }) => (
-  <View style={styles.container}>
-    <LocalizedText style={styles.welcome} textKey="currentWeather" />
-    {location
-      && <Text style={styles.instructions}>{location.address.city}</Text>
-    }
-    {weather
-      && (
-        <Text style={styles.instructions}>
-          {weather.currently.summary}
-          {Math.round(farenheitToCelcius(weather.currently.temperature))}
-          &deg;C
-        </Text>
-      )
-    }
-    <Button
-      title="Go to Settings"
-      onPress={() => {
-        Navigation.push(componentId, {
-          component: {
-            name: 'Settings',
-          },
-        });
-      }}
-    />
-  </View>
+const DashboardHero = ({ location, weather }) => (
+  <Box py={6} px={4}>
+    <Box alignItems="center" justifyContent="center">
+      {location
+        && <Script fontSize={3} color="white">{location.address.city}</Script>
+      }
+      {weather
+        && (
+          <BigTemp temp={farenheitToCelcius(weather.currently.temperature)} />
+        )
+      }
+      {weather
+        && <Script fontSize={4}>{weather.currently.summary}</Script>
+      }
+    </Box>
+  </Box>
 );
 
 DashboardHero.defaultProps = {
@@ -70,7 +35,6 @@ DashboardHero.propTypes = {
   weather: PropTypes.shape({
     currently: PropTypes.object,
   }),
-  componentId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

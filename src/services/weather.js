@@ -1,9 +1,14 @@
 import { DARK_SKY_SECRET_KEY } from 'react-native-dotenv';
+import samplePayload from './sample-payload.json';
 
 export const getWeather = ({ latitude, longitude }) => {
+  // if (__DEV__) {
+  //   return Promise.resolve(samplePayload);
+  // }
+
   const url = `https://api.darksky.net/forecast/${DARK_SKY_SECRET_KEY}/${latitude},${longitude}`;
   return fetch(url)
     .then(response => response.json());
 };
 
-export const farenheitToCelcius = f => (f - 32) * 5 / 9;
+export const farenheitToCelcius = f => Math.round((f - 32) * 5 / 9);
