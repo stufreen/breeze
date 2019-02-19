@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 import initializeNavigation from './scenes';
 import { fetchAndSetWeather } from './common/weather/weather.actions';
+import { getThemedProvider } from './theme';
 
 // Create redux store
 const store = createStore(
@@ -14,5 +15,8 @@ const store = createStore(
 // Fetch current weather and location from APIs on app startup
 store.dispatch(fetchAndSetWeather());
 
+// Wrap the Provider in styled-components theme provider
+const ThemedProvider = getThemedProvider(Provider);
+
 // Register scenes with react-native-navigation
-initializeNavigation(Provider, store);
+initializeNavigation(ThemedProvider, store);

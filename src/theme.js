@@ -1,10 +1,18 @@
-// theme.js
-export default {
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+
+export const theme = {
   colors: {
-    black: '#000e1a',
-    white: '#fff',
-    blue: '#007ce0',
-    navy: '#004175',
+    primary: 'rgb(255, 130, 100)',
+    primaryTransparent: 'rgba(255, 130, 100, 0.2)',
+    secondary: 'rgb(0, 4, 43)',
   },
-  fontSizes: [48, 36, 24, 18, 16, 14],
 };
+
+export const getThemedProvider = Provider => props => (
+  <Provider store={props.store}>
+    <ThemeProvider theme={theme}>
+      {props.children}
+    </ThemeProvider>
+  </Provider>
+);

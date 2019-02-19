@@ -2,10 +2,11 @@ import styled from 'styled-components/native';
 import * as ss from 'styled-system';
 
 export const Script = styled.Text`
-  color: white;
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => (props.header ? 'Montserrat' : 'Lato')};
   ${ss.color}
   ${ss.space}
   ${ss.fontSize}
-  ${ss.fontWeight}
   ${ss.lineHeight}
+  ${ss.opacity}
 `;

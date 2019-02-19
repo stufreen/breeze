@@ -9,4 +9,5 @@ export const Box = styled.View`
   ${ss.space}
   ${ss.flex}
   ${ss.borderRadius}
+  ${ss.opacity}
 `;
