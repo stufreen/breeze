@@ -7,6 +7,7 @@ import { Box, ScrollBox } from './design-system';
 import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
 import SettingsButton from './SettingsButton';
+import PoweredBy from './PoweredBy';
 import { refreshWeather } from '../common/weather/weather.actions';
 
 const DashboardMainPanel = ({
@@ -29,6 +30,7 @@ const DashboardMainPanel = ({
     >
       <DashboardHero />
       <Hourly />
+      <PoweredBy />
     </ScrollBox>
     <Box position="absolute" mt={5} ml={4}>
       <SettingsButton

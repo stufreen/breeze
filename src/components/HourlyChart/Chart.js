@@ -30,9 +30,10 @@ const Chart = ({
   const convertX = xVal => (xVal * xUnit) + (xUnit / 2);
   const convertY = yVal => (realHeight - ((yVal - minTemp) * yUnit)) + (dotWidth * 1.5);
 
-  const path = temps.reduce((pathString, temp, index) => {
-    return `${pathString} L${convertX(index)} ${convertY(temp)}`;
-  }, '');
+  const path = temps.reduce(
+    (pathString, temp, index) => `${pathString} L${convertX(index)} ${convertY(temp)}`,
+    '',
+  );
 
   return (
     <Svg width={width} height={height}>
@@ -43,7 +44,7 @@ const Chart = ({
         </LinearGradient>
       </Defs>
       <Path
-        d={`M ${convertX(0)} ${convertY(minTemp)}${path} M${convertX(temps.length - 1)} ${convertY(minTemp)}`}
+        d={`M ${convertX(0)} ${height}${path} M${convertX(temps.length - 1)} ${height}`}
         fill="url(#hour-chart-grad)"
       />
       {
@@ -66,17 +67,15 @@ const Chart = ({
       }
       {
         temps.map((item, index) => (
-          <G>
-            <Circle
-              fill={theme.colors.secondary}
-              stroke={theme.colors.primary}
-              strokeWidth="2"
-              cx={convertX(index)}
-              cy={convertY(item)}
-              r={dotWidth}
-              key={hours[index].time}
-            />
-          </G>
+          <Circle
+            fill={theme.colors.secondary}
+            stroke={theme.colors.primary}
+            strokeWidth="2"
+            cx={convertX(index)}
+            cy={convertY(item)}
+            r={dotWidth}
+            key={hours[index].time}
+          />
         ))
       }
     </Svg>
