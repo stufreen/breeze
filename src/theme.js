@@ -6,6 +6,7 @@ export const theme = {
     primary: 'rgb(255, 130, 100)',
     primaryTransparent: 'rgba(255, 130, 100, 0.2)',
     secondary: 'rgb(0, 4, 43)',
+    accent: 'rgb(255, 200, 180)',
   },
 };
 

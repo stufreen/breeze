@@ -21,7 +21,7 @@ const HourlyChart = ({ hours }) => (
           pt={3}
         >
           <Script fontSize={0}>{moment(item.time * 1000).format('h A')}</Script>
-          <Script mt={1} fontSize={1} header>
+          <Script mt={1} fontSize={1} header color="accent">
             {farenheitToCelcius(item.temperature)}
             &deg;C
           </Script>

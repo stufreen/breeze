@@ -13,7 +13,7 @@ const Hourly = ({ weather }) => {
     : [];
   return weather ? (
     <Box mb={4}>
-      <Script mx={4} mb={3} fontWeight="bold" fontSize={3} header>{nowString}</Script>
+      <Script mx={4} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
       <Script mx={4} mb={4}>{weather.hourly.summary}</Script>
       <ScrollBox
         horizontal

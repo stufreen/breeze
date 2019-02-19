@@ -10,8 +10,8 @@ const Chart = ({
   height,
   theme,
 }) => {
-  const dotWidth = 4;
-  const realHeight = height - (2 * dotWidth);
+  const dotWidth = 3;
+  const realHeight = height - (3 * dotWidth);
   const temps = hours.map(hour => farenheitToCelcius(hour.temperature));
 
   // Get the max and min temperatures
@@ -28,7 +28,7 @@ const Chart = ({
 
   // Some helper functions
   const convertX = xVal => (xVal * xUnit) + (xUnit / 2);
-  const convertY = yVal => (realHeight - ((yVal - minTemp) * yUnit)) + dotWidth;
+  const convertY = yVal => (realHeight - ((yVal - minTemp) * yUnit)) + (dotWidth * 1.5);
 
   const path = temps.reduce((pathString, temp, index) => {
     return `${pathString} L${convertX(index)} ${convertY(temp)}`;
@@ -68,17 +68,12 @@ const Chart = ({
         temps.map((item, index) => (
           <G>
             <Circle
-              fill={theme.colors.primary}
-              cx={convertX(index)}
-              cy={convertY(item)}
-              r="4"
-              key={hours[index].time}
-            />
-            <Circle
               fill={theme.colors.secondary}
+              stroke={theme.colors.primary}
+              strokeWidth="2"
               cx={convertX(index)}
               cy={convertY(item)}
-              r="2"
+              r={dotWidth}
               key={hours[index].time}
             />
           </G>
