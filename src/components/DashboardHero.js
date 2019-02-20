@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { farenheitToCelcius } from '../services/weather';
 import BigTemp from './BigTemp';
 import LastUpdated from './LastUpdated';
-import Logo from './Logo';
 import { Box, Script } from './design-system';
 
 const DashboardHero = ({ location, weather }) => (
@@ -14,8 +13,9 @@ const DashboardHero = ({ location, weather }) => (
         <Box alignItems="center" justifyContent="center">
           <Script fontSize={3} color="primary" header>{location.address.city}</Script>
           <BigTemp temp={farenheitToCelcius(weather.currently.temperature)} />
-          <Script fontSize={4} color="primary" header>{weather.currently.summary}</Script>
-          <LastUpdated timestamp={weather.currently.time * 1000} />
+          <Script fontSize={4} mb={2} color="primary" header>{weather.currently.summary}</Script>
+          <Script color="primary" header>Feels like {farenheitToCelcius(weather.currently.apparentTemperature)}&deg;</Script>
+          <LastUpdated timestamp={weather.currently.time * 1000} timezone={weather.timezone} />
         </Box>
       )
     }
@@ -38,7 +38,7 @@ DashboardHero.propTypes = {
 
 const mapStateToProps = state => ({
   weather: state.weather.weather,
-  location: state.weather.location,
+  location: state.location.location,
 });
 
 const ConnectedDashboardHero = connect(mapStateToProps)(DashboardHero);

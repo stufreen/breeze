@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { withTheme } from 'styled-components/native';
 import { Box, Script } from '../design-system';
 import { farenheitToCelcius } from '../../services/weather';
 import Chart from './Chart';
 import Climacon from '../Climacon';
 
-const HourlyChart = ({ hours, theme }) => (
+const HourlyChart = ({ hours, timezone, theme }) => (
   <Box flexDirection="row">
     {
       hours.map(item => (
@@ -22,11 +22,11 @@ const HourlyChart = ({ hours, theme }) => (
           borderRadius={3}
           pt={3}
         >
-          <Script fontSize={0}>{moment(item.time * 1000).format('h A')}</Script>
+          <Script fontSize={0} mb={1}>{moment(item.time * 1000).tz(timezone).format('h A')}</Script>
           <Climacon iconKey={item.icon} size={48} color={theme.colors.accent} />
-          <Script fontSize={1} header>
+          <Script fontSize={2} header>
             {farenheitToCelcius(item.temperature)}
-            &deg;C
+            &deg;
           </Script>
         </Box>
       ))
@@ -39,6 +39,7 @@ const HourlyChart = ({ hours, theme }) => (
 
 HourlyChart.propTypes = {
   hours: PropTypes.arrayOf(PropTypes.object).isRequired,
+  timezone: PropTypes.string.isRequired,
 };
 
 export default withTheme(HourlyChart);

@@ -44,7 +44,7 @@ const Chart = ({
         </LinearGradient>
       </Defs>
       <Path
-        d={`M ${convertX(0)} ${height}${path} M${convertX(temps.length - 1)} ${height}`}
+        d={`M ${convertX(0)} ${height}${path} L${convertX(temps.length - 1)} ${height}`}
         fill="url(#hour-chart-grad)"
       />
       {

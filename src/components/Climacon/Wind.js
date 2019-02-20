@@ -2,7 +2,7 @@ import React from 'react';
 import { Svg, Path } from 'react-native-svg';
 
 export default ({ color = 'white', size = 30 }) => (
-  <Svg width={size} height={size} viewBox="0 0 100 100">
+  <Svg width={size} height={size} viewBox="15 15 70 70">
     <Path
       d="M65.999,52L65.999,52h-3c-1.105,0-2-0.895-2-1.999s0.895-2,2-2h3
         c1.104,0,2-0.896,2-1.999c0-1.105-0.896-2-2-2c-1.105,0-2-0.896-2-2s0.895-2,2-2c0.137,0,0.271,0.014,0.402,0.041

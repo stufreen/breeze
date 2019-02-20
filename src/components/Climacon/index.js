@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Sun from './Sun';
 import Moon from './Moon';
 import CloudHail from './Cloud-Hail';
@@ -35,6 +36,17 @@ const Climacon = ({ iconKey, ...rest }) => {
     default:
       return <Sun {...rest} />;
   }
+};
+
+Climacon.defaultProps = {
+  color: 'white',
+  size: 30,
+};
+
+Climacon.propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.number,
+  iconKey: PropTypes.string.isRequired,
 };
 
 export default Climacon;

@@ -3,6 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 import initializeNavigation from './scenes';
+import { fetchAndSetLocation } from './common/location/location.actions';
 import { fetchAndSetWeather } from './common/weather/weather.actions';
 import { getThemedProvider } from './theme';
 
@@ -13,6 +14,7 @@ const store = createStore(
 );
 
 // Fetch current weather and location from APIs on app startup
+store.dispatch(fetchAndSetLocation());
 store.dispatch(fetchAndSetWeather());
 
 // Wrap the Provider in styled-components theme provider

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { Box, ScrollBox, Script } from './design-system';
 import HourlyChart from './HourlyChart';
 
 const Hourly = ({ weather }) => {
-  const now = weather ? moment(weather.currently.time * 1000) : moment();
+  const now = weather ? moment(weather.currently.time * 1000).tz(weather.timezone) : moment();
   const nowString = now.format('dddd, [Today]');
   const hoursToShow = weather
     ? weather.hourly.data.slice(0, 12)
@@ -19,7 +19,7 @@ const Hourly = ({ weather }) => {
         horizontal
         contentContainerStyle={{ flexDirection: 'row', paddingLeft: 30, paddingRight: 30 }}
       >
-        <HourlyChart hours={hoursToShow} />
+        <HourlyChart hours={hoursToShow} timezone={weather.timezone} />
       </ScrollBox>
     </Box>
   ) : null;

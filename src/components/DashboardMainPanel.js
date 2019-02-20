@@ -8,6 +8,7 @@ import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
 import SettingsButton from './SettingsButton';
 import PoweredBy from './PoweredBy';
+import LongTerm from './LongTerm';
 import { refreshWeather } from '../common/weather/weather.actions';
 
 const DashboardMainPanel = ({
@@ -30,9 +31,10 @@ const DashboardMainPanel = ({
     >
       <DashboardHero />
       <Hourly />
+      <LongTerm />
       <PoweredBy />
     </ScrollBox>
-    <Box position="absolute" mt={5} ml={4}>
+    <Box position="absolute" mt={5} ml={3}>
       <SettingsButton
         onPress={onPressSettings}
       />
