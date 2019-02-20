@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Svg, Circle, Line, Path, Defs, LinearGradient, Stop, G } from 'react-native-svg';
 import { withTheme } from 'styled-components/native';
-import { farenheitToCelcius } from '../../services/weather';
+import { formatTemp } from '../../services/weather';
 
 const Chart = ({
   hours,
@@ -12,7 +12,7 @@ const Chart = ({
 }) => {
   const dotWidth = 3;
   const realHeight = height - (3 * dotWidth);
-  const temps = hours.map(hour => farenheitToCelcius(hour.temperature));
+  const temps = hours.map(hour => formatTemp(hour.temperature));
 
   // Get the max and min temperatures
   const maxTemp = temps.reduce(

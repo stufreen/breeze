@@ -12,8 +12,8 @@ export const setFetchingWeather = isFetchingWeather => ({
 });
 
 export const fetchAndSetWeather = () => (dispatch, getState) => {
-  const { coords } = getState().location;
-  getWeather(coords)
+  const { location, settings } = getState();
+  getWeather(location.coords, settings.units)
     .then((weather) => {
       dispatch(setWeather(weather));
     })

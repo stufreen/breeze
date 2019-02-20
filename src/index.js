@@ -1,21 +1,22 @@
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 import initializeNavigation from './scenes';
-import { fetchAndSetLocation } from './common/location/location.actions';
-import { fetchAndSetWeather } from './common/weather/weather.actions';
+import { fetchAndSetUserCoords } from './common/location/location.actions';
 import { getThemedProvider } from './theme';
 
 // Create redux store
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk),
+  composeEnhancers(
+    applyMiddleware(thunk),
+  ),
 );
 
 // Fetch current weather and location from APIs on app startup
-store.dispatch(fetchAndSetLocation());
-store.dispatch(fetchAndSetWeather());
+store.dispatch(fetchAndSetUserCoords());
 
 // Wrap the Provider in styled-components theme provider
 const ThemedProvider = getThemedProvider(Provider);

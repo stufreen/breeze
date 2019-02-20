@@ -9,4 +9,5 @@ export const Script = styled.Text`
   ${ss.fontSize}
   ${ss.lineHeight}
   ${ss.opacity}
+  ${ss.textAlign}
 `;

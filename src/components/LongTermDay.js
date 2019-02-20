@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import { withTheme } from 'styled-components/native';
 import { Box, Script } from './design-system';
 import Climacon from './Climacon';
-import { farenheitToCelcius } from '../services/weather';
+import { formatTemp } from '../services/weather';
 
 const LongTermDay = ({ day, timezone, theme }) => {
   const date = moment(day.time * 1000).tz(timezone);
@@ -27,8 +27,8 @@ const LongTermDay = ({ day, timezone, theme }) => {
       </Box>
       <Box flexDirection="row" alignItems="center" flex={1}>
         <Box flex={2} flexDirection="row" justifyContent="space-around">
-          <Script header color="primary" mr={2} fontSize={2}>{farenheitToCelcius(day.temperatureHigh)}&deg;</Script>
-          <Script header color="primary" mr={3} fontSize={2} opacity={0.7}>{farenheitToCelcius(day.temperatureLow)}&deg;</Script>
+          <Script header color="primary" mr={2} fontSize={2}>{formatTemp(day.temperatureHigh)}&deg;</Script>
+          <Script header color="primary" mr={3} fontSize={2} opacity={0.7}>{formatTemp(day.temperatureLow)}&deg;</Script>
         </Box>
         <Box flex={1} alignItems="center" justifyContent="center">
           <Climacon iconKey={day.icon} size={36} color={theme.colors.accent} />
