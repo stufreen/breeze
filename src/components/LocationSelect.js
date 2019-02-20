@@ -9,7 +9,7 @@ const LocationSelect = ({ onPress, location }) => (
   <Box my={3}>
     <SettingHeader>Select Location</SettingHeader>
     <MultipleChoiceOption onPress={onPress}>
-      {location.address.city}, {location.address.state}, {location.address.country}
+      {`${location.address.city}, ${location.address.state}, ${location.address.country}`}
     </MultipleChoiceOption>
   </Box>
 );

@@ -20,8 +20,17 @@ class Dashboard extends Component {
     Navigation.pop(componentId);
   }
 
+  onPressLocation = () => {
+    const { componentId } = this.props;
+    Navigation.push(componentId, {
+      component: {
+        name: 'LocationSearch',
+      },
+    });
+  }
+
   render() {
-    return <SettingsPanel onPressBack={this.onPressBack} />;
+    return <SettingsPanel onPressBack={this.onPressBack} onPressLocation={this.onPressLocation} />;
   }
 }
 

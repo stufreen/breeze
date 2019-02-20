@@ -14,6 +14,12 @@ export const getCurrentPosition = (args = {}) => new Promise((resolve, reject) =
   );
 });
 
+export const searchLocation = (searchString) => {
+  const url = `https://us1.locationiq.com/v1/search.php?key=${LOCATION_IQ_API_TOKEN}&q=${searchString}&format=json`;
+  return fetch(url)
+    .then(response => response.json());
+};
+
 export const getLocationName = ({ latitude, longitude }) => {
   const url = `https://us1.locationiq.com/v1/reverse.php?key=${LOCATION_IQ_API_TOKEN}&lat=${latitude}&lon=${longitude}&format=json`;
   return fetch(url)

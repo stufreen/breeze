@@ -7,12 +7,13 @@ import LocationSelect from './LocationSelect';
 
 const SettingsPanel = ({
   onPressBack,
+  onPressLocation,
 }) => (
   <Box flex={1}>
     <ScrollBox bg="secondary" flex={1}>
       <Box pt={5} px={4}>
         <Script header fontSize={3} textAlign="center">Settings</Script>
-        <LocationSelect />
+        <LocationSelect onPress={onPressLocation} />
         <UnitSelect />
       </Box>
     </ScrollBox>
@@ -26,6 +27,7 @@ const SettingsPanel = ({
 
 SettingsPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
+  onPressLocation: PropTypes.func.isRequired,
 };
 
 export default SettingsPanel;
