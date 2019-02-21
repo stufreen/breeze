@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, ScrollBox, Script } from './design-system';
 import BackButton from './BackButton';
 import UnitSelect from './UnitSelect';
+import ThemeSelect from './ThemeSelect';
 import LocationSelect from './LocationSelect';
 
 const SettingsPanel = ({
@@ -15,6 +16,7 @@ const SettingsPanel = ({
         <Script header fontSize={3} textAlign="center">Settings</Script>
         <LocationSelect onPress={onPressLocation} />
         <UnitSelect />
+        <ThemeSelect />
       </Box>
     </ScrollBox>
     <Box position="absolute" mt={4} ml={3}>

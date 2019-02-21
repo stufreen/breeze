@@ -2,6 +2,7 @@ import SETTINGS_CONSTANTS from './settings.constants';
 
 const initialState = {
   units: 'auto',
+  theme: 'wine',
 };
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         units: action.payload,
+      };
+    case SETTINGS_CONSTANTS.SET_THEME:
+      return {
+        ...state,
+        theme: action.payload,
       };
     default:
       return state;

@@ -13,7 +13,6 @@ export const setFetchingWeather = isFetchingWeather => ({
 
 export const fetchAndSetWeather = () => (dispatch, getState) => {
   const { location, settings } = getState();
-  console.log(location);
   getWeather(location.coords, settings.units)
     .then((weather) => {
       dispatch(setWeather(weather));
