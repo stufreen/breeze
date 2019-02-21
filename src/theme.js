@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 
 const ConnectedThemeProvider = connect(mapStateToProps)(ThemeProvider);
 
-export const getThemedProvider = Provider => ({ store, children }) => (
+export const getThemedProvider = Provider => ({ store, children }) => ( // eslint-disable-line
   <Provider store={store}>
     <ConnectedThemeProvider>
       {children}
