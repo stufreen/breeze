@@ -9,6 +9,9 @@ class Dashboard extends Component {
       topBar: {
         visible: false,
       },
+      layout: {
+        backgroundColor: 'rgb(0, 4, 43)',
+      },
       statusBar: {
         style: 'light',
       },
@@ -25,6 +28,13 @@ class Dashboard extends Component {
     Navigation.push(componentId, {
       component: {
         name: 'LocationSearch',
+        options: {
+          animations: {
+            push: {
+              waitForRender: true,
+            },
+          },
+        },
       },
     });
   }

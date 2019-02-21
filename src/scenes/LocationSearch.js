@@ -9,6 +9,9 @@ class LocationSearch extends Component {
       topBar: {
         visible: false,
       },
+      layout: {
+        backgroundColor: 'rgb(0, 4, 43)',
+      },
       statusBar: {
         style: 'light',
       },

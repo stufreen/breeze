@@ -17,7 +17,7 @@ const SettingsPanel = ({
         <UnitSelect />
       </Box>
     </ScrollBox>
-    <Box position="absolute" mt={5} ml={3}>
+    <Box position="absolute" mt={4} ml={3}>
       <BackButton
         onPress={onPressBack}
       />

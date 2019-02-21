@@ -34,7 +34,7 @@ const DashboardMainPanel = ({
       <LongTerm />
       <PoweredBy />
     </ScrollBox>
-    <Box position="absolute" mt={5} ml={3}>
+    <Box position="absolute" mt={4} ml={3}>
       <SettingsButton
         onPress={onPressSettings}
       />

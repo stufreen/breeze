@@ -11,7 +11,7 @@ const DashboardHero = ({ location, weather }) => (
     {location && weather
       && (
         <Box alignItems="center" justifyContent="center">
-          <Script fontSize={3} color="primary" header>{location.address.city}</Script>
+          <Script textAlign="center" fontSize={3} color="primary" header>{location.formatted_address}</Script>
           <BigTemp temp={formatTemp(weather.currently.temperature)} units={weather.flags.units} />
           <Script fontSize={4} mb={2} color="primary" header textAlign="center">{weather.currently.summary}</Script>
           <Script color="primary" header>Feels like {formatTemp(weather.currently.apparentTemperature)}&deg;</Script>

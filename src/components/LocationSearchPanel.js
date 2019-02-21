@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
-import { Box, ScrollBox, Script, StyledTextInput } from './design-system';
+import {
+  Box,
+  ScrollBox,
+  Script,
+  StyledTextInput,
+} from './design-system';
 import BackButton from './BackButton';
+import LocationResultList from './LocationResultList';
+import { lookupLocationAndFetchWeather } from '../common/location/location.actions';
 import { autoComplete } from '../services/geocode';
 
 class LocationSearchPanel extends React.Component {
@@ -28,6 +36,13 @@ class LocationSearchPanel extends React.Component {
     }
   }
 
+  handlePlaceSelect = (place) => {
+    const { onPressBack, lookupLocationAndFetchWeather } = this.props;
+    const { sessionID } = this.state;
+    onPressBack();
+    lookupLocationAndFetchWeather(place.place_id, sessionID);
+  }
+
   search = () => {
     const { input, sessionID } = this.state;
     autoComplete(input, sessionID)
@@ -49,7 +64,6 @@ class LocationSearchPanel extends React.Component {
             <StyledTextInput
               bg="tertiary"
               color="accent"
-              header
               p={3}
               fontSize={2}
               editable
@@ -60,12 +74,15 @@ class LocationSearchPanel extends React.Component {
               onChangeText={this.handleTyping}
               value={input}
             />
-            <Box my={4}>
-              {resultList && resultList.map(place => <Script key={place.place_id}>{place.description}</Script>) }
-            </Box>
+            {resultList && (
+              <LocationResultList
+                places={resultList}
+                onSelectPlace={this.handlePlaceSelect}
+              />
+            )}
           </Box>
         </ScrollBox>
-        <Box position="absolute" mt={5} ml={3}>
+        <Box position="absolute" mt={4} ml={3}>
           <BackButton
             onPress={onPressBack}
           />
@@ -77,6 +94,13 @@ class LocationSearchPanel extends React.Component {
 
 LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
+  lookupLocationAndFetchWeather: PropTypes.func.isRequired,
 };
 
-export default LocationSearchPanel;
+const mapDispatchToProps = {
+  lookupLocationAndFetchWeather,
+};
+
+const ConnectedLocationSearchPanel = connect(null, mapDispatchToProps)(LocationSearchPanel);
+
+export default ConnectedLocationSearchPanel;

@@ -8,8 +8,8 @@ import SettingHeader from './SettingHeader';
 const LocationSelect = ({ onPress, location }) => (
   <Box my={3}>
     <SettingHeader>Select Location</SettingHeader>
-    <MultipleChoiceOption onPress={onPress}>
-      {`${location.address.city}, ${location.address.state}, ${location.address.country}`}
+    <MultipleChoiceOption onPress={onPress} isSelected>
+      {location.formatted_address}
     </MultipleChoiceOption>
   </Box>
 );

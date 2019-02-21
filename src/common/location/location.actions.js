@@ -1,5 +1,9 @@
 import LOCATION_CONSTANTS from './location.constants';
-import { getCurrentPosition, getLocationName } from '../../services/geocode';
+import {
+  getCurrentPosition,
+  getLocationByLatLong,
+  getLocationByPlaceID,
+} from '../../services/geocode';
 import { fetchAndSetWeather } from '../weather/weather.actions';
 
 export const setCoords = coords => ({
@@ -15,7 +19,7 @@ export const setLocation = location => ({
 export const fetchAndSetLocation = () => (dispatch, getState) => {
   const { coords } = getState().location;
   // Reverse geocode address from coords
-  getLocationName(coords)
+  getLocationByLatLong(coords)
     .then((location) => {
       dispatch(setLocation(location));
     });
@@ -27,10 +31,30 @@ export const setCoordsAndFetchLocation = coords => (dispatch) => {
   dispatch(fetchAndSetWeather());
 };
 
+export const setLocationAndFetchWeather = location => (dispatch) => {
+  dispatch(setLocation(location));
+  dispatch(fetchAndSetWeather());
+};
+
+export const lookupLocationAndFetchWeather = (placeID, sessionToken) => (dispatch) => {
+  getLocationByPlaceID(placeID, sessionToken)
+    .then((location) => {
+      dispatch(setLocation(location));
+      dispatch(setCoords({
+        latitude: location.geometry.location.lat,
+        longitude: location.geometry.location.lng,
+      }));
+      dispatch(fetchAndSetWeather());
+    });
+};
+
 export const fetchAndSetUserCoords = () => (dispatch) => {
   getCurrentPosition()
     .then(({ coords }) => {
-      dispatch(setCoords(coords));
+      dispatch(setCoords({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      }));
     })
     .finally(() => {
       dispatch(fetchAndSetWeather());
