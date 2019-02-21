@@ -11,7 +11,7 @@ const SettingsPanel = ({
 }) => (
   <Box flex={1}>
     <ScrollBox bg="secondary" flex={1}>
-      <Box pt={5} px={4}>
+      <Box pt={5} px={3}>
         <Script header fontSize={3} textAlign="center">Settings</Script>
         <LocationSelect onPress={onPressLocation} />
         <UnitSelect />

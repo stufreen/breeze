@@ -14,7 +14,7 @@ const LongTermDay = ({ day, timezone, theme }) => {
     <Box
       mb="2px"
       flexDirection="row"
-      bg="primaryTransparent"
+      bg="tertiary"
       p={3}
       borderRadius={3}
       justifyContent="space-between"

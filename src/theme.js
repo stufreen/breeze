@@ -4,9 +4,9 @@ import { ThemeProvider } from 'styled-components';
 export const theme = {
   colors: {
     primary: 'rgb(255, 130, 100)',
-    primaryTransparent: 'rgba(255, 130, 100, 0.2)',
     secondary: 'rgb(0, 4, 43)',
-    accent: 'rgb(255, 200, 180)',
+    tertiary: 'rgb(54, 31, 52)',
+    accent: 'rgb(255, 230, 225)',
   },
 };
 

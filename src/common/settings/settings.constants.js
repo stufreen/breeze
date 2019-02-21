@@ -3,8 +3,8 @@ export default {
 };
 
 export const UNIT_OPTIONS = [
+  'auto',
   'si',
   'us',
   'uk2',
-  'auto',
 ];

@@ -13,11 +13,11 @@ const Hourly = ({ weather }) => {
     : [];
   return weather ? (
     <Box mb={4}>
-      <Script mx={4} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
-      <Script mx={4} mb={4}>{weather.hourly.summary}</Script>
+      <Script mx={3} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
+      <Script mx={3} mb={4}>{weather.hourly.summary}</Script>
       <ScrollBox
         horizontal
-        contentContainerStyle={{ flexDirection: 'row', paddingLeft: 30, paddingRight: 30 }}
+        contentContainerStyle={{ flexDirection: 'row', paddingLeft: 16, paddingRight: 16 }}
       >
         <HourlyChart hours={hoursToShow} timezone={weather.timezone} />
       </ScrollBox>

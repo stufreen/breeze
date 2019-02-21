@@ -15,7 +15,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
           width={68}
           height={184}
           mx="1px"
-          bg="primaryTransparent"
+          bg="tertiary"
           key={item.time}
           alignItems="center"
           justifyContent="flex-start"
