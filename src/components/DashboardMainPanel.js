@@ -8,6 +8,7 @@ import Hourly from './Hourly';
 import SettingsButton from './SettingsButton';
 import PoweredBy from './PoweredBy';
 import LongTerm from './LongTerm';
+import Alert from './Alert';
 import DashboardBackground from './DashboardBackground';
 import { refreshWeather } from '../common/weather/weather.actions';
 
@@ -30,6 +31,7 @@ const DashboardMainPanel = ({
       )}
     >
       <DashboardHero />
+      <Alert />
       <Hourly />
       <LongTerm />
       <PoweredBy />

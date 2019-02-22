@@ -1,16 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { Box } from './design-system';
-import MultipleChoiceOption from './MultipleChoiceOption';
+import { Box, Script } from './design-system';
 import SettingHeader from './SettingHeader';
+import Chevron from './Chevron';
 
 const LocationSelect = ({ onPress, location }) => (
   <Box my={3}>
     <SettingHeader>Select Location</SettingHeader>
-    <MultipleChoiceOption onPress={onPress} isSelected>
-      {location.formatted_address}
-    </MultipleChoiceOption>
+    <TouchableOpacity onPress={onPress}>
+      <Box p={3} mb="2px" position="relative" flexDirection="row" alignItems="center" justifyContent="space-between">
+        <Box
+          position="absolute"
+          bg="primary"
+          opacity={0.2}
+          top={0}
+          bottom={0}
+          left={0}
+          right={0}
+        />
+        <Script fontSize={2} color="primary" flex={1}>
+          {location.formatted_address}
+        </Script>
+        <Chevron size={14} color="primary" />
+      </Box>
+    </TouchableOpacity>
   </Box>
 );
 

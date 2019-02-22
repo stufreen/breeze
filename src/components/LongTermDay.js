@@ -51,7 +51,7 @@ LongTermDay.propTypes = {
     temperatureLow: PropTypes.number.isRequired,
   }).isRequired,
   theme: PropTypes.shape({ colors: PropTypes.object }).isRequired,
-  timezone: PropTypes.number.isRequired,
+  timezone: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

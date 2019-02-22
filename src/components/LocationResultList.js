@@ -13,6 +13,7 @@ const LocationResultList = ({ places, onSelectPlace }) => (
         </Box>
       </TouchableOpacity>
     )) }
+    {places.length === 0 && <Script textAlign="center" m={3} fontSize={2} opacity={0.8}>Type a city name in the space above</Script>}
   </Box>
 );
 
