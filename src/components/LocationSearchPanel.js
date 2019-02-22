@@ -5,12 +5,12 @@ import uuid from 'uuid/v4';
 import {
   Box,
   ScrollBox,
-  Script,
+  LScript,
   StyledTextInput,
 } from './design-system';
 import BackButton from './BackButton';
 import LocationResultList from './LocationResultList';
-import { lookupLocationAndFetchWeather } from '../common/location/location.actions';
+import { lookupLocationAndFetchWeather, fetchAndSetUserCoords } from '../common/location/location.actions';
 import { autoComplete } from '../services/geocode';
 
 class LocationSearchPanel extends React.Component {
@@ -43,6 +43,12 @@ class LocationSearchPanel extends React.Component {
     lookupLocationAndFetchWeather(place.place_id, sessionID);
   }
 
+  handleCurrentSelect = () => {
+    const { onPressBack, fetchAndSetUserCoords } = this.props;
+    onPressBack();
+    fetchAndSetUserCoords();
+  }
+
   search = () => {
     const { input, sessionID } = this.state;
     autoComplete(input, sessionID)
@@ -60,7 +66,7 @@ class LocationSearchPanel extends React.Component {
       <Box flex={1}>
         <ScrollBox bg="secondary" flex={1}>
           <Box pt={5} px={3} width="100%">
-            <Script header fontSize={3} textAlign="center" mb={4}>Search Location</Script>
+            <LScript header fontSize={3} textAlign="center" mb={4} textKey="location:header" />
             <StyledTextInput
               bg="tertiary"
               color="accent"
@@ -78,6 +84,7 @@ class LocationSearchPanel extends React.Component {
               <LocationResultList
                 places={resultList}
                 onSelectPlace={this.handlePlaceSelect}
+                onSelectCurrent={this.handleCurrentSelect}
               />
             )}
           </Box>
@@ -95,10 +102,12 @@ class LocationSearchPanel extends React.Component {
 LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
   lookupLocationAndFetchWeather: PropTypes.func.isRequired,
+  fetchAndSetUserCoords: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   lookupLocationAndFetchWeather,
+  fetchAndSetUserCoords,
 };
 
 const ConnectedLocationSearchPanel = connect(null, mapDispatchToProps)(LocationSearchPanel);

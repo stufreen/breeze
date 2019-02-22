@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BigTemp from './BigTemp';
 import LastUpdated from './LastUpdated';
-import { Box, Script } from './design-system';
+import { Box, Script, LScript } from './design-system';
 import { formatTemp } from '../services/weather';
 
 const DashboardHero = ({ location, weather }) => (
@@ -14,7 +14,12 @@ const DashboardHero = ({ location, weather }) => (
           <Script textAlign="center" fontSize={3} color="primary" header>{location.formatted_address}</Script>
           <BigTemp temp={formatTemp(weather.currently.temperature)} units={weather.flags.units} />
           <Script fontSize={4} mb={2} color="primary" header textAlign="center">{weather.currently.summary}</Script>
-          <Script color="primary" header>Feels like {formatTemp(weather.currently.apparentTemperature)}&deg;</Script>
+          <LScript
+            color="primary"
+            header
+            textKey="dashboard:feelsLike"
+            interpolation={{ temp: formatTemp(weather.currently.apparentTemperature) }}
+          />
           <LastUpdated timestamp={weather.currently.time * 1000} timezone={weather.timezone} />
         </Box>
       )

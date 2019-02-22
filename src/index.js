@@ -5,6 +5,7 @@ import rootReducer from './reducer';
 import initializeNavigation from './scenes';
 import { fetchAndSetUserCoords } from './common/location/location.actions';
 import { getThemedProvider } from './theme';
+import { initializeLocalization } from './services/localization';
 
 // Create redux store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
@@ -20,6 +21,8 @@ store.dispatch(fetchAndSetUserCoords());
 
 // Wrap the Provider in styled-components theme provider
 const ThemedProvider = getThemedProvider(Provider);
+
+initializeLocalization(ThemedProvider, store);
 
 // Register scenes with react-native-navigation
 initializeNavigation(ThemedProvider, store);

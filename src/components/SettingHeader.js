@@ -1,19 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Script } from './design-system';
+import { LScript } from './design-system';
 
-const SettingHeader = ({ children }) => (
-  <Script fontSize={2} color="accent" header my={2}>
-    {children}
-  </Script>
+const SettingHeader = ({ textKey }) => (
+  <LScript fontSize={2} color="accent" header my={2} textKey={textKey} />
 );
 
-SettingHeader.defaultProps = {
-  children: '',
-};
-
 SettingHeader.propTypes = {
-  children: PropTypes.string,
+  textKey: PropTypes.string.isRequired,
 };
 
 export default SettingHeader;

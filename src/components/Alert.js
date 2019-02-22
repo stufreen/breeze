@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Box, Script } from './design-system';
+import { Box, Script, LScript } from './design-system';
 import WarningIcon from './WarningIcon';
 
 class Alert extends React.Component {
@@ -33,7 +33,7 @@ class Alert extends React.Component {
           </Box>
           <Script fontSize={1} color="accent" numberOfLines={isOpen ? undefined : 4} mb={2}>{alert.description}</Script>
           <TouchableOpacity onPress={this.toggleOpen}>
-            <Script fontSize={1} header numberOfLines={4} textAlign="right">{isOpen ? 'Less' : 'More'}</Script>
+            <LScript fontSize={1} header numberOfLines={4} textAlign="right" textKey={isOpen ? 'dashboard:less' : 'dashboard:more'} />
           </TouchableOpacity>
         </Box>
       );

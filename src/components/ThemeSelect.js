@@ -31,7 +31,7 @@ const ThemeSelect = ({
   theme,
 }) => (
   <Box my={3}>
-    <SettingHeader>Theme</SettingHeader>
+    <SettingHeader textKey="settings:theme" />
     {options.map(
       option => (
         <MultipleChoiceOption

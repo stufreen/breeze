@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Script } from './design-system';
+import { Box, Script, LScript } from './design-system';
 import { getTempUnit } from '../services/weather';
 
 const BigTemp = ({ temp, units }) => {
@@ -10,9 +10,14 @@ const BigTemp = ({ temp, units }) => {
       <Script fontSize={temp > 99 ? '120px' : '140px'} color="accent" header>
         {temp}
       </Script>
-      <Script fontSize={6} lineHeight={temp > 99 ? '100px' : '110px'} color="accent" header>
-        &deg;{tempUnit}
-      </Script>
+      <LScript
+        fontSize={6}
+        lineHeight={temp > 99 ? '100px' : '110px'}
+        color="accent"
+        header
+        textKey="dashboard:unit"
+        interpolation={{ tempUnit }}
+      />
     </Box>
   );
 };

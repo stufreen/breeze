@@ -1,3 +1,21 @@
 {
-  "currentWeather": "Current Weather"
+  "dashboard": {
+    "feelsLike": "Feels like {{temp}}°",
+    "more": "More",
+    "less": "Less",
+    "unit": "°{{tempUnit}}",
+    "poweredBy": "Powered by Dark Sky",
+    "lastUpdated": "Last updated at {{time}}"
+  },
+  "settings": {
+    "header": "Settings",
+    "selectLocation": "Select Location",
+    "units": "Units",
+    "theme": "Theme"
+  },
+  "locationSearch": {
+    "header": "Search Location",
+    "typeAbove": "Type a city name in the space above",
+    "currentLocation": "Current Location"
+  }
 }

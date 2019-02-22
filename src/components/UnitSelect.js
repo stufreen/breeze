@@ -22,7 +22,7 @@ const UnitSelect = ({
   units,
 }) => (
   <Box my={3}>
-    <SettingHeader>Units</SettingHeader>
+    <SettingHeader textKey="settings:units" />
     {UNIT_OPTIONS.map(
       unitKey => (
         <MultipleChoiceOption

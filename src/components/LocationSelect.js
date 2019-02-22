@@ -8,7 +8,7 @@ import Chevron from './Chevron';
 
 const LocationSelect = ({ onPress, location }) => (
   <Box my={3}>
-    <SettingHeader>Select Location</SettingHeader>
+    <SettingHeader textKey="settings:selectLocation" />
     <TouchableOpacity onPress={onPress}>
       <Box p={3} mb="2px" position="relative" flexDirection="row" alignItems="center" justifyContent="space-between">
         <Box
