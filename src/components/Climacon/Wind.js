@@ -1,7 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-export default ({ color = 'white', size = 30 }) => (
+const Wind = ({ color = 'white', size = 30 }) => (
   <Svg width={size} height={size} viewBox="15 15 70 70">
     <Path
       d="M65.999,52L65.999,52h-3c-1.105,0-2-0.895-2-1.999s0.895-2,2-2h3
@@ -16,3 +17,10 @@ export default ({ color = 'white', size = 30 }) => (
     />
   </Svg>
 );
+
+Wind.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default Wind;

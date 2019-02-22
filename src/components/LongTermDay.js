@@ -14,7 +14,7 @@ const LongTermDay = ({ day, timezone, theme }) => {
     <Box
       mb="2px"
       flexDirection="row"
-      bg="tertiary"
+      bg="translucent"
       p={3}
       borderRadius={3}
       justifyContent="space-between"
@@ -27,8 +27,12 @@ const LongTermDay = ({ day, timezone, theme }) => {
       </Box>
       <Box flexDirection="row" alignItems="center" flex={1}>
         <Box flex={2} flexDirection="row" justifyContent="space-around">
-          <Script header color="primary" mr={2} fontSize={2}>{formatTemp(day.temperatureHigh)}&deg;</Script>
-          <Script header color="primary" mr={3} fontSize={2} opacity={0.7}>{formatTemp(day.temperatureLow)}&deg;</Script>
+          <Script header color="primary" mr={2} fontSize={2}>
+            {formatTemp(day.temperatureHigh)}&deg;
+          </Script>
+          <Script header color="primary" mr={3} fontSize={2} opacity={0.7}>
+            {formatTemp(day.temperatureLow)}&deg;
+          </Script>
         </Box>
         <Box flex={1} alignItems="center" justifyContent="center">
           <Climacon iconKey={day.icon} size={36} color={theme.colors.accent} />
@@ -47,6 +51,7 @@ LongTermDay.propTypes = {
     temperatureLow: PropTypes.number.isRequired,
   }).isRequired,
   theme: PropTypes.shape({ colors: PropTypes.object }).isRequired,
+  timezone: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

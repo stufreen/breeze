@@ -15,7 +15,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
           width={68}
           height={184}
           mx="1px"
-          bg="tertiary"
+          bg="translucent"
           key={item.time}
           alignItems="center"
           justifyContent="flex-start"
@@ -40,6 +40,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
 HourlyChart.propTypes = {
   hours: PropTypes.arrayOf(PropTypes.object).isRequired,
   timezone: PropTypes.string.isRequired,
+  theme: PropTypes.shape({ colors: PropTypes.object }).isRequired,
 };
 
 export default withTheme(HourlyChart);

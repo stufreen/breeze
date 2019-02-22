@@ -1,7 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-export default ({ color = 'white', size = 30 }) => (
+const CloudMoon = ({ color = 'white', size = 30 }) => (
   <Svg width={size} height={size} viewBox="15 15 70 70">
     <Path
       d="M69.763,46.758L69.763,46.758c1.368,1.949,2.179,4.318,2.179,6.883
@@ -18,3 +19,10 @@ export default ({ color = 'white', size = 30 }) => (
     />
   </Svg>
 );
+
+CloudMoon.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default CloudMoon;

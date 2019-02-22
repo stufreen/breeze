@@ -16,14 +16,14 @@ const options = [
     key: 'electric',
     label: 'Electric',
   },
-  {
-    key: 'mono',
-    label: 'Monochrome',
-  },
-  {
-    key: 'desert',
-    label: 'Desert',
-  },
+  // {
+  //   key: 'mono',
+  //   label: 'Monochrome',
+  // },
+  // {
+  //   key: 'desert',
+  //   label: 'Desert',
+  // },
 ];
 
 const ThemeSelect = ({

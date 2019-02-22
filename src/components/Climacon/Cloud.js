@@ -1,7 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-export default ({ color = 'white', size = 30 }) => (
+const Cloud = ({ color = 'white', size = 30 }) => (
   <Svg width={size} height={size} viewBox="15 15 70 70">
     <Path
       d="M43.945,65.639c-8.835,0-15.998-7.162-15.998-15.998
@@ -13,3 +14,10 @@ export default ({ color = 'white', size = 30 }) => (
     />
   </Svg>
 );
+
+Cloud.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default Cloud;

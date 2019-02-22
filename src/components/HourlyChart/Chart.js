@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Svg, Circle, Line, Path, Defs, LinearGradient, Stop, G } from 'react-native-svg';
+import {
+  Svg,
+  Circle,
+  Line,
+  Path,
+  Defs,
+  LinearGradient,
+  Stop,
+} from 'react-native-svg';
 import { withTheme } from 'styled-components/native';
 import { formatTemp } from '../../services/weather';
 

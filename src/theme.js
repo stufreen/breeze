@@ -4,19 +4,21 @@ import { connect } from 'react-redux';
 
 const wine = {
   colors: {
-    primary: 'rgb(255, 130, 100)',
-    secondary: 'rgb(0, 4, 43)',
-    tertiary: 'rgb(54, 31, 52)',
+    primary: 'hsl(20, 100%, 70%)',
+    translucent: 'hsla(290, 25%, 18%, 0.8)',
+    secondary: 'hsl(234, 100%, 8%)',
+    tertiary: 'hsl(290, 25%, 18%)',
     accent: 'rgb(255, 230, 225)',
   },
 };
 
 const electric = {
   colors: {
-    primary: 'rgb(100, 255, 255)',
-    secondary: 'rgb(0, 4, 43)',
-    tertiary: 'rgb(20, 35, 70)',
-    accent: 'rgb(255, 255, 255)',
+    primary: 'hsl(180, 100%, 70%)',
+    translucent: 'hsla(210, 65%, 20%, 0.8)',
+    secondary: 'hsl(234, 100%, 8%)',
+    tertiary: 'hsl(210, 65%, 20%)',
+    accent: 'rgb(255, 230, 225)',
   },
 };
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-export default ({ color, size }) => (
+const Moon = ({ color, size }) => (
   <Svg width={size} height={size} viewBox="20 20 60 60">
     <Path
       d="M50,61.998c-6.627,0-11.999-5.372-11.999-11.998
@@ -13,3 +14,10 @@ export default ({ color, size }) => (
     />
   </Svg>
 );
+
+Moon.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default Moon;

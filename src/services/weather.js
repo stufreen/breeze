@@ -1,5 +1,5 @@
 import { DARK_SKY_SECRET_KEY } from 'react-native-dotenv';
-import samplePayload from './sample-payload.json';
+// import samplePayload from './sample-payload.json';
 
 export const getWeather = ({ latitude, longitude }, units = 'auto') => {
   // if (__DEV__) {

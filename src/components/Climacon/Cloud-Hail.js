@@ -1,7 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-export default ({ color = 'white', size = 30 }) => (
+const CloudHail = ({ color = 'white', size = 30 }) => (
   <Svg width={size} height={size} viewBox="15 15 70 70">
     <Path
       d="M63.999,64.941v-4.381c2.389-1.383,3.999-3.961,3.999-6.92
@@ -19,3 +20,10 @@ export default ({ color = 'white', size = 30 }) => (
     />
   </Svg>
 );
+
+CloudHail.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default CloudHail;
