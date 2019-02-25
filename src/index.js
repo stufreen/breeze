@@ -4,8 +4,10 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 import initializeNavigation from './scenes';
 import { fetchAndSetUserCoords } from './common/location/location.actions';
+import { refreshWeather } from './common/weather/weather.actions';
 import { getThemedProvider } from './theme';
 import { initializeLocalization } from './services/localization';
+import { listenForActiveState } from './services/app-state-watcher';
 
 // Create redux store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
@@ -27,3 +29,7 @@ initializeLocalization()
     // Register scenes with react-native-navigation
     initializeNavigation(ThemedProvider, store);
   });
+
+listenForActiveState(() => {
+  store.dispatch(refreshWeather());
+});

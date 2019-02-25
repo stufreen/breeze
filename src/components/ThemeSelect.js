@@ -7,24 +7,9 @@ import { Box } from './design-system';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import SettingHeader from './SettingHeader';
 
-// To do: localize
 const options = [
-  {
-    key: 'wine',
-    label: 'Wine',
-  },
-  {
-    key: 'electric',
-    label: 'Electric',
-  },
-  // {
-  //   key: 'mono',
-  //   label: 'Monochrome',
-  // },
-  // {
-  //   key: 'desert',
-  //   label: 'Desert',
-  // },
+  'wine',
+  'electric',
 ];
 
 const ThemeSelect = ({
@@ -36,15 +21,14 @@ const ThemeSelect = ({
     {options.map(
       option => (
         <MultipleChoiceOption
-          isSelected={option.key === theme}
+          isSelected={option === theme}
           onPress={() => {
-            setTheme(option.key);
+            setTheme(option);
             fetchAndSetWeather();
           }}
-          key={option.key}
-        >
-          {option.label}
-        </MultipleChoiceOption>
+          key={option}
+          textKey={`settings:themes.${option}`}
+        />
       ),
     )}
   </Box>

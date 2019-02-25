@@ -3,19 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setUnits } from '../common/settings/settings.actions';
 import { fetchAndSetWeather } from '../common/weather/weather.actions';
-import { UNIT_OPTIONS } from '../common/settings/settings.constants';
 import { Box } from './design-system';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import SettingHeader from './SettingHeader';
 
-// To do: localize
-const unitLabels = {
-  us: 'United States',
-  uk2: 'United Kingdom',
-  ca: 'Canada',
-  si: 'Metric',
-  auto: 'Automatic',
-};
+const options = [
+  'auto',
+  'si',
+  'us',
+  'uk2',
+];
 
 const UnitSelect = ({
   setUnits,
@@ -23,8 +20,8 @@ const UnitSelect = ({
   units,
 }) => (
   <Box my={3}>
-    <SettingHeader textKey="settings:units" />
-    {UNIT_OPTIONS.map(
+    <SettingHeader textKey="settings:unitHeading" />
+    {options.map(
       unitKey => (
         <MultipleChoiceOption
           isSelected={units === unitKey}
@@ -33,9 +30,8 @@ const UnitSelect = ({
             fetchAndSetWeather();
           }}
           key={unitKey}
-        >
-          {unitLabels[unitKey]}
-        </MultipleChoiceOption>
+          textKey={`settings:units.${unitKey}`}
+        />
       ),
     )}
   </Box>

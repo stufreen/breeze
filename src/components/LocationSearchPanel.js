@@ -66,7 +66,7 @@ class LocationSearchPanel extends React.Component {
       <Box flex={1}>
         <ScrollBox bg="secondary" flex={1}>
           <Box pt={5} px={3} width="100%">
-            <LScript header fontSize={3} textAlign="center" mb={4} textKey="location:header" />
+            <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" />
             <StyledTextInput
               bg="tertiary"
               color="accent"

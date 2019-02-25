@@ -10,8 +10,19 @@
   "settings": {
     "header": "Settings",
     "selectLocation": "Select Location",
-    "units": "Units",
-    "theme": "Theme"
+    "unitHeading": "Units",
+    "theme": "Theme",
+    "themes": {
+      "wine": "Wine",
+      "electric": "Electric"
+    },
+    "units": {
+      "us": "United States",
+      "uk2": "United Kingdom",
+      "ca": "Canada",
+      "si": "Metric",
+      "auto": "Automatic"
+    }
   },
   "locationSearch": {
     "header": "Search Location",
