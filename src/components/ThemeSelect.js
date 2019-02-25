@@ -7,6 +7,7 @@ import { Box } from './design-system';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import SettingHeader from './SettingHeader';
 
+// To do: localize
 const options = [
   {
     key: 'wine',

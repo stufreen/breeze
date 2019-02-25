@@ -32,7 +32,7 @@ const Chart = ({
 
   // Calculate unit size in pixels
   const xUnit = width / hours.length;
-  const yUnit = realHeight / (maxTemp - minTemp);
+  const yUnit = maxTemp - minTemp === 0 ? 0 : realHeight / (maxTemp - minTemp);
 
   // Some helper functions
   const convertX = xVal => (xVal * xUnit) + (xUnit / 2);

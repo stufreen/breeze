@@ -6,7 +6,7 @@ const wine = {
   colors: {
     primary: 'hsl(20, 100%, 70%)',
     translucent: 'hsla(290, 25%, 18%, 0.8)',
-    secondary: 'hsl(234, 100%, 8%)',
+    secondary: '#000429',
     tertiary: 'hsl(290, 25%, 18%)',
     accent: 'rgb(255, 230, 225)',
   },

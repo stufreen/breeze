@@ -22,7 +22,8 @@ store.dispatch(fetchAndSetUserCoords());
 // Wrap the Provider in styled-components theme provider
 const ThemedProvider = getThemedProvider(Provider);
 
-initializeLocalization(ThemedProvider, store);
-
-// Register scenes with react-native-navigation
-initializeNavigation(ThemedProvider, store);
+initializeLocalization()
+  .then(() => {
+    // Register scenes with react-native-navigation
+    initializeNavigation(ThemedProvider, store);
+  });

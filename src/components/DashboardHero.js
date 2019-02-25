@@ -7,7 +7,7 @@ import { Box, Script, LScript } from './design-system';
 import { formatTemp } from '../services/weather';
 
 const DashboardHero = ({ location, weather }) => (
-  <Box py={5} px={4}>
+  <Box py={5} px={4} flex={1}>
     {location && weather
       && (
         <Box alignItems="center" justifyContent="center">

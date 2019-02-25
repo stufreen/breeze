@@ -10,4 +10,5 @@ export const Box = styled.View`
   ${ss.flex}
   ${ss.borderRadius}
   ${ss.opacity}
+  ${ss.minHeight}
 `;

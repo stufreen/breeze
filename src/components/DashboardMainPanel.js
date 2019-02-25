@@ -11,17 +11,19 @@ import LongTerm from './LongTerm';
 import Alert from './Alert';
 import DashboardBackground from './DashboardBackground';
 import { refreshWeather } from '../common/weather/weather.actions';
+import Splash from './Splash';
 
-const DashboardMainPanel = ({
+const renderDashboard = ({
   onPressSettings,
   isFetchingWeather,
   refreshWeather,
   weather,
 }) => (
   <Box flex={1} position="relative">
-    <DashboardBackground iconKey={weather ? weather.currently.icon : null} />
+    <DashboardBackground iconKey={weather.currently.icon} />
     <ScrollBox
       flex={1}
+      contentContainerStyle={{ minHeight: '100%' }}
       refreshControl={(
         <RefreshControl
           refreshing={isFetchingWeather}
@@ -30,10 +32,12 @@ const DashboardMainPanel = ({
         />
       )}
     >
-      <DashboardHero />
-      <Alert />
-      <Hourly />
-      <LongTerm />
+      <Box>
+        <DashboardHero />
+        <Alert />
+        <Hourly />
+        <LongTerm />
+      </Box>
       <PoweredBy />
     </ScrollBox>
     <Box position="absolute" mt={4} ml={3}>
@@ -44,7 +48,9 @@ const DashboardMainPanel = ({
   </Box>
 );
 
-DashboardMainPanel.defaultProps = {
+const DashboardMainPanel = props => (props.weather ? renderDashboard(props) : <Splash />);
+
+renderDashboard.defaultProps = {
   weather: {
     currently: {
       icon: null,
@@ -52,7 +58,7 @@ DashboardMainPanel.defaultProps = {
   },
 };
 
-DashboardMainPanel.propTypes = {
+renderDashboard.propTypes = {
   onPressSettings: PropTypes.func.isRequired,
   isFetchingWeather: PropTypes.bool.isRequired,
   refreshWeather: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ export const getWeather = ({ latitude, longitude }, units = 'auto') => {
   //   return new Promise((resolve) => {
   //     setTimeout(() => {
   //       resolve(samplePayload);
-  //     }, 1000);
+  //     }, 5000);
   //   });
   // }
 

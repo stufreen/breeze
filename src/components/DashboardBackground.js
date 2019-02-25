@@ -35,7 +35,7 @@ class DashboardBackground extends React.Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     Animated.timing(
       this.state.bgOpacity,
       {

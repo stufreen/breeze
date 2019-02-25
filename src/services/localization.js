@@ -2,17 +2,22 @@ import i18next from 'i18next';
 import en from '../localize/en.json';
 
 export const initializeLocalization = () => {
-  const i18nextOptions = {
-    lng: 'en',
-    debug: true,
-    resources: {
-      en,
-    },
-  };
+  return new Promise((resolve, reject) => {
+    const i18nextOptions = {
+      lng: 'en',
+      debug: true,
+      resources: {
+        en,
+      },
+    };
 
-  // Use i18next to localize strings
-  i18next.init(i18nextOptions).then(() => {
-    console.log('i18next ready', i18next.t('dashboard:feelsLike'));
+    // Use i18next to localize strings
+    i18next.init(i18nextOptions, (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
   });
 };
 
