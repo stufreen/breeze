@@ -1,6 +1,6 @@
 import LOCATION_CONSTANTS from './location.constants';
 
-const initialState = {
+export const initialState = {
   coords: {
     longitude: -73.935242,
     latitude: 40.730610, // New York City

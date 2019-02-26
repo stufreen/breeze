@@ -1,6 +1,6 @@
 import SETTINGS_CONSTANTS from './settings.constants';
 
-const initialState = {
+export const initialState = {
   units: 'auto',
   theme: 'wine',
 };

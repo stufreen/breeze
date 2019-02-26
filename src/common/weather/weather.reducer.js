@@ -1,6 +1,6 @@
 import WEATHER_CONSTANTS from './weather.constants';
 
-const initialState = {
+export const initialState = {
   weather: null,
   isFetchingWeather: false,
 };
