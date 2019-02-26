@@ -8,12 +8,15 @@ class Dashboard extends Component {
     return {
       topBar: {
         visible: false,
+        height: 0,
       },
       layout: {
         backgroundColor: 'rgb(0, 4, 43)',
       },
       statusBar: {
         style: 'light',
+        backgroundColor: 'transparent',
+        drawBehind: true,
       },
     };
   }
