@@ -3,7 +3,7 @@ import { AppState } from 'react-native';
 let appState = 'init';
 
 function handleStateChange(nextState, callback) {
-  if (appState === 'inactive' || appState === 'inactive') {
+  if (appState === 'inactive' || appState === 'background') {
     callback();
   }
   appState = nextState;

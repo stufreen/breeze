@@ -1,7 +1,5 @@
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducer';
+import { configureStore } from './configureStore';
 import initializeNavigation from './scenes';
 import { fetchAndSetUserCoords } from './common/location/location.actions';
 import { refreshWeather } from './common/weather/weather.actions';
@@ -10,13 +8,7 @@ import { initializeLocalization } from './services/localization';
 import { listenForActiveState } from './services/app-state-watcher';
 
 // Create redux store
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
-const store = createStore(
-  rootReducer,
-  composeEnhancers(
-    applyMiddleware(thunk),
-  ),
-);
+const { store, persistor } = configureStore();
 
 // Fetch current weather and location from APIs on app startup
 store.dispatch(fetchAndSetUserCoords());

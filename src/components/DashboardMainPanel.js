@@ -13,7 +13,7 @@ import DashboardBackground from './DashboardBackground';
 import { refreshWeather } from '../common/weather/weather.actions';
 import Splash from './Splash';
 
-const renderDashboard = ({
+const Dash = ({
   onPressSettings,
   isFetchingWeather,
   refreshWeather,
@@ -48,9 +48,16 @@ const renderDashboard = ({
   </Box>
 );
 
-const DashboardMainPanel = props => (props.weather ? renderDashboard(props) : <Splash />);
+Dash.propTypes = {
+  onPressSettings: PropTypes.func.isRequired,
+  isFetchingWeather: PropTypes.bool.isRequired,
+  refreshWeather: PropTypes.func.isRequired,
+  weather: PropTypes.shape({ currently: PropTypes.object }).isRequired,
+};
 
-renderDashboard.defaultProps = {
+const DashboardMainPanel = props => (props.weather ? <Dash {...props} /> : <Splash />);
+
+DashboardMainPanel.defaultProps = {
   weather: {
     currently: {
       icon: null,
@@ -58,10 +65,7 @@ renderDashboard.defaultProps = {
   },
 };
 
-renderDashboard.propTypes = {
-  onPressSettings: PropTypes.func.isRequired,
-  isFetchingWeather: PropTypes.bool.isRequired,
-  refreshWeather: PropTypes.func.isRequired,
+DashboardMainPanel.propTypes = {
   weather: PropTypes.shape({ currently: PropTypes.object }),
 };
 
