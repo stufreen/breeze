@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { configureStore } from './configureStore';
+import configureStore from './configureStore';
 import initializeNavigation from './scenes';
 import { fetchAndSetUserCoords } from './common/location/location.actions';
 import { refreshWeather } from './common/weather/weather.actions';
@@ -8,10 +8,13 @@ import { initializeLocalization } from './services/localization';
 import { listenForActiveState } from './services/app-state-watcher';
 
 // Create redux store
-const { store, persistor } = configureStore();
-
-// Fetch current weather and location from APIs on app startup
-store.dispatch(fetchAndSetUserCoords());
+const { store } = configureStore((store) => {
+  // If weather is not set, probably first time use. Try to get user location and weather
+  const { weather } = store.getState();
+  if (!weather.weather) {
+    store.dispatch(fetchAndSetUserCoords());
+  }
+});
 
 // Wrap the Provider in styled-components theme provider
 const ThemedProvider = getThemedProvider(Provider);

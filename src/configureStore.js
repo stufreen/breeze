@@ -13,13 +13,20 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
-export default () => {
+export default (callback) => {
   const store = createStore(
     persistedReducer,
     composeEnhancers(
       applyMiddleware(thunk),
     ),
   );
-  const persistor = persistStore(store);
+
+  // You can pass a callback to configureStore that's called when store is rehydrated
+  const persistor = persistStore(store, null, () => {
+    if (typeof callback !== 'undefined') {
+      callback(store);
+    }
+  });
+
   return { store, persistor };
 };

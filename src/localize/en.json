@@ -5,7 +5,8 @@
     "less": "Less",
     "unit": "°{{tempUnit}}",
     "poweredBy": "Powered by Dark Sky",
-    "lastUpdated": "Last updated at {{time}}"
+    "lastUpdated": "Last updated at {{time}}",
+    "thisWeek": "This Week"
   },
   "settings": {
     "header": "Settings",
