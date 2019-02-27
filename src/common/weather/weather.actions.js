@@ -11,11 +11,19 @@ export const setFetchingWeather = isFetchingWeather => ({
   payload: isFetchingWeather,
 });
 
+export const setFetchError = errKey => ({
+  type: WEATHER_CONSTANTS.SET_FETCH_ERROR,
+  payload: errKey,
+});
+
 export const fetchAndSetWeather = () => (dispatch, getState) => {
   const { location, settings } = getState();
   getWeather(location.coords, settings.units)
     .then((weather) => {
       dispatch(setWeather(weather));
+    })
+    .catch(() => {
+      dispatch(setFetchError('noConnection'));
     })
     .finally(() => {
       dispatch(setFetchingWeather(false));

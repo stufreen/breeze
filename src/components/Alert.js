@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Box, Script, LScript } from './design-system';
-import WarningIcon from './WarningIcon';
+import WarningIcon from './icons/WarningIcon';
 
 class Alert extends React.Component {
   constructor() {

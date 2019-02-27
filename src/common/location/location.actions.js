@@ -4,7 +4,7 @@ import {
   getLocationByLatLong,
   getLocationByPlaceID,
 } from '../../services/geocode';
-import { fetchAndSetWeather } from '../weather/weather.actions';
+import { fetchAndSetWeather, setFetchError } from '../weather/weather.actions';
 
 export const setCoords = coords => ({
   type: LOCATION_CONSTANTS.SET_COORDS,
@@ -55,6 +55,9 @@ export const fetchAndSetUserCoords = () => (dispatch) => {
         latitude: coords.latitude,
         longitude: coords.longitude,
       }));
+    })
+    .catch(() => {
+      dispatch(setFetchError('geolocationOff'));
     })
     .finally(() => {
       dispatch(fetchAndSetWeather());

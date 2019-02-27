@@ -31,5 +31,15 @@
     "header": "Search Location",
     "typeAbove": "Type a city name in the space above",
     "currentLocation": "Current Location"
+  },
+  "errors": {
+    "noConnection": {
+      "header": "No connection",
+      "body": "We weren't able to connect to the weather service."
+    },
+    "geolocationOff": {
+      "header": "Geolocation disabled",
+      "body": "Please enable geolocation in your device settings if you want the weather for your current location."
+    }
   }
 }

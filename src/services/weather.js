@@ -11,7 +11,7 @@ export const getWeather = ({ latitude, longitude }, units = 'auto') => {
   // }
 
   const url = `https://api.darksky.net/forecast/${DARK_SKY_SECRET_KEY}/${latitude},${longitude}?units=${units}`;
-  return fetch(url)
+  return fetch(url, { cache: 'no-store' })
     .then(response => response.json());
 };
 
