@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Box, Script, LScript } from './design-system';
-import LocationIcon from './LocationIcon';
+import LocationIcon from './icons/LocationIcon';
 
 const LocationResultList = ({ places, onSelectPlace, onSelectCurrent }) => (
   <Box width="100%" opacity={0.8} mt="1px">

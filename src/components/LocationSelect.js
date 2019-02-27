@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Box, Script } from './design-system';
 import SettingHeader from './SettingHeader';
-import Chevron from './Chevron';
+import Chevron from './icons/Chevron';
 
 const LocationSelect = ({ onPress, location }) => (
   <Box my={3}>
