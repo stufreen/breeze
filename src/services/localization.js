@@ -1,25 +1,23 @@
 import i18next from 'i18next';
 import en from '../localize/en.json';
 
-export const initializeLocalization = () => {
-  return new Promise((resolve, reject) => {
-    const i18nextOptions = {
-      lng: 'en',
-      debug: true,
-      resources: {
-        en,
-      },
-    };
+export const initializeLocalization = () => new Promise((resolve, reject) => {
+  const i18nextOptions = {
+    lng: 'en',
+    debug: true,
+    resources: {
+      en,
+    },
+  };
 
-    // Use i18next to localize strings
-    i18next.init(i18nextOptions, (err) => {
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
+  // Use i18next to localize strings
+  i18next.init(i18nextOptions, (err) => {
+    if (err) {
+      reject(err);
+    }
+    resolve();
   });
-};
+});
 
 export const localeKeyExists = key => i18next.exists(key);
 
