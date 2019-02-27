@@ -1,29 +1,55 @@
 import React from 'react';
 import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
+import ThemedImage from './ThemedImage';
 
-const clearImage = require('../assets/clear-wine.jpg');
-const rainImage = require('../assets/rain-wine.jpg');
-const snowImage = require('../assets/snow-wine.jpg');
-const cloudyImage = require('../assets/cloudy-wine.jpg');
+const clearImageWine = require('../assets/clear-wine.jpg');
+const rainImageWine = require('../assets/rain-wine.jpg');
+const snowImageWine = require('../assets/snow-wine.jpg');
+const cloudyImageWine = require('../assets/cloudy-wine.jpg');
+
+const clearImageElectric = require('../assets/clear-electric.jpg');
+const rainImageElectric = require('../assets/rain-electric.jpg');
+const snowImageElectric = require('../assets/snow-electric.jpg');
+const cloudyImageElectric = require('../assets/cloudy-electric.jpg');
 
 const getImage = (iconKey) => {
   switch (iconKey) {
     case 'clear-day':
     case 'clear-night':
     case 'wind':
-      return clearImage;
+      return (
+        <ThemedImage
+          sources={{ electric: clearImageElectric, default: clearImageWine }}
+          resizeMode="cover"
+        />
+      );
     case 'rain':
     case 'sleet':
-      return rainImage;
+      return (
+        <ThemedImage
+          sources={{ electric: rainImageElectric, default: rainImageWine }}
+          resizeMode="cover"
+        />
+      );
     case 'snow':
-      return snowImage;
+      return (
+        <ThemedImage
+          sources={{ electric: snowImageElectric, default: snowImageWine }}
+          resizeMode="cover"
+        />
+      );
     case 'fog':
     case 'cloudy':
     case 'partly-cloudy-day':
     case 'partly-cloudy-night':
     default:
-      return cloudyImage;
+      return (
+        <ThemedImage
+          sources={{ electric: cloudyImageElectric, default: cloudyImageWine }}
+          resizeMode="cover"
+        />
+      );
   }
 };
 
@@ -50,8 +76,7 @@ class DashboardBackground extends React.Component {
     const { bgOpacity } = this.state;
     return iconKey
       ? (
-        <Animated.Image
-          source={getImage(iconKey)}
+        <Animated.View
           style={{
             position: 'absolute',
             top: 0,
@@ -61,7 +86,9 @@ class DashboardBackground extends React.Component {
             resizeMode: 'cover',
             opacity: bgOpacity,
           }}
-        />
+        >
+          {getImage(iconKey)}
+        </Animated.View>
       )
       : null;
   }

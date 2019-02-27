@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Script } from './Script';
 import { translate } from '../../services/localization';
 
@@ -27,3 +28,14 @@ export class LScript extends React.Component {
     );
   }
 }
+
+LScript.defaultProps = {
+  interpolation: undefined,
+  modifier: undefined,
+};
+
+LScript.propTypes = {
+  textKey: PropTypes.string.isRequired,
+  interpolation: PropTypes.shape(),
+  modifier: PropTypes.string,
+};

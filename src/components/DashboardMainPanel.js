@@ -6,7 +6,6 @@ import { Box, ScrollBox } from './design-system';
 import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
 import SettingsButton from './SettingsButton';
-import PoweredBy from './PoweredBy';
 import LongTerm from './LongTerm';
 import Alert from './Alert';
 import DashboardBackground from './DashboardBackground';
@@ -38,7 +37,6 @@ const Dash = ({
         <Hourly />
         <LongTerm />
       </Box>
-      <PoweredBy />
     </ScrollBox>
     <Box position="absolute" mt={4} ml={3}>
       <SettingsButton
