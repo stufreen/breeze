@@ -16,7 +16,7 @@ const ThemeSelect = ({
   setTheme,
   theme,
 }) => (
-  <Box my={3}>
+  <Box mt={3}>
     <SettingHeader textKey="settings:theme" />
     {options.map(
       option => (

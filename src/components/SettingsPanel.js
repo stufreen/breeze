@@ -5,6 +5,7 @@ import BackButton from './BackButton';
 import UnitSelect from './UnitSelect';
 import ThemeSelect from './ThemeSelect';
 import LocationSelect from './LocationSelect';
+import About from './About';
 
 const SettingsPanel = ({
   onPressBack,
@@ -17,6 +18,7 @@ const SettingsPanel = ({
         <LocationSelect onPress={onPressLocation} />
         <UnitSelect />
         <ThemeSelect />
+        <About />
       </Box>
     </ScrollBox>
     <Box position="absolute" mt={4} ml={3}>
