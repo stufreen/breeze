@@ -10,28 +10,32 @@ import { formatTemp } from '../../services/weather';
 const HourlyChart = ({ hours, timezone, theme }) => (
   <Box flexDirection="row">
     {
-      hours.map(item => (
-        <Box
-          width={68}
-          height={184}
-          mx="1px"
-          bg="translucent"
-          key={item.time}
-          alignItems="center"
-          justifyContent="flex-start"
-          borderRadius={3}
-          pt={3}
-        >
-          <Script fontSize={0} mb={1}>{moment(item.time * 1000).tz(timezone).format('h A')}</Script>
-          <Climacon iconKey={item.icon} size={48} color={theme.colors.accent} />
-          <Script fontSize={2} header>
-            {formatTemp(item.temperature)}
-            &deg;
-          </Script>
-        </Box>
-      ))
+      hours.map((item) => {
+        const pop = Math.round(item.precipProbability * 10) * 10;
+        return (
+          <Box
+            width={68}
+            height={200}
+            mx="1px"
+            bg="translucent"
+            key={item.time}
+            alignItems="center"
+            justifyContent="flex-start"
+            borderRadius={3}
+            pt={3}
+          >
+            <Script fontSize={0} mb={1}>{moment(item.time * 1000).tz(timezone).format('h A')}</Script>
+            <Climacon iconKey={item.icon} size={48} color={theme.colors.accent} />
+            <Script fontSize={2} header>
+              {formatTemp(item.temperature)}
+              &deg;
+            </Script>
+            {pop > 0 && <Script fontSize={0} opacity={0.8}>{pop}%</Script>}
+          </Box>
+        );
+      })
     }
-    <Box position="absolute" top={104}>
+    <Box position="absolute" top={120}>
       <Chart hours={hours} width={70 * hours.length} height={60} />
     </Box>
   </Box>
