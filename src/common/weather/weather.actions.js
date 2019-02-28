@@ -22,9 +22,6 @@ export const fetchAndSetWeather = () => (dispatch, getState) => {
     .then((weather) => {
       dispatch(setWeather(weather));
     })
-    .catch(() => {
-      dispatch(setFetchError('noConnection'));
-    })
     .finally(() => {
       dispatch(setFetchingWeather(false));
     });
