@@ -3,15 +3,15 @@ import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import ThemedImage from './ThemedImage';
 
-const clearImageWine = require('../assets/clear-wine.jpg');
-const rainImageWine = require('../assets/rain-wine.jpg');
-const snowImageWine = require('../assets/snow-wine.jpg');
-const cloudyImageWine = require('../assets/cloudy-wine.jpg');
+const clearImageWine = require('../assets/backgrounds/clear-wine.jpg');
+const rainImageWine = require('../assets/backgrounds/rain-wine.jpg');
+const snowImageWine = require('../assets/backgrounds/snow-wine.jpg');
+const cloudyImageWine = require('../assets/backgrounds/cloudy-wine.jpg');
 
-const clearImageElectric = require('../assets/clear-electric.jpg');
-const rainImageElectric = require('../assets/rain-electric.jpg');
-const snowImageElectric = require('../assets/snow-electric.jpg');
-const cloudyImageElectric = require('../assets/cloudy-electric.jpg');
+const clearImageElectric = require('../assets/backgrounds/clear-electric.jpg');
+const rainImageElectric = require('../assets/backgrounds/rain-electric.jpg');
+const snowImageElectric = require('../assets/backgrounds/snow-electric.jpg');
+const cloudyImageElectric = require('../assets/backgrounds/cloudy-electric.jpg');
 
 const getImage = (iconKey) => {
   switch (iconKey) {
