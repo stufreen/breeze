@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
         <ScrollBox
           flex={1}
           contentContainerStyle={{ minHeight: '100%', paddingTop: bp([400, 500]) }}
-          scrollEventThrottle={16}
+          scrollEventThrottle={32}
           onScroll={this.handleScroll}
           onMomentumScrollEnd={this.handleScroll}
         >
