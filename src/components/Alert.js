@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Box, Script, LScript } from './design-system';
 import WarningIcon from './icons/WarningIcon';
+import bp from '../services/breakpoints';
 
 class Alert extends React.Component {
   constructor() {
@@ -26,7 +27,7 @@ class Alert extends React.Component {
     const alert = weather && weather.alerts ? weather.alerts[weather.alerts.length - 1] : null;
     if (alert) {
       return (
-        <Box bg="translucent" p={3} borderRadius={3} m={3} mb={4}>
+        <Box bg="translucent" p={3} borderRadius={3} mx={bp([3, 4])} mb={4}>
           <Box flexDirection="row" alignItems="center" mb={3}>
             <Script header color="accent" fontSize={1} mr={2}>{alert.title}</Script>
             <WarningIcon color="accent" size={16} />

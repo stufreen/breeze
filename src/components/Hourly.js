@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import { Box, ScrollBox, Script } from './design-system';
 import HourlyChart from './HourlyChart';
+import bp from '../services/breakpoints';
 
 const Hourly = ({ weather }) => {
   const now = weather ? moment(weather.currently.time * 1000).tz(weather.timezone) : moment();
@@ -13,11 +14,11 @@ const Hourly = ({ weather }) => {
     : [];
   return weather ? (
     <Box mb={4}>
-      <Script mx={3} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
-      <Script mx={3} mb={4}>{weather.hourly.summary}</Script>
+      <Script mx={bp([3, 4])} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
+      <Script mx={bp([3, 4])} mb={4}>{weather.hourly.summary}</Script>
       <ScrollBox
         horizontal
-        contentContainerStyle={{ flexDirection: 'row', paddingLeft: 16, paddingRight: 16 }}
+        contentContainerStyle={{ flexDirection: 'row', paddingLeft: bp([16, 32]), paddingRight: bp([16, 32]) }}
       >
         <HourlyChart hours={hoursToShow} timezone={weather.timezone} />
       </ScrollBox>
