@@ -10,7 +10,7 @@ const Hourly = ({ weather }) => {
   const now = weather ? moment(weather.currently.time * 1000).tz(weather.timezone) : moment();
   const nowString = now.format('dddd, [Today]');
   const hoursToShow = weather
-    ? weather.hourly.data.slice(0, 12)
+    ? weather.hourly.data.slice(0, 24)
     : [];
   return weather ? (
     <Box mb={4}>

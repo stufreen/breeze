@@ -7,6 +7,7 @@ import SettingsButton from './SettingsButton';
 import LongTerm from './LongTerm';
 import Alert from './Alert';
 import DashboardBackground from './DashboardBackground';
+import bp from '../services/breakpoints';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -33,8 +34,8 @@ class Dashboard extends React.Component {
         </Box>
         <ScrollBox
           flex={1}
-          contentContainerStyle={{ minHeight: '100%', paddingTop: 400 }}
-          scrollEventThrottle={100}
+          contentContainerStyle={{ minHeight: '100%', paddingTop: bp([400, 500]) }}
+          scrollEventThrottle={16}
           onScroll={this.handleScroll}
           onMomentumScrollEnd={this.handleScroll}
         >
