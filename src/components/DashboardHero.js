@@ -5,9 +5,10 @@ import BigTemp from './BigTemp';
 import LastUpdated from './LastUpdated';
 import { Box, Script, LScript } from './design-system';
 import { formatTemp } from '../services/weather';
+import bp from '../services/breakpoints';
 
 const DashboardHero = ({ location, weather }) => (
-  <Box py={5} px={4} flex={1}>
+  <Box mx={bp([3, 4])} py={bp([5, 6])} flex={1}>
     {location && weather
       && (
         <Box alignItems="center" justifyContent="center">

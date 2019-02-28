@@ -12,8 +12,8 @@ const SettingsPanel = ({
   onPressLocation,
 }) => (
   <Box flex={1}>
-    <ScrollBox bg="secondary" flex={1}>
-      <Box pt={5} px={3}>
+    <ScrollBox bg="secondary" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
+      <Box pt={5} px={3} maxWidth={480} flex={1} width="100%">
         <Script header fontSize={3} textAlign="center">Settings</Script>
         <LocationSelect onPress={onPressLocation} />
         <UnitSelect />

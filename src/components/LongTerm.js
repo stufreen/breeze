@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Box, LScript } from './design-system';
 import LongTermDay from './LongTermDay';
+import bp from '../services/breakpoints';
 
 const LongTerm = ({ weather }) => (
-  <Box mx={3} mb={4}>
+  <Box mx={bp([3, 4])} mb={4}>
     {weather && <LScript fontSize={3} color="accent" header mb={3} textKey="dashboard:thisWeek" /> }
     {weather
       && weather.daily.data.slice(1, 8).map(

@@ -9,9 +9,10 @@ import { listenForActiveState } from './services/app-state-watcher';
 
 // Create redux store
 const { store } = configureStore((store) => {
-  // If weather is not set, probably first time use. Try to get user location and weather
-  const { weather } = store.getState();
-  if (!weather.weather) {
+  // If weather or location is not set, probably first time use
+  // Try to get user location and weather
+  const { weather, location } = store.getState();
+  if (!weather.weather || !location.location) {
     store.dispatch(fetchAndSetUserCoords());
   }
 });

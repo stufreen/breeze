@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/native';
 import { connect } from 'react-redux';
 
 const wine = {
@@ -22,29 +22,9 @@ const electric = {
   },
 };
 
-const mono = {
-  colors: {
-    primary: 'rgb(220, 220, 220)',
-    secondary: 'rgb(0, 0, 0)',
-    tertiary: 'rgb(30, 30, 30)',
-    accent: 'rgb(255, 255, 255)',
-  },
-};
-
-const desert = {
-  colors: {
-    primary: 'rgb(110, 90, 75)',
-    secondary: 'rgb(240, 230, 220)',
-    tertiary: 'rgb(225, 210, 200)',
-    accent: 'rgb(140, 120, 110)',
-  },
-};
-
 const themes = {
   wine,
   electric,
-  mono,
-  desert,
 };
 
 const mapStateToProps = state => ({

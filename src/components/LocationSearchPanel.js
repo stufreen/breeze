@@ -64,8 +64,8 @@ class LocationSearchPanel extends React.Component {
     const { input, resultList } = this.state;
     return (
       <Box flex={1}>
-        <ScrollBox bg="secondary" flex={1}>
-          <Box pt={5} px={3} width="100%">
+        <ScrollBox bg="secondary" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
+          <Box pt={5} px={3} width="100%" maxWidth={480}>
             <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" />
             <StyledTextInput
               bg="tertiary"
