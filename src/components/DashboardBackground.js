@@ -85,7 +85,7 @@ const getImage = (iconKey) => {
     case 'partly-cloudy-night':
       return (
         <ThemedImage
-          sources={{ default: partlyCloudyNightWine, elecric: partlyCloudyNightElectric }}
+          sources={{ default: partlyCloudyNightWine, electric: partlyCloudyNightElectric }}
           resizeMode="cover"
         />
       );
