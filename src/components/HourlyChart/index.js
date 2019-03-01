@@ -6,6 +6,7 @@ import { Box, Script } from '../design-system';
 import Chart from './Chart';
 import Climacon from '../Climacon';
 import { formatTemp } from '../../services/weather';
+import bp from '../../services/breakpoints';
 
 const HourlyChart = ({ hours, timezone, theme }) => (
   <Box flexDirection="row">
@@ -14,7 +15,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
         const pop = Math.round(item.precipProbability * 10) * 10;
         return (
           <Box
-            width={68}
+            width={bp([68, 88])}
             height={200}
             mx="1px"
             bg="translucent"
@@ -36,7 +37,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
       })
     }
     <Box position="absolute" top={120}>
-      <Chart hours={hours} width={70 * hours.length} height={60} />
+      <Chart hours={hours} width={bp([70, 90]) * hours.length} height={60} />
     </Box>
   </Box>
 );
