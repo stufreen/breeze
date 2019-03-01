@@ -24,8 +24,9 @@
       "si": "Metric",
       "auto": "Automatic"
     },
-    "version": "Version 0.1.0 (Beta)",
-    "copyright": "© Stu Freen 2019"
+    "version": "Version {{version}}",
+    "copyright": "© Stu Freen 2019",
+    "buildLocation": "Toronto, Canada"
   },
   "locationSearch": {
     "header": "Search Location",
