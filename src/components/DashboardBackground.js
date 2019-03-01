@@ -26,76 +26,26 @@ const windElectric = require('../assets/backgrounds/electric/wind-electric.jpg')
 const getImage = (iconKey) => {
   switch (iconKey) {
     case 'clear-day':
-      return (
-        <ThemedImage
-          sources={{ default: clearDayWine, electric: clearDayElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: clearDayWine, electric: clearDayElectric };
     case 'clear-night':
-      return (
-        <ThemedImage
-          sources={{ default: clearNightWine, electric: clearNightElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: clearNightWine, electric: clearNightElectric };
     case 'wind':
-      return (
-        <ThemedImage
-          sources={{ default: windWine, electric: windElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: windWine, electric: windElectric };
     case 'rain':
-      return (
-        <ThemedImage
-          sources={{ default: rainWine, electric: rainElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: rainWine, electric: rainElectric };
     case 'sleet':
     case 'snow':
-      return (
-        <ThemedImage
-          sources={{ default: snowWine, electric: snowElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: snowWine, electric: snowElectric };
     case 'fog':
-      return (
-        <ThemedImage
-          sources={{ default: fogWine, electric: fogElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: fogWine, electric: fogElectric };
     case 'cloudy':
-      return (
-        <ThemedImage
-          sources={{ default: cloudyWine, electric: cloudyElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: cloudyWine, electric: cloudyElectric };
     case 'partly-cloudy-day':
-      return (
-        <ThemedImage
-          sources={{ default: partlyCloudyDayWine, electric: partlyCloudyDayElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: partlyCloudyDayWine, electric: partlyCloudyDayElectric };
     case 'partly-cloudy-night':
-      return (
-        <ThemedImage
-          sources={{ default: partlyCloudyNightWine, electric: partlyCloudyNightElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: partlyCloudyNightWine, electric: partlyCloudyNightElectric };
     default:
-      return (
-        <ThemedImage
-          sources={{ default: cloudyWine, electric: cloudyElectric }}
-          resizeMode="cover"
-        />
-      );
+      return { default: cloudyWine, electric: cloudyElectric };
   }
 };
 
@@ -133,7 +83,12 @@ class DashboardBackground extends React.Component {
             opacity: bgOpacity,
           }}
         >
-          {getImage(iconKey)}
+          {}
+          <ThemedImage
+            sources={getImage(iconKey)}
+            resizeMode="cover"
+            style={{ width: '100%', height: '100%' }}
+          />
         </Animated.View>
       )
       : null;
