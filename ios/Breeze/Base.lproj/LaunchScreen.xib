@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="SplashLogoGradient" translatesAutoresizingMaskIntoConstraints="NO" id="BXs-z7-csw">
-                    <rect key="frame" x="293" y="239" width="96" height="86"/>
+                    <rect key="frame" x="291.86561264822126" y="232.35177865612673" width="95.999999999999886" height="97.999999999999829"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -27,6 +27,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SplashLogoGradient" width="96" height="84"/>
+        <image name="SplashLogoGradient" width="96" height="98"/>
     </resources>
 </document>
