@@ -14,6 +14,8 @@ const { store } = configureStore((store) => {
   const { weather, location } = store.getState();
   if (!weather.weather || !location.location) {
     store.dispatch(fetchAndSetUserCoords());
+  } else {
+    store.dispatch(refreshWeather());
   }
 });
 
