@@ -11,7 +11,7 @@ const About = () => (
         wine: require('../assets/splash-logo-gradient.png'),
         default: require('../assets/splash-logo-white.png'),
       }}
-      style={{ width: 96, height: 86 }}
+      style={{ width: 96, height: 98 }}
     />
     <LScript opacity={0.8} fontSize={0} textKey="settings:version" textAlign="center" mt={4} interpolation={{ version: '1.0.0' }} />
     <LScript opacity={0.8} fontSize={0} textKey="settings:copyright" textAlign="center" />
