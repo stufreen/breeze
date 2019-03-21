@@ -7,8 +7,8 @@ import { Box, Script, LScript } from './design-system';
 import { formatTemp } from '../services/weather';
 import bp from '../services/breakpoints';
 
-const DashboardHero = ({ location, weather, scrollY }) => (
-  <Box mx={bp([3, 4])} py={bp([5, 6])} flex={1} opacity={1 - (scrollY / bp([120, 300]))}>
+const DashboardHero = ({ location, weather, opacity }) => (
+  <Box mx={bp([3, 4])} py={bp([5, 6])} opacity={opacity}>
     {location && weather
       && (
         <Box alignItems="center" justifyContent="center">
@@ -19,6 +19,7 @@ const DashboardHero = ({ location, weather, scrollY }) => (
             color="primary"
             header
             textKey="dashboard:feelsLike"
+            fontSize={1}
             interpolation={{ temp: formatTemp(weather.currently.apparentTemperature) }}
           />
           <LastUpdated timestamp={weather.currently.time * 1000} timezone={weather.timezone} />
@@ -40,7 +41,7 @@ DashboardHero.propTypes = {
   weather: PropTypes.shape({
     currently: PropTypes.object,
   }),
-  scrollY: PropTypes.number.isRequired,
+  opacity: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
