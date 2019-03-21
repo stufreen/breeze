@@ -16,7 +16,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
         return (
           <Box
             width={bp([68, 88])}
-            height={200}
+            height={bp([204, 240])}
             mx="1px"
             bg="translucent"
             key={item.time}
@@ -36,7 +36,7 @@ const HourlyChart = ({ hours, timezone, theme }) => (
         );
       })
     }
-    <Box position="absolute" top={120}>
+    <Box position="absolute" top={theme.space[6]}>
       <Chart hours={hours} width={bp([70, 90]) * hours.length} height={60} />
     </Box>
   </Box>

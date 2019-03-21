@@ -1,8 +1,15 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import { connect } from 'react-redux';
+import bp from './services/breakpoints';
+
+const common = {
+  fontSizes: bp([[15, 16, 17, 20, 26, 34, 50], [16, 17, 18, 22, 28, 37, 54]]),
+  space: bp([[0, 4, 8, 16, 32, 64, 128], [0, 5, 10, 20, 40, 80, 160]]),
+};
 
 const wine = {
+  ...common,
   colors: {
     primary: 'hsl(20, 100%, 70%)',
     translucent: 'hsla(290, 25%, 18%, 0.8)',
@@ -13,6 +20,7 @@ const wine = {
 };
 
 const electric = {
+  ...common,
   colors: {
     primary: 'hsl(180, 100%, 70%)',
     translucent: 'hsla(210, 65%, 20%, 0.8)',

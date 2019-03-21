@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native';
 
-const BREAK_POINTS = [480];
+const BREAK_POINTS = [640];
 
 export default (inputs) => {
   const { width } = Dimensions.get('window');
