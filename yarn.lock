@@ -4393,9 +4393,10 @@ react-native-geolocation-service@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-geolocation-service/-/react-native-geolocation-service-2.0.0.tgz#9fbab4953726b3a3ca9a74388a92dc1e1997127a"
 
-react-native-navigation@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.11.0.tgz#a6ceb4ed425f792edb461b8d5a3d0ab62236ab5f"
+react-native-navigation@^2.15.0:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.15.0.tgz#5c634d4cfe4b7c76534cbdb2ea04a85b20f9e9c0"
+  integrity sha512-wiSpR1w4zc+WVVAGL6V5l0MLZcf9p7ULq20Hak9gxAH3LJ/KXAwIQbc62Eaq6AysIcmNsEDdR3tWcsfjh0vvXw==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

@@ -101,7 +101,7 @@ android {
         applicationId "com.breeze"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57" // See note below!
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
         versionCode 2
         versionName "1.0.1"
     }

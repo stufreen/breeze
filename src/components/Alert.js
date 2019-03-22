@@ -25,7 +25,7 @@ class Alert extends React.Component {
     const { isOpen } = this.state;
     const { weather } = this.props;
     const alert = weather && weather.alerts ? weather.alerts[weather.alerts.length - 1] : null;
-    if (alert) {
+    if (alert && (alert.severity === 'watch' || alert.severity === 'warning')) {
       return (
         <Box bg="translucent" p={3} borderRadius={3} mx={bp([3, 4])} mb={4}>
           <Box flexDirection="row" alignItems="center" mb={3}>

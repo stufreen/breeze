@@ -1,7 +1,8 @@
+import { Platform, PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 
-export const getCurrentPosition = (args = {}) => new Promise((resolve, reject) => {
+const geolocate = (args = {}) => new Promise((resolve, reject) => {
   Geolocation.getCurrentPosition(
     resolve,
     reject,
@@ -13,6 +14,23 @@ export const getCurrentPosition = (args = {}) => new Promise((resolve, reject) =
     },
   );
 });
+
+export const getCurrentPosition = (args) => {
+  if (Platform.OS === 'android') {
+    return PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Breeze Geolocation',
+        message:
+          'Breeze Weather would like to use your current' +
+          'location to get local weather information.',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    ).then(() => geolocate(args));
+  }
+  return geolocate(args);
+};
 
 export const autoComplete = (searchString, sessionToken) => {
   const encodedSearchString = encodeURIComponent(searchString);

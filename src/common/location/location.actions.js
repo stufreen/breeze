@@ -48,7 +48,7 @@ export const lookupLocationAndFetchWeather = (placeID, sessionToken) => (dispatc
     });
 };
 
-export const fetchAndSetUserCoords = () => (dispatch) => {
+export const fetchAndSetUserCoords = () => (dispatch, getState) => {
   getCurrentPosition()
     .then(({ coords }) => {
       dispatch(setCoords({
@@ -58,6 +58,13 @@ export const fetchAndSetUserCoords = () => (dispatch) => {
     })
     .catch(() => {
       dispatch(setFetchError('geolocationOff'));
+      const { location } = getState();
+      if (location.coords === null) {
+        dispatch(setCoords({
+          longitude: -73.935242,
+          latitude: 40.730610, // New York City
+        }));
+      }
     })
     .finally(() => {
       dispatch(fetchAndSetWeather());

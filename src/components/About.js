@@ -13,7 +13,7 @@ const About = () => (
       }}
       style={{ width: 96, height: 98 }}
     />
-    <LScript opacity={0.8} fontSize={0} textKey="settings:version" textAlign="center" mt={4} interpolation={{ version: '1.0.0' }} />
+    <LScript opacity={0.8} fontSize={0} textKey="settings:version" textAlign="center" mt={4} interpolation={{ version: '1.0.1' }} />
     <LScript opacity={0.8} fontSize={0} textKey="settings:copyright" textAlign="center" />
     <LScript opacity={0.8} fontSize={0} textKey="settings:buildLocation" textAlign="center" />
   </Box>

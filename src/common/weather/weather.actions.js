@@ -27,7 +27,10 @@ export const fetchAndSetWeather = () => (dispatch, getState) => {
     });
 };
 
-export const refreshWeather = () => (dispatch) => {
-  dispatch(setFetchingWeather(true));
-  dispatch(fetchAndSetWeather());
+export const refreshWeather = () => (dispatch, getState) => {
+  const { location } = getState();
+  if (location.coords) {
+    dispatch(setFetchingWeather(true));
+    dispatch(fetchAndSetWeather());
+  }
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setTheme } from '../common/settings/settings.actions';
-import { fetchAndSetWeather } from '../common/weather/weather.actions';
 import { Box } from './design-system';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import SettingHeader from './SettingHeader';
@@ -24,7 +23,6 @@ const ThemeSelect = ({
           isSelected={option === theme}
           onPress={() => {
             setTheme(option);
-            fetchAndSetWeather();
           }}
           key={option}
           textKey={`settings:themes.${option}`}
