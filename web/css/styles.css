@@ -1,0 +1,52 @@
+html {
+    --background: #000729;
+    --font-color: #D0D0D0;
+    --accent: #FF6868;
+    --secondary: #FF9966;
+    background-color: var(--background);
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: var(--font-color);
+    font-size: 17px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.description {
+    max-width: 30em;
+    margin: 0 auto 5em auto;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+.headline {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 0.5px solid var(--font-color)
+}
+
+.breeze {
+    display: inline-block;
+    height: 0.8em;
+    vertical-align: baseline;
+    margin-right: 0.3em;
+}
+
+.logo {
+    width: 4em;
+    margin: 2em auto;
+    display: block;
+}
+
+.iphone {
+    width: 15em;
+    margin: 2em auto;
+    display: block;
+    box-shadow: 
+}
