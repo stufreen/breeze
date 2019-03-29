@@ -45,8 +45,8 @@ DashboardHero.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather,
-  location: state.location.location,
+  weather: state.locations[0].weather,
+  location: state.locations[0].location,
 });
 
 const ConnectedDashboardHero = connect(mapStateToProps)(DashboardHero);

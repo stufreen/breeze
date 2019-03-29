@@ -1,8 +1,7 @@
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 import initializeNavigation from './scenes';
-import { fetchAndSetUserCoords } from './common/location/location.actions';
-import { refreshWeather } from './common/weather/weather.actions';
+import { refreshWeather, fetchAndSetUserCoords } from './common/locations/locations.thunks';
 import { getThemedProvider } from './theme';
 import { initializeLocalization } from './services/localization';
 import { listenForActiveState } from './services/app-state-watcher';
@@ -11,8 +10,8 @@ import { listenForActiveState } from './services/app-state-watcher';
 const { store } = configureStore((store) => {
   // If weather or location is not set, probably first time use
   // Try to get user location and weather
-  const { weather, location } = store.getState();
-  if (!weather.weather || !location.location) {
+  const { locations } = store.getState();
+  if (!locations[0].weather || !locations[0].location) {
     store.dispatch(fetchAndSetUserCoords());
   } else {
     store.dispatch(refreshWeather());

@@ -37,7 +37,7 @@ Hourly.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather,
+  weather: state.locations[0].weather,
 });
 
 const ConnectedHourly = connect(mapStateToProps)(Hourly);

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setUnits } from '../common/settings/settings.actions';
-import { fetchAndSetWeather } from '../common/weather/weather.actions';
+import { fetchAndSetWeather } from '../common/locations/locations.thunks';
 import { Box } from './design-system';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import SettingHeader from './SettingHeader';

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { refreshWeather, setFetchError } from '../common/weather/weather.actions';
+import { setFetchError } from '../common/locations/locations.actions';
+import { refreshWeather } from '../common/locations/locations.thunks';
 import Splash from './Splash';
 import Dashboard from './Dashboard';
 
@@ -20,8 +21,8 @@ DashboardMainPanel.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather,
-  location: state.location.location,
+  weather: state.locations[0].weather,
+  location: state.locations[0].location,
 });
 
 const mapDispatchToProps = {

@@ -1,23 +1,38 @@
-import LOCATION_CONSTANTS from './location.constants';
 import {
   getCurrentPosition,
   getLocationByLatLong,
   getLocationByPlaceID,
 } from '../../services/geocode';
-import { fetchAndSetWeather, setFetchError } from '../weather/weather.actions';
+import { getWeather } from '../../services/weather';
+import {
+  setFetchError,
+  setLocation,
+  setCoords,
+  setWeather,
+  setFetchingWeather,
+} from './locations.actions';
 
-export const setCoords = coords => ({
-  type: LOCATION_CONSTANTS.SET_COORDS,
-  payload: coords,
-});
+export const fetchAndSetWeather = () => (dispatch, getState) => {
+  const { locations, settings } = getState();
+  getWeather(locations[0].coords, settings.units)
+    .then((weather) => {
+      dispatch(setWeather(weather));
+    })
+    .finally(() => {
+      dispatch(setFetchingWeather(false));
+    });
+};
 
-export const setLocation = location => ({
-  type: LOCATION_CONSTANTS.SET_LOCATION,
-  payload: location,
-});
+export const refreshWeather = () => (dispatch, getState) => {
+  const { locations } = getState();
+  if (locations[0].coords) {
+    dispatch(setFetchingWeather(true));
+    dispatch(fetchAndSetWeather());
+  }
+};
 
 export const fetchAndSetLocation = () => (dispatch, getState) => {
-  const { coords } = getState().location;
+  const { coords } = getState().locations[0];
   // Reverse geocode address from coords
   getLocationByLatLong(coords)
     .then((location) => {
@@ -58,8 +73,8 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
     })
     .catch(() => {
       dispatch(setFetchError('geolocationOff'));
-      const { location } = getState();
-      if (location.coords === null) {
+      const { locations } = getState();
+      if (locations[0].coords === null) {
         dispatch(setCoords({
           longitude: -73.935242,
           latitude: 40.730610, // New York City

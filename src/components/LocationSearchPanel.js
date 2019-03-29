@@ -10,7 +10,10 @@ import {
 } from './design-system';
 import BackButton from './BackButton';
 import LocationResultList from './LocationResultList';
-import { lookupLocationAndFetchWeather, fetchAndSetUserCoords } from '../common/location/location.actions';
+import {
+  lookupLocationAndFetchWeather,
+  fetchAndSetUserCoords,
+} from '../common/locations/locations.thunks';
 import { autoComplete } from '../services/geocode';
 
 class LocationSearchPanel extends React.Component {

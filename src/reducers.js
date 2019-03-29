@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
-import weather from './common/weather/weather.reducer';
-import location from './common/location/location.reducer';
+import locations from './common/locations/locations.reducer';
 import settings from './common/settings/settings.reducer';
 
-const rootReducer = combineReducers({ weather, location, settings });
+const rootReducer = combineReducers({ locations, settings });
 
 export default rootReducer;

@@ -54,7 +54,7 @@ Alert.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather,
+  weather: state.locations[0].weather,
 });
 
 const ConnectedAlert = connect(mapStateToProps)(Alert);

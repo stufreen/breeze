@@ -37,7 +37,7 @@ LocationSelect.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  location: state.location.location,
+  location: state.locations[0].location,
 });
 
 const ConnectedLocationSelect = connect(mapStateToProps)(LocationSelect);
