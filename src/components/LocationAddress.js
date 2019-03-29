@@ -10,7 +10,9 @@ const LocationAddress = ({ location }) => (
         <LocationIcon color="primary" size={15} />
       </Box>
     )}
-    <Script textAlign="center" fontSize={3} color="primary" header>{location.location.formatted_address}</Script>
+    <Script textAlign="center" fontSize={3} color="primary" header>
+      {location.location.address_components[0].long_name}
+    </Script>
   </Box>
 );
 
@@ -20,7 +22,7 @@ LocationAddress.defaultProps = {
 
 LocationAddress.propTypes = {
   location: PropTypes.shape({
-    formatted_address: PropTypes.string,
+    address_components: PropTypes.array,
     isCurrentLocation: PropTypes.bool,
   }),
 };

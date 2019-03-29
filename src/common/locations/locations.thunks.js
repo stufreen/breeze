@@ -24,14 +24,6 @@ export const fetchAndSetWeather = () => (dispatch, getState) => {
     });
 };
 
-export const refreshWeather = () => (dispatch, getState) => {
-  const { locations } = getState();
-  if (locations[0].coords) {
-    dispatch(setFetchingWeather(true));
-    dispatch(fetchAndSetWeather());
-  }
-};
-
 export const fetchAndSetLocation = () => (dispatch, getState) => {
   const { coords } = getState().locations[0];
   // Reverse geocode address from coords
@@ -79,8 +71,8 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
       const { locations } = getState();
       if (locations[0].coords === null) {
         dispatch(setCoords({
-          longitude: -73.935242,
-          latitude: 40.730610, // New York City
+          longitude: -74.006058,
+          latitude: 40.712772, // New York City
         }));
         dispatch(setIsCurrentLocation(false));
       }
@@ -89,4 +81,15 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
       dispatch(fetchAndSetWeather());
       dispatch(fetchAndSetLocation());
     });
+};
+
+export const refreshWeather = () => (dispatch, getState) => {
+  const { locations } = getState();
+  if (locations[0].isCurrentLocation) {
+    dispatch(setFetchingWeather(true));
+    dispatch(fetchAndSetUserCoords());
+  } else if (locations[0].coords) {
+    dispatch(setFetchingWeather(true));
+    dispatch(fetchAndSetWeather());
+  }
 };
