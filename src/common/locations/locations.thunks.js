@@ -10,6 +10,7 @@ import {
   setCoords,
   setWeather,
   setFetchingWeather,
+  setIsCurrentLocation,
 } from './locations.actions';
 
 export const fetchAndSetWeather = () => (dispatch, getState) => {
@@ -55,6 +56,7 @@ export const lookupLocationAndFetchWeather = (placeID, sessionToken) => (dispatc
   getLocationByPlaceID(placeID, sessionToken)
     .then((location) => {
       dispatch(setLocation(location));
+      dispatch(setIsCurrentLocation(false));
       dispatch(setCoords({
         latitude: location.geometry.location.lat,
         longitude: location.geometry.location.lng,
@@ -70,6 +72,7 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
         latitude: coords.latitude,
         longitude: coords.longitude,
       }));
+      dispatch(setIsCurrentLocation(true));
     })
     .catch(() => {
       dispatch(setFetchError('geolocationOff'));
@@ -79,6 +82,7 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
           longitude: -73.935242,
           latitude: 40.730610, // New York City
         }));
+        dispatch(setIsCurrentLocation(false));
       }
     })
     .finally(() => {
