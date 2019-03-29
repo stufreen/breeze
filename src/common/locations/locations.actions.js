@@ -24,3 +24,8 @@ export const setFetchError = errKey => ({
   type: LOCATIONS_CONSTANTS.SET_FETCH_ERROR,
   payload: errKey,
 });
+
+export const setIsCurrentLocation = isCurrentLocation => ({
+  type: LOCATIONS_CONSTANTS.SET_IS_CURRENT_LOCATION,
+  payload: isCurrentLocation,
+});

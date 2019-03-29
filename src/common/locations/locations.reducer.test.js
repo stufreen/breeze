@@ -5,6 +5,7 @@ import {
   setWeather,
   setFetchingWeather,
   setFetchError,
+  setIsCurrentLocation,
 } from './locations.actions';
 
 jest.mock('../../services/geocode', () => ({
@@ -49,5 +50,12 @@ test('it can set a fetch error', () => {
   expect(locationsReducer(initialState, setFetchError('foobar'))).toEqual([{
     ...initialState[0],
     fetchError: 'foobar',
+  }]);
+});
+
+test('it can set if the location is the current location', () => {
+  expect(locationsReducer(initialState, setIsCurrentLocation(true))).toEqual([{
+    ...initialState[0],
+    isCurrentLocation: true,
   }]);
 });

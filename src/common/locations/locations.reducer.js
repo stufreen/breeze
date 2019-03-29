@@ -3,6 +3,7 @@ import LOCATIONS_CONSTANTS from './locations.constants';
 export const initialState = [{
   coords: null,
   location: null,
+  isCurrentLocation: false,
   weather: null,
   isFetchingWeather: false,
   fetchError: null,
@@ -34,6 +35,11 @@ export default function (state = initialState, action) {
       return [{
         ...state[0],
         fetchError: action.payload,
+      }];
+    case LOCATIONS_CONSTANTS.SET_IS_CURRENT_LOCATION:
+      return [{
+        ...state[0],
+        isCurrentLocation: action.payload,
       }];
     default:
       return state;
