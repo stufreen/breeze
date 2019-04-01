@@ -63,7 +63,7 @@ export const getLocationByPlaceID = (googlePlaceID, sessionToken) => {
 };
 
 export const getLocationByLatLong = ({ latitude, longitude }) => {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=locality&key=${GOOGLE_MAPS_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=neighborhood&key=${GOOGLE_MAPS_API_KEY}`;
   return fetch(url)
     .then(response => response.json())
     .then((data) => {
