@@ -15,6 +15,13 @@ const geolocate = (args = {}) => new Promise((resolve, reject) => {
   );
 });
 
+const preferLocality = (a, b) => {
+  if (a.types.includes('locality') && !b.types.includes('locality')) {
+    return -1;
+  }
+  return 1;
+};
+
 export const getCurrentPosition = (args) => {
   if (Platform.OS === 'android') {
     return PermissionsAndroid.request(
@@ -63,12 +70,12 @@ export const getLocationByPlaceID = (googlePlaceID, sessionToken) => {
 };
 
 export const getLocationByLatLong = ({ latitude, longitude }) => {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=neighborhood&key=${GOOGLE_MAPS_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=locality|political|colloquial_area|park&key=${GOOGLE_MAPS_API_KEY}`;
   return fetch(url)
     .then(response => response.json())
     .then((data) => {
       if (data.status === 'OK') {
-        return data.results[0];
+        return data.results.sort(preferLocality)[0];
       }
       if (data.status === 'ZERO_RESULTS') {
         return null;

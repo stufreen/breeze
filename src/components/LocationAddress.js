@@ -7,10 +7,10 @@ const LocationAddress = ({ location }) => (
   <Box flexDirection="row" alignItems="center">
     {location.isCurrentLocation && (
       <Box mr={2}>
-        <LocationIcon color="primary" size={15} />
+        <LocationIcon color="primary" size={10} />
       </Box>
     )}
-    <Script textAlign="center" fontSize={3} color="primary" header>
+    <Script textAlign="center" fontSize={3} color="primary" header pr={2}>
       {location.location.address_components[0].long_name}
     </Script>
   </Box>
