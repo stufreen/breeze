@@ -16,7 +16,15 @@ const wine = {
     secondary: '#000429',
     tertiary: 'hsl(290, 25%, 18%)',
     accent: 'rgb(255, 230, 225)',
+    mainBackground: '#000429',
+    settingsBackground: '#000429',
+    settingsText: 'hsl(20, 100%, 70%)',
+    settingsSelected: 'hsla(20, 100%, 70%, 0.2)',
+    settingsUnselected: 'hsla(20, 100%, 70%, 0.1)',
+    settingsButton: '#000429',
   },
+  statusBarMain: 'light-content',
+  statusBarSettings: 'light-content',
 };
 
 const electric = {
@@ -26,13 +34,41 @@ const electric = {
     translucent: 'hsla(210, 65%, 20%, 0.8)',
     secondary: 'hsl(234, 100%, 8%)',
     tertiary: 'hsl(210, 65%, 20%)',
-    accent: 'rgb(255, 230, 225)',
+    accent: 'rgb(245, 255, 255)',
+    mainBackground: 'hsl(234, 100%, 8%)',
+    settingsBackground: '#000429',
+    settingsText: 'hsl(180, 100%, 70%)',
+    settingsSelected: 'hsla(180, 100%, 70%, 0.2)',
+    settingsUnselected: 'hsla(180, 100%, 70%, 0.1)',
+    settingsButton: 'hsl(234, 100%, 8%)',
   },
+  statusBarMain: 'light-content',
+  statusBarSettings: 'light-content',
+};
+
+const splash = {
+  ...common,
+  colors: {
+    primary: 'rgb(0, 30, 140)',
+    translucent: 'rgba(255, 255, 255, 0.5)',
+    secondary: 'hsl(234, 100%, 8%)',
+    tertiary: 'hsl(210, 65%, 20%)',
+    accent: 'rgb(0, 200, 255)',
+    mainBackground: 'rgb(240, 245, 245)',
+    settingsBackground: '#000429',
+    settingsText: 'rgb(255, 255, 255)',
+    settingsSelected: 'hsla(180, 100%, 70%, 0.2)',
+    settingsUnselected: 'hsla(180, 100%, 70%, 0.1)',
+    settingsButton: 'rgba(245, 245, 245, 0.9)',
+  },
+  statusBarMain: 'dark-content',
+  statusBarSettings: 'light-content',
 };
 
 const themes = {
   wine,
   electric,
+  splash,
 };
 
 const mapStateToProps = state => ({

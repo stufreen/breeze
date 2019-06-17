@@ -9,6 +9,7 @@ import SettingHeader from './SettingHeader';
 const options = [
   'wine',
   'electric',
+  'splash',
 ];
 
 const ThemeSelect = ({

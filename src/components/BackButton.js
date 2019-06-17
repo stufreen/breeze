@@ -7,7 +7,7 @@ import BackIcon from './icons/BackIcon';
 const BackButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <Box width={48} height={48} borderRadius={24} bg="tertiary" alignItems="center" justifyContent="center">
-      <BackIcon size={23} color="primary" />
+      <BackIcon size={23} color="settingsText" />
     </Box>
   </TouchableOpacity>
 );

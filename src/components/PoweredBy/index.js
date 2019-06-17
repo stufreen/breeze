@@ -6,8 +6,8 @@ import DarkSkyLogo from './DarkSkyLogo';
 
 const PoweredBy = ({ theme }) => (
   <Box flexDirection="row" alignItems="center" justifyContent="center" opacity={0.7} mb={4}>
-    <DarkSkyLogo color={theme.colors.primary} size={16} />
-    <LScript ml={2} fontSize={0} textKey="dashboard:poweredBy" />
+    <DarkSkyLogo color={theme.colors.settingsText} size={16} />
+    <LScript ml={2} fontSize={0} textKey="dashboard:poweredBy" color="settingsText" />
   </Box>
 );
 

@@ -23,29 +23,79 @@ const cloudyElectric = require('../assets/backgrounds/electric/cloudy-electric.j
 const fogElectric = require('../assets/backgrounds/electric/fog-electric.jpg');
 const windElectric = require('../assets/backgrounds/electric/wind-electric.jpg');
 
+const clearDaySplash = require('../assets/backgrounds/splash/clear-day-splash.jpg');
+const clearNightSplash = require('../assets/backgrounds/splash/clear-night-splash.jpg');
+const partlyCloudyDaySplash = require('../assets/backgrounds/splash/partly-cloudy-day-splash.jpg');
+const partlyCloudyNightSplash = require('../assets/backgrounds/splash/partly-cloudy-night-splash.jpg');
+const rainSplash = require('../assets/backgrounds/splash/rain-splash.jpg');
+const snowSplash = require('../assets/backgrounds/splash/snow-splash.jpg');
+const cloudySplash = require('../assets/backgrounds/splash/cloudy-splash.jpg');
+const fogSplash = require('../assets/backgrounds/splash/fog-splash.jpg');
+const windSplash = require('../assets/backgrounds/splash/wind-splash.jpg');
+
 const getImage = (iconKey) => {
   switch (iconKey) {
     case 'clear-day':
-      return { default: clearDayWine, electric: clearDayElectric };
+      return {
+        default: clearDayWine,
+        electric: clearDayElectric,
+        splash: clearDaySplash,
+      };
     case 'clear-night':
-      return { default: clearNightWine, electric: clearNightElectric };
+      return {
+        default: clearNightWine,
+        electric: clearNightElectric,
+        splash: clearNightSplash,
+      };
     case 'wind':
-      return { default: windWine, electric: windElectric };
+      return {
+        default: windWine,
+        electric: windElectric,
+        splash: windSplash,
+      };
     case 'rain':
-      return { default: rainWine, electric: rainElectric };
+      return {
+        default: rainWine,
+        electric: rainElectric,
+        splash: rainSplash,
+      };
     case 'sleet':
     case 'snow':
-      return { default: snowWine, electric: snowElectric };
+      return {
+        default: snowWine,
+        electric: snowElectric,
+        splash: snowSplash,
+      };
     case 'fog':
-      return { default: fogWine, electric: fogElectric };
+      return {
+        default: fogWine,
+        electric: fogElectric,
+        splash: fogSplash,
+      };
     case 'cloudy':
-      return { default: cloudyWine, electric: cloudyElectric };
+      return {
+        default: cloudyWine,
+        electric: cloudyElectric,
+        splash: cloudySplash,
+      };
     case 'partly-cloudy-day':
-      return { default: partlyCloudyDayWine, electric: partlyCloudyDayElectric };
+      return {
+        default: partlyCloudyDayWine,
+        electric: partlyCloudyDayElectric,
+        splash: partlyCloudyDaySplash,
+      };
     case 'partly-cloudy-night':
-      return { default: partlyCloudyNightWine, electric: partlyCloudyNightElectric };
+      return {
+        default: partlyCloudyNightWine,
+        electric: partlyCloudyNightElectric,
+        splash: partlyCloudyNightSplash,
+      };
     default:
-      return { default: cloudyWine, electric: cloudyElectric };
+      return {
+        default: cloudyWine,
+        electric: cloudyElectric,
+        splash: cloudySplash,
+      };
   }
 };
 

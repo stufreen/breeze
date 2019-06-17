@@ -1,5 +1,7 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from 'styled-components/native';
 import { Box, ScrollBox } from './design-system';
 import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
@@ -30,10 +32,11 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { weather, onPressSettings } = this.props;
+    const { weather, onPressSettings, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
     return (
-      <Box flex={1} position="relative">
+      <Box flex={1} position="relative" bg="mainBackground">
+        <StatusBar barStyle={theme.statusBarMain} />
         <DashboardBackground iconKey={weather.currently.icon} />
         <Box
           position={heroHeight ? 'absolute' : 'relative'}
@@ -60,7 +63,7 @@ class Dashboard extends React.Component {
             <LongTerm />
           </Box>
         </ScrollBox>
-        <Box position="absolute" mt={4} ml={3}>
+        <Box position="absolute" mt={4} ml={3} pt={2}>
           <SettingsButton
             onPress={onPressSettings}
           />
@@ -73,6 +76,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   onPressSettings: PropTypes.func.isRequired,
   weather: PropTypes.shape({ currently: PropTypes.object }).isRequired,
+  theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
 };
 
-export default Dashboard;
+export default withTheme(Dashboard);

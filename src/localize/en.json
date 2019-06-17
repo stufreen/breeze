@@ -15,7 +15,8 @@
     "theme": "Theme",
     "themes": {
       "wine": "Wine",
-      "electric": "Electric"
+      "electric": "Electric",
+      "splash": "Splash"
     },
     "units": {
       "us": "United States",
