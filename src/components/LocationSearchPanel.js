@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
+import { withTheme } from 'styled-components/native';
 import {
   Box,
   ScrollBox,
@@ -63,13 +65,14 @@ class LocationSearchPanel extends React.Component {
   }
 
   render() {
-    const { onPressBack } = this.props;
+    const { onPressBack, theme } = this.props;
     const { input, resultList } = this.state;
     return (
       <Box flex={1}>
+        <StatusBar barStyle={theme.statusBarSettings} />
         <ScrollBox bg="secondary" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
           <Box pt={5} px={3} width="100%" maxWidth={480}>
-            <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" />
+            <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" color="accent" />
             <StyledTextInput
               bg="tertiary"
               color="accent"
@@ -92,7 +95,7 @@ class LocationSearchPanel extends React.Component {
             )}
           </Box>
         </ScrollBox>
-        <Box position="absolute" mt={4} ml={3}>
+        <Box position="absolute" mt={4} ml={3} pt={2}>
           <BackButton
             onPress={onPressBack}
           />
@@ -106,6 +109,7 @@ LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
   lookupLocationAndFetchWeather: PropTypes.func.isRequired,
   fetchAndSetUserCoords: PropTypes.func.isRequired,
+  theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
 };
 
 const mapDispatchToProps = {
@@ -115,4 +119,4 @@ const mapDispatchToProps = {
 
 const ConnectedLocationSearchPanel = connect(null, mapDispatchToProps)(LocationSearchPanel);
 
-export default ConnectedLocationSearchPanel;
+export default withTheme(ConnectedLocationSearchPanel);
