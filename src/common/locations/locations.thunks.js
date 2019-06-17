@@ -2,6 +2,7 @@ import {
   getCurrentPosition,
   getLocationByLatLong,
   getLocationByPlaceID,
+  getCountryFromLocation,
 } from '../../services/geocode';
 import { getWeather } from '../../services/weather';
 import {
@@ -15,7 +16,7 @@ import {
 
 export const fetchAndSetWeather = () => (dispatch, getState) => {
   const { locations, settings } = getState();
-  getWeather(locations[0].coords, settings.units)
+  getWeather(locations[0].coords, settings.units, locations[0].location)
     .then((weather) => {
       dispatch(setWeather(weather));
     })
@@ -29,14 +30,21 @@ export const fetchAndSetLocation = () => (dispatch, getState) => {
   // Reverse geocode address from coords
   getLocationByLatLong(coords)
     .then((location) => {
-      dispatch(setLocation(location));
+      const countryCode = getCountryFromLocation(location);
+      const locationPlus = {
+        ...location,
+        countryCode,
+      };
+      dispatch(setLocation(locationPlus));
+    })
+    .finally(() => {
+      dispatch(fetchAndSetWeather());
     });
 };
 
 export const setCoordsAndFetchLocation = coords => (dispatch) => {
   dispatch(setCoords(coords));
   dispatch(fetchAndSetLocation());
-  dispatch(fetchAndSetWeather());
 };
 
 export const setLocationAndFetchWeather = location => (dispatch) => {
@@ -47,7 +55,12 @@ export const setLocationAndFetchWeather = location => (dispatch) => {
 export const lookupLocationAndFetchWeather = (placeID, sessionToken) => (dispatch) => {
   getLocationByPlaceID(placeID, sessionToken)
     .then((location) => {
-      dispatch(setLocation(location));
+      const countryCode = getCountryFromLocation(location);
+      const locationPlus = {
+        ...location,
+        countryCode,
+      };
+      dispatch(setLocation(locationPlus));
       dispatch(setIsCurrentLocation(false));
       dispatch(setCoords({
         latitude: location.geometry.location.lat,
@@ -78,7 +91,6 @@ export const fetchAndSetUserCoords = () => (dispatch, getState) => {
       }
     })
     .finally(() => {
-      dispatch(fetchAndSetWeather());
       dispatch(fetchAndSetLocation());
     });
 };

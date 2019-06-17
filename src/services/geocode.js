@@ -15,6 +15,13 @@ const geolocate = (args = {}) => new Promise((resolve, reject) => {
   );
 });
 
+export const getCountryFromLocation = (location) => {
+  const countryComponents = location.address_components.filter(
+    addressComponent => addressComponent.types.includes('country'),
+  );
+  return countryComponents.length === 0 ? undefined : countryComponents[0].short_name;
+};
+
 const preferLocality = (a, b) => {
   if (a.types.includes('locality') && !b.types.includes('locality')) {
     return -1;
