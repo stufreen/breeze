@@ -55,7 +55,12 @@ export const setLocationAndFetchWeather = location => (dispatch) => {
 export const lookupLocationAndFetchWeather = (placeID, sessionToken) => (dispatch) => {
   getLocationByPlaceID(placeID, sessionToken)
     .then((location) => {
-      dispatch(setLocation(location));
+      const countryCode = getCountryFromLocation(location);
+      const locationPlus = {
+        ...location,
+        countryCode,
+      };
+      dispatch(setLocation(locationPlus));
       dispatch(setIsCurrentLocation(false));
       dispatch(setCoords({
         latitude: location.geometry.location.lat,
