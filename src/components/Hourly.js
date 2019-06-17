@@ -15,7 +15,7 @@ const Hourly = ({ weather }) => {
   return weather ? (
     <Box mb={4}>
       <Script mx={bp([3, 4])} mb={3} fontWeight="bold" fontSize={3} header color="accent">{nowString}</Script>
-      <Script mx={bp([3, 4])} mb={4} fontSize={0}>{weather.hourly.summary}</Script>
+      <Script mx={bp([3, 4])} mb={4} fontSize={1}>{weather.hourly.summary}</Script>
       <ScrollBox
         horizontal
         contentContainerStyle={{ flexDirection: 'row', paddingLeft: bp([16, 40]), paddingRight: bp([16, 40]) }}

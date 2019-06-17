@@ -49,7 +49,7 @@ const electric = {
 const splash = {
   ...common,
   colors: {
-    primary: 'rgb(0, 10, 140)',
+    primary: 'rgb(0, 30, 140)',
     translucent: 'rgba(255, 255, 255, 0.5)',
     secondary: 'hsl(234, 100%, 8%)',
     tertiary: 'hsl(210, 65%, 20%)',

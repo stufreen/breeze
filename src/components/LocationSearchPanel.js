@@ -70,7 +70,7 @@ class LocationSearchPanel extends React.Component {
     return (
       <Box flex={1}>
         <StatusBar barStyle={theme.statusBarSettings} />
-        <ScrollBox bg="secondary" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
+        <ScrollBox bg="settingsBackground" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
           <Box pt={5} px={3} width="100%" maxWidth={480}>
             <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" color="accent" />
             <StyledTextInput
