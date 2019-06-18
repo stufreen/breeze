@@ -11,7 +11,8 @@ import About from './About';
 
 const SettingsPanel = ({
   onPressBack,
-  onPressLocation,
+  onPressEditLocation,
+  onPressAddLocation,
   theme,
 }) => (
   <Box flex={1}>
@@ -19,7 +20,10 @@ const SettingsPanel = ({
     <ScrollBox bg="settingsBackground" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
       <Box pt={5} px={3} maxWidth={480} flex={1} width="100%">
         <Script header fontSize={3} textAlign="center" color="accent">Settings</Script>
-        <LocationSelect onPress={onPressLocation} />
+        <LocationSelect
+          onPressEditLocation={onPressEditLocation}
+          onPressAddLocation={onPressAddLocation}
+        />
         <UnitSelect />
         <ThemeSelect />
         <About />
@@ -35,7 +39,8 @@ const SettingsPanel = ({
 
 SettingsPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
-  onPressLocation: PropTypes.func.isRequired,
+  onPressEditLocation: PropTypes.func.isRequired,
+  onPressAddLocation: PropTypes.func.isRequired,
   theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
 };
 

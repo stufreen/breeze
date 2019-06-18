@@ -27,12 +27,24 @@ class LocationSearch extends Component {
   }
 
   render() {
-    return <LocationSearchPanel onPressBack={this.onPressBack} />;
+    return (
+      <LocationSearchPanel
+        onPressBack={this.onPressBack}
+        editing={this.props.editing}
+        locationIndex={this.props.locationIndex}
+      />
+    );
   }
 }
 
+LocationSearch.defaultProps = {
+  locationIndex: 0,
+};
+
 LocationSearch.propTypes = {
   componentId: PropTypes.string.isRequired,
+  editing: PropTypes.bool.isRequired,
+  locationIndex: PropTypes.number,
 };
 
 export default LocationSearch;

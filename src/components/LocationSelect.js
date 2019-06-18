@@ -1,42 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import { Box, Script } from './design-system';
+import { Box } from './design-system';
 import SettingHeader from './SettingHeader';
-import Chevron from './icons/Chevron';
+import AddLocationButton from './AddLocationButton';
+import LocationSelectItem from './LocationSelectItem';
 
-const LocationSelect = ({ onPress, location }) => (
+const LocationSelect = ({ onPressAddLocation, onPressEditLocation, locations }) => (
   <Box my={3}>
     <SettingHeader textKey="settings:selectLocation" />
-    <TouchableOpacity onPress={onPress}>
-      <Box p={3} mb="2px" position="relative" flexDirection="row" alignItems="center" justifyContent="space-between">
-        <Box
-          position="absolute"
-          bg="settingsSelected"
-          top={0}
-          bottom={0}
-          left={0}
-          right={0}
+    <FlatList
+      data={locations}
+      renderItem={({ item, index }) => (
+        <LocationSelectItem
+          location={item.location}
+          onPress={() => onPressEditLocation(index)}
         />
-        <Script fontSize={2} color="settingsText" flex={1}>
-          {location.formatted_address}
-        </Script>
-        <Chevron size={14} color="settingsText" />
-      </Box>
-    </TouchableOpacity>
+      )}
+      keyExtractor={(item, index) => index.toString()}
+    />
+    <AddLocationButton onPress={onPressAddLocation} />
   </Box>
 );
 
 LocationSelect.propTypes = {
-  location: PropTypes.shape({
-    address: PropTypes.object,
-  }).isRequired,
-  onPress: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onPressEditLocation: PropTypes.func.isRequired,
+  onPressAddLocation: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  location: state.locations[0].location,
+  locations: state.locations,
 });
 
 const ConnectedLocationSelect = connect(mapStateToProps)(LocationSelect);

@@ -15,6 +15,7 @@ import LocationResultList from './LocationResultList';
 import {
   lookupLocationAndFetchWeather,
   fetchAndSetUserCoords,
+  addLocationAndLookup,
 } from '../common/locations/locations.thunks';
 import { autoComplete } from '../services/geocode';
 
@@ -42,16 +43,35 @@ class LocationSearchPanel extends React.Component {
   }
 
   handlePlaceSelect = (place) => {
-    const { onPressBack, lookupLocationAndFetchWeather } = this.props;
+    const {
+      onPressBack,
+      lookupLocationAndFetchWeather,
+      addLocationAndLookup,
+      editing,
+      locationIndex,
+    } = this.props;
     const { sessionID } = this.state;
     onPressBack();
-    lookupLocationAndFetchWeather(place.place_id, sessionID);
+    if (!editing) {
+      addLocationAndLookup(place.place_id, sessionID);
+    } else {
+      lookupLocationAndFetchWeather(place.place_id, sessionID, locationIndex);
+    }
   }
 
   handleCurrentSelect = () => {
-    const { onPressBack, fetchAndSetUserCoords } = this.props;
+    const {
+      onPressBack,
+      fetchAndSetUserCoords,
+      editing,
+      locationIndex,
+    } = this.props;
     onPressBack();
-    fetchAndSetUserCoords();
+    if (!editing) {
+      console.warn('add');
+      return;
+    }
+    fetchAndSetUserCoords(locationIndex);
   }
 
   search = () => {
@@ -65,14 +85,21 @@ class LocationSearchPanel extends React.Component {
   }
 
   render() {
-    const { onPressBack, theme } = this.props;
+    const { onPressBack, theme, editing } = this.props;
     const { input, resultList } = this.state;
     return (
       <Box flex={1}>
         <StatusBar barStyle={theme.statusBarSettings} />
         <ScrollBox bg="settingsBackground" flex={1} contentContainerStyle={{ alignItems: 'center' }}>
           <Box pt={5} px={3} width="100%" maxWidth={480}>
-            <LScript header fontSize={3} textAlign="center" mb={4} textKey="locationSearch:header" color="accent" />
+            <LScript
+              header
+              fontSize={3}
+              textAlign="center"
+              mb={4}
+              textKey={editing ? 'locationSearch:edit' : 'locationSearch:add'}
+              color="accent"
+            />
             <StyledTextInput
               bg="tertiary"
               color="accent"
@@ -108,13 +135,17 @@ class LocationSearchPanel extends React.Component {
 LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
   lookupLocationAndFetchWeather: PropTypes.func.isRequired,
+  addLocationAndLookup: PropTypes.func.isRequired,
   fetchAndSetUserCoords: PropTypes.func.isRequired,
   theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
+  editing: PropTypes.bool.isRequired,
+  locationIndex: PropTypes.number.isRequired,
 };
 
 const mapDispatchToProps = {
   lookupLocationAndFetchWeather,
   fetchAndSetUserCoords,
+  addLocationAndLookup,
 };
 
 const ConnectedLocationSearchPanel = connect(null, mapDispatchToProps)(LocationSearchPanel);

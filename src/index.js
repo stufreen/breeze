@@ -12,9 +12,9 @@ const { store } = configureStore((store) => {
   // Try to get user location and weather
   const { locations } = store.getState();
   if (!locations[0].weather || !locations[0].location) {
-    store.dispatch(fetchAndSetUserCoords());
+    store.dispatch(fetchAndSetUserCoords(0));
   } else {
-    store.dispatch(refreshWeather());
+    store.dispatch(refreshWeather(0));
   }
 });
 
@@ -28,5 +28,5 @@ initializeLocalization()
   });
 
 listenForActiveState(() => {
-  store.dispatch(refreshWeather());
+  store.dispatch(refreshWeather(0));
 });

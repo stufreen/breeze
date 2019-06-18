@@ -26,11 +26,34 @@ class Dashboard extends Component {
     Navigation.pop(componentId);
   }
 
-  onPressLocation = () => {
+  onPressAddLocation = () => {
     const { componentId } = this.props;
     Navigation.push(componentId, {
       component: {
         name: 'LocationSearch',
+        passProps: {
+          editing: false,
+        },
+        options: {
+          animations: {
+            push: {
+              waitForRender: true,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  onPressEditLocation = (locationIndex) => {
+    const { componentId } = this.props;
+    Navigation.push(componentId, {
+      component: {
+        name: 'LocationSearch',
+        passProps: {
+          editing: true,
+          locationIndex,
+        },
         options: {
           animations: {
             push: {
@@ -43,7 +66,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    return <SettingsPanel onPressBack={this.onPressBack} onPressLocation={this.onPressLocation} />;
+    return (
+      <SettingsPanel
+        onPressBack={this.onPressBack}
+        onPressEditLocation={this.onPressEditLocation}
+        onPressAddLocation={this.onPressAddLocation}
+      />
+    );
   }
 }
 
