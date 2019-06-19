@@ -66,11 +66,13 @@ export default function (state = initialState, action) {
         },
         state,
       );
-    case LOCATIONS_CONSTANTS.ADD_LOCATION: 
+    case LOCATIONS_CONSTANTS.ADD_LOCATION:
       return [
         ...state,
         {},
       ];
+    case LOCATIONS_CONSTANTS.DELETE_LOCATION:
+      return R.remove(action.index, 1, state);
     default:
       return state;
   }

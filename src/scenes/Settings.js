@@ -31,29 +31,6 @@ class Dashboard extends Component {
     Navigation.push(componentId, {
       component: {
         name: 'LocationSearch',
-        passProps: {
-          editing: false,
-        },
-        options: {
-          animations: {
-            push: {
-              waitForRender: true,
-            },
-          },
-        },
-      },
-    });
-  }
-
-  onPressEditLocation = (locationIndex) => {
-    const { componentId } = this.props;
-    Navigation.push(componentId, {
-      component: {
-        name: 'LocationSearch',
-        passProps: {
-          editing: true,
-          locationIndex,
-        },
         options: {
           animations: {
             push: {
@@ -69,7 +46,6 @@ class Dashboard extends Component {
     return (
       <SettingsPanel
         onPressBack={this.onPressBack}
-        onPressEditLocation={this.onPressEditLocation}
         onPressAddLocation={this.onPressAddLocation}
       />
     );

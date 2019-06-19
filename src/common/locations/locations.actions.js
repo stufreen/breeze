@@ -39,3 +39,8 @@ export const setIsCurrentLocation = (isCurrentLocation, index) => ({
 export const addLocation = () => ({
   type: LOCATIONS_CONSTANTS.ADD_LOCATION,
 });
+
+export const deleteLocation = index => ({
+  type: LOCATIONS_CONSTANTS.DELETE_LOCATION,
+  index,
+});

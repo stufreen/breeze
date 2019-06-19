@@ -11,7 +11,6 @@ import About from './About';
 
 const SettingsPanel = ({
   onPressBack,
-  onPressEditLocation,
   onPressAddLocation,
   theme,
 }) => (
@@ -21,7 +20,6 @@ const SettingsPanel = ({
       <Box pt={5} px={3} maxWidth={480} flex={1} width="100%">
         <Script header fontSize={3} textAlign="center" color="accent">Settings</Script>
         <LocationSelect
-          onPressEditLocation={onPressEditLocation}
           onPressAddLocation={onPressAddLocation}
         />
         <UnitSelect />
@@ -39,7 +37,6 @@ const SettingsPanel = ({
 
 SettingsPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
-  onPressEditLocation: PropTypes.func.isRequired,
   onPressAddLocation: PropTypes.func.isRequired,
   theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
 };

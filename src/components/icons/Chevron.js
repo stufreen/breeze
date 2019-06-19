@@ -4,7 +4,7 @@ import { withTheme } from 'styled-components/native';
 import PropTypes from 'prop-types';
 
 const Chevron = ({ size = 18, color = 'white', theme }) => (
-  <Svg width={size} height={size} viewBox="0 0 23 23">
+  <Svg width={size} height={size} viewBox="2 0 25 23">
     <Path d="M10 2 L21 12.5 L10 22" stroke={theme.colors[color] || color} strokeWidth="3.5" fill="none" />
   </Svg>
 );

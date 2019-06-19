@@ -13,8 +13,6 @@ import {
 import BackButton from './BackButton';
 import LocationResultList from './LocationResultList';
 import {
-  lookupLocationAndFetchWeather,
-  fetchAndSetUserCoords,
   addLocationAndLookup,
 } from '../common/locations/locations.thunks';
 import { autoComplete } from '../services/geocode';
@@ -45,33 +43,11 @@ class LocationSearchPanel extends React.Component {
   handlePlaceSelect = (place) => {
     const {
       onPressBack,
-      lookupLocationAndFetchWeather,
       addLocationAndLookup,
-      editing,
-      locationIndex,
     } = this.props;
     const { sessionID } = this.state;
     onPressBack();
-    if (!editing) {
-      addLocationAndLookup(place.place_id, sessionID);
-    } else {
-      lookupLocationAndFetchWeather(place.place_id, sessionID, locationIndex);
-    }
-  }
-
-  handleCurrentSelect = () => {
-    const {
-      onPressBack,
-      fetchAndSetUserCoords,
-      editing,
-      locationIndex,
-    } = this.props;
-    onPressBack();
-    if (!editing) {
-      console.warn('add');
-      return;
-    }
-    fetchAndSetUserCoords(locationIndex);
+    addLocationAndLookup(place.place_id, sessionID);
   }
 
   search = () => {
@@ -85,7 +61,7 @@ class LocationSearchPanel extends React.Component {
   }
 
   render() {
-    const { onPressBack, theme, editing } = this.props;
+    const { onPressBack, theme } = this.props;
     const { input, resultList } = this.state;
     return (
       <Box flex={1}>
@@ -97,7 +73,7 @@ class LocationSearchPanel extends React.Component {
               fontSize={3}
               textAlign="center"
               mb={4}
-              textKey={editing ? 'locationSearch:edit' : 'locationSearch:add'}
+              textKey="locationSearch:add"
               color="accent"
             />
             <StyledTextInput
@@ -117,7 +93,6 @@ class LocationSearchPanel extends React.Component {
               <LocationResultList
                 places={resultList}
                 onSelectPlace={this.handlePlaceSelect}
-                onSelectCurrent={this.handleCurrentSelect}
               />
             )}
           </Box>
@@ -134,17 +109,11 @@ class LocationSearchPanel extends React.Component {
 
 LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
-  lookupLocationAndFetchWeather: PropTypes.func.isRequired,
   addLocationAndLookup: PropTypes.func.isRequired,
-  fetchAndSetUserCoords: PropTypes.func.isRequired,
   theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
-  editing: PropTypes.bool.isRequired,
-  locationIndex: PropTypes.number.isRequired,
 };
 
 const mapDispatchToProps = {
-  lookupLocationAndFetchWeather,
-  fetchAndSetUserCoords,
   addLocationAndLookup,
 };
 

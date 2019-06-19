@@ -31,7 +31,6 @@
     "buildLocation": "Toronto, Canada"
   },
   "locationSearch": {
-    "edit": "Edit Location",
     "add": "Add Location",
     "typeAbove": "Type a city name in the space above",
     "currentLocation": "Current Location"
