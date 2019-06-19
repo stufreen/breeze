@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 import initializeNavigation from './scenes';
-import { refreshWeather, fetchAndSetUserCoords } from './common/locations/locations.thunks';
+import { refreshWeather, fetchAndSetUserCoords, addCurrentLocation } from './common/locations/locations.thunks';
 import { getThemedProvider } from './theme';
 import { initializeLocalization } from './services/localization';
 import { listenForActiveState } from './services/app-state-watcher';
@@ -29,4 +29,5 @@ initializeLocalization()
 
 listenForActiveState(() => {
   store.dispatch(refreshWeather(0));
+  store.dispatch(addCurrentLocation());
 });

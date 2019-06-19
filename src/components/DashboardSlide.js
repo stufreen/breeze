@@ -5,12 +5,11 @@ import { withTheme } from 'styled-components/native';
 import { Box, ScrollBox } from './design-system';
 import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
-import SettingsButton from './SettingsButton';
 import LongTerm from './LongTerm';
 import Alert from './Alert';
 import DashboardBackground from './DashboardBackground';
 
-class Dashboard extends React.Component {
+class DashboardSlide extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -32,19 +31,22 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { weather, onPressSettings, theme } = this.props;
+    const { location, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
     return (
       <Box flex={1} position="relative" bg="mainBackground">
         <StatusBar barStyle={theme.statusBarMain} />
-        <DashboardBackground iconKey={weather.currently.icon} />
+        <DashboardBackground iconKey={location.weather.currently.icon} />
         <Box
           position={heroHeight ? 'absolute' : 'relative'}
           width="100%"
           pt={4}
           onLayout={this.affixHero}
         >
-          <DashboardHero opacity={heroHeight ? 1 - (scrollY / (heroHeight / 3)) : 1} />
+          <DashboardHero
+            opacity={heroHeight ? 1 - (scrollY / (heroHeight / 3)) : 1}
+            location={location}
+          />
         </Box>
         <ScrollBox
           flex={1}
@@ -58,25 +60,21 @@ class Dashboard extends React.Component {
           contentInsetAdjustmentBehavior="never"
         >
           <Box>
-            <Alert />
-            <Hourly />
-            <LongTerm />
+            <Alert weather={location.weather} />
+            <Hourly weather={location.weather} />
+            <LongTerm weather={location.weather} />
           </Box>
         </ScrollBox>
-        <Box position="absolute" mt={4} ml={3} pt={2}>
-          <SettingsButton
-            onPress={onPressSettings}
-          />
-        </Box>
       </Box>
     );
   }
 }
 
-Dashboard.propTypes = {
-  onPressSettings: PropTypes.func.isRequired,
-  weather: PropTypes.shape({ currently: PropTypes.object }).isRequired,
+DashboardSlide.propTypes = {
+  location: PropTypes.shape({
+    weather: PropTypes.shape({ currently: PropTypes.object }).isRequired,
+  }).isRequired,
   theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
 };
 
-export default withTheme(Dashboard);
+export default withTheme(DashboardSlide);

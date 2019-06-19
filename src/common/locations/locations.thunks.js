@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import {
   getCurrentPosition,
   getLocationByLatLong,
@@ -17,7 +18,7 @@ import {
 
 export const fetchAndSetWeather = index => (dispatch, getState) => {
   const { locations, settings } = getState();
-  getWeather(locations[0].coords, settings.units, locations[0].location)
+  getWeather(locations[index].coords, settings.units, locations[index].location)
     .then((weather) => {
       dispatch(setWeather(weather, index));
     })
@@ -90,13 +91,13 @@ export const fetchAndSetUserCoords = index => (dispatch, getState) => {
     .catch(() => {
       dispatch(setFetchError('geolocationOff', index));
       const { locations } = getState();
-      if (locations[0].coords === null) {
+      if (locations[index].coords === null) {
         dispatch(setCoords({
           longitude: -74.006058,
           latitude: 40.712772, // New York City
         }, index));
-        dispatch(setIsCurrentLocation(false, index));
       }
+      dispatch(setIsCurrentLocation(false, index));
     })
     .finally(() => {
       dispatch(fetchAndSetLocation(index));
@@ -112,4 +113,28 @@ export const refreshWeather = index => (dispatch, getState) => {
     dispatch(setFetchingWeather(true, index));
     dispatch(fetchAndSetWeather(index));
   }
+};
+
+export const addCurrentLocation = () => (dispatch, getState) => {
+  // Check if there is a current location already
+  const { locations } = getState();
+  const currentLocationIndex = R.find(location => location.isCurrentLocation)(locations);
+  if (typeof currentLocationIndex !== 'undefined') {
+    return;
+  }
+
+  // If there is no current location, check if we can get the current location
+  getCurrentPosition()
+    .then(({ coords }) => {
+      // If getCurrentPosition was successful, we will add a current position location
+      dispatch(addLocation());
+      const state = getState();
+      const newLocationIndex = state.locations.length - 1;
+      dispatch(setCoords({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      }, newLocationIndex));
+      dispatch(setIsCurrentLocation(true, newLocationIndex));
+      dispatch(fetchAndSetLocation(newLocationIndex));
+    });
 };

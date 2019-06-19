@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import { Box, ScrollBox, Script } from './design-system';
 import HourlyChart from './HourlyChart';
@@ -36,10 +35,4 @@ Hourly.propTypes = {
   }),
 };
 
-const mapStateToProps = state => ({
-  weather: state.locations[0].weather,
-});
-
-const ConnectedHourly = connect(mapStateToProps)(Hourly);
-
-export default ConnectedHourly;
+export default Hourly;

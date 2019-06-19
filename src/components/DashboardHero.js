@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BigTemp from './BigTemp';
 import LastUpdated from './LastUpdated';
@@ -52,10 +51,4 @@ DashboardHero.propTypes = {
   opacity: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = state => ({
-  location: state.locations[0],
-});
-
-const ConnectedDashboardHero = connect(mapStateToProps)(DashboardHero);
-
-export default ConnectedDashboardHero;
+export default DashboardHero;
