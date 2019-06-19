@@ -1,7 +1,9 @@
 import * as R from 'ramda';
+import uuid from 'uuid/v4';
 import LOCATIONS_CONSTANTS from './locations.constants';
 
 export const initialState = [{
+  id: uuid(),
   coords: null,
   location: null,
   isCurrentLocation: false,
@@ -69,10 +71,14 @@ export default function (state = initialState, action) {
     case LOCATIONS_CONSTANTS.ADD_LOCATION:
       return [
         ...state,
-        {},
+        {
+          id: uuid(),
+        },
       ];
     case LOCATIONS_CONSTANTS.DELETE_LOCATION:
       return R.remove(action.index, 1, state);
+    case LOCATIONS_CONSTANTS.MOVE_LOCATION:
+      return R.move(action.index, action.payload, state);
     default:
       return state;
   }

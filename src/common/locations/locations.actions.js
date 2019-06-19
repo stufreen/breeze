@@ -44,3 +44,9 @@ export const deleteLocation = index => ({
   type: LOCATIONS_CONSTANTS.DELETE_LOCATION,
   index,
 });
+
+export const moveLocation = (from, to) => ({
+  type: LOCATIONS_CONSTANTS.MOVE_LOCATION,
+  payload: to,
+  index: from,
+});

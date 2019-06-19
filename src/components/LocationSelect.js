@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FlatList, Alert } from 'react-native';
+import { Alert } from 'react-native';
+import DraggableFlatList from 'react-native-draggable-flatlist';
 import PropTypes from 'prop-types';
 import { Box } from './design-system';
 import SettingHeader from './SettingHeader';
 import AddLocationButton from './AddLocationButton';
 import LocationSelectItem from './LocationSelectItem';
-import { deleteLocation } from '../common/locations/locations.actions';
+import { deleteLocation, moveLocation } from '../common/locations/locations.actions';
 
 const confirmDelete = (location, onDelete) => {
   Alert.alert(
@@ -23,18 +24,37 @@ const confirmDelete = (location, onDelete) => {
   );
 };
 
-const LocationSelect = ({ onPressAddLocation, locations, deleteLocation }) => (
+const LocationSelect = ({
+  onPressAddLocation,
+  locations,
+  deleteLocation,
+  moveLocation,
+  onReorderStart,
+  onReorderEnd,
+}) => (
   <Box my={3}>
     <SettingHeader textKey="settings:selectLocation" />
-    <FlatList
+    <DraggableFlatList
       data={locations}
-      renderItem={({ item: location, index }) => (
+      renderItem={({ item: location, index, move, moveEnd }) => (
         <LocationSelectItem
           location={location}
-          onPress={() => confirmDelete(location.location, () => deleteLocation(index))}
+          onPressRemove={() => confirmDelete(location.location, () => deleteLocation(index))}
+          onPressMove={() => {
+            onReorderStart();
+            move();
+          }}
+          onPressMoveOut={() => {
+            onReorderEnd();
+            moveEnd();
+          }}
+          disableButtons={locations.length < 2}
         />
       )}
-      keyExtractor={(item, index) => index.toString()}
+      keyExtractor={item => item.id}
+      onMoveEnd={({ from, to }) => {
+        moveLocation(from, to);
+      }}
     />
     <AddLocationButton onPress={onPressAddLocation} />
   </Box>
@@ -44,6 +64,9 @@ LocationSelect.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.object).isRequired,
   onPressAddLocation: PropTypes.func.isRequired,
   deleteLocation: PropTypes.func.isRequired,
+  moveLocation: PropTypes.func.isRequired,
+  onReorderStart: PropTypes.func.isRequired,
+  onReorderEnd: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -52,6 +75,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   deleteLocation,
+  moveLocation,
 };
 
 const ConnectedLocationSelect = connect(mapStateToProps, mapDispatchToProps)(LocationSelect);
