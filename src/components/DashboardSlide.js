@@ -33,6 +33,11 @@ class DashboardSlide extends React.Component {
   render() {
     const { location, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
+
+    if (typeof location.weather === 'undefined') {
+      return null;
+    }
+
     return (
       <Box flex={1} position="relative" bg="mainBackground">
         <StatusBar barStyle={theme.statusBarMain} />
