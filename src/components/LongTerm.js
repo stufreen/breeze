@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Box, LScript } from './design-system';
 import LongTermDay from './LongTermDay';
@@ -26,10 +25,4 @@ LongTerm.propTypes = {
   }),
 };
 
-const mapStateToProps = state => ({
-  weather: state.locations[0].weather,
-});
-
-const ConnectedLongTerm = connect(mapStateToProps)(LongTerm);
-
-export default ConnectedLongTerm;
+export default LongTerm;

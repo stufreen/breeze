@@ -34,7 +34,7 @@ class DashboardSlide extends React.Component {
     const { location, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
 
-    if (typeof location.weather === 'undefined') {
+    if (!location.weather) {
       return null;
     }
 

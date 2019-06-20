@@ -18,9 +18,20 @@ import {
 
 export const fetchAndSetWeather = index => (dispatch, getState) => {
   const { locations, settings } = getState();
+
+  // Don't get weather if it has been less than 2 minutes since the last check
+  const TWO_MINUTES_MS = 1000 * 60 * 2;
+  const now = Date.now();
+  if (locations[index].weather
+    && locations[index].weather.lastChecked + TWO_MINUTES_MS > now) {
+    dispatch(setFetchingWeather(false, index));
+    return;
+  }
+
   getWeather(locations[index].coords, settings.units, locations[index].location)
     .then((weather) => {
-      dispatch(setWeather(weather, index));
+      const weatherWithLastChecked = R.assoc('lastChecked', Date.now(), weather);
+      dispatch(setWeather(weatherWithLastChecked, index));
     })
     .finally(() => {
       dispatch(setFetchingWeather(false, index));
@@ -28,7 +39,7 @@ export const fetchAndSetWeather = index => (dispatch, getState) => {
 };
 
 export const fetchAndSetLocation = index => (dispatch, getState) => {
-  const { coords } = getState().locations[0];
+  const { coords } = getState().locations[index];
   // Reverse geocode address from coords
   getLocationByLatLong(coords)
     .then((location) => {

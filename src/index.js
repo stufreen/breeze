@@ -28,6 +28,6 @@ initializeLocalization()
   });
 
 listenForActiveState(() => {
-  store.dispatch(refreshWeather(0));
+  store.dispatch(refreshWeather(0)); // TO DO: Should active slide
   store.dispatch(addCurrentLocation());
 });

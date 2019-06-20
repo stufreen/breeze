@@ -6,7 +6,7 @@ import { refreshWeather } from '../common/locations/locations.thunks';
 import Splash from './Splash';
 import DashboardCarousel from './DashboardCarousel';
 
-const DashboardMainPanel = props => (props.locations
+const DashboardMainPanel = props => (props.locations[0].weather
   ? <DashboardCarousel {...props} />
   : <Splash />);
 

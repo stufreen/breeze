@@ -34,11 +34,15 @@ const LocationSelectItem = ({
       >
         {location.location && (
           <Box flexDirection="row" alignItems="center">
-            {location.isCurrentLocation && (
-              <Box mr={2}>
-                <LocationIcon color="settingsText" size={8} />
-              </Box>
-            )}
+            {location.isCurrentLocation
+              ? (
+                <Box mr={2}>
+                  <LocationIcon color="settingsText" size={8} />
+                </Box>
+              ) : (
+                <Box mr={2} width={8} />
+              )
+            }
             <Script textAlign="center" fontSize={2} color="settingsText" pr={2}>
               {location.location.address_components[0].long_name}
             </Script>
@@ -46,13 +50,22 @@ const LocationSelectItem = ({
         )}
       </Box>
     </TouchableOpacity>
-    {!location.isCurrentLocation && (
-      <TouchableOpacity onPress={onPressRemove} disabled={disableButtons}>
-        <Box bg="settingsSelected" ml="1px" flex={1} p={3} justifyContent="center" opacity={disableButtons ? 0.2 : 0.8}>
+    <TouchableOpacity
+      onPress={onPressRemove}
+      disabled={disableButtons || location.isCurrentLocation}
+    >
+      <Box
+        bg={disableButtons || location.isCurrentLocation ? 'settingsUnselected' : 'settingsSelected'}
+        ml="1px"
+        flex={1}
+        p={3}
+        justifyContent="center"
+      >
+        <Box opacity={disableButtons || location.isCurrentLocation ? 0.2 : 0.8}>
           <Close size={14} color="settingsText" />
         </Box>
-      </TouchableOpacity>
-    )}
+      </Box>
+    </TouchableOpacity>
   </Box>
 );
 

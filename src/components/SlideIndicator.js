@@ -16,7 +16,6 @@ const SlideIndicator = ({ current, total }) => {
       borderRadius={12}
       alignItems="center"
       pl={1}
-      opacity={0.7}
     >
       {slideIndices.map(index => (
         <Box
@@ -27,6 +26,7 @@ const SlideIndicator = ({ current, total }) => {
           my={1}
           borderRadius={5}
           bg={index === current ? 'accent' : 'primary'}
+          opacity={index === current ? 1 : 0.6}
         />
       ))}
     </Box>
