@@ -13,14 +13,17 @@ import DashboardBackground from './DashboardBackground';
 
 class Carousel extends React.PureComponent {
   render() {
-    const { locations, setCurrentSlide } = this.props;
+    const { locations, setCurrentSlide, refreshWeather } = this.props;
     setCurrentSlide(0);
     return (
       <ParallaxSwiper
         speed={0.75}
         dividerWidth={0}
         dividerColor="black"
-        onMomentumScrollEnd={activePageIndex => setCurrentSlide(activePageIndex)}
+        onMomentumScrollEnd={(activePageIndex) => {
+          setCurrentSlide(activePageIndex);
+          refreshWeather(activePageIndex);
+        }}
         showProgressBar={false}
       >
         {locations.map(location => (
@@ -41,11 +44,30 @@ class Carousel extends React.PureComponent {
   }
 }
 
-const DashboardCarousel = ({ locations, onPressSettings }) => {
+Carousel.defaultProps = {
+  locations: [],
+};
+
+Carousel.propTypes = {
+  setCurrentSlide: PropTypes.func.isRequired,
+  refreshWeather: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(
+    PropTypes.shape({
+      weather: PropTypes.object,
+      location: PropTypes.object,
+    }),
+  ),
+};
+
+const DashboardCarousel = ({ locations, onPressSettings, refreshWeather }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <Box flex={1}>
-      <Carousel locations={locations} setCurrentSlide={setCurrentSlide} />
+      <Carousel
+        locations={locations}
+        setCurrentSlide={setCurrentSlide}
+        refreshWeather={refreshWeather}
+      />
       <Box position="absolute" right={0} mt={4} mr={3} pt={3}>
         <SlideIndicator total={locations.length} current={currentSlide + 1} />
       </Box>
@@ -64,6 +86,7 @@ DashboardCarousel.defaultProps = {
 
 DashboardCarousel.propTypes = {
   onPressSettings: PropTypes.func.isRequired,
+  refreshWeather: PropTypes.func.isRequired,
   locations: PropTypes.arrayOf(
     PropTypes.shape({
       weather: PropTypes.object,
