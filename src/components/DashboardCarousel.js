@@ -1,34 +1,51 @@
 import React, { useState } from 'react';
+import * as R from 'ramda';
 import PropTypes from 'prop-types';
-import { Dimensions } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import {
+  ParallaxSwiper,
+  ParallaxSwiperPage,
+} from 'react-native-parallax-swiper';
 import DashboardSlide from './DashboardSlide';
 import { Box } from './design-system';
 import SettingsButton from './SettingsButton';
 import SlideIndicator from './SlideIndicator';
+import DashboardBackground from './DashboardBackground';
 
-const DashboardCarousel = ({ locations, onPressSettings, refreshWeather }) => {
-  const { width } = Dimensions.get('window');
+class Carousel extends React.PureComponent {
+  render() {
+    const { locations, setCurrentSlide } = this.props;
+    setCurrentSlide(0);
+    return (
+      <ParallaxSwiper
+        speed={0.75}
+        dividerWidth={0}
+        dividerColor="black"
+        onMomentumScrollEnd={activePageIndex => setCurrentSlide(activePageIndex)}
+        showProgressBar={false}
+      >
+        {locations.map(location => (
+          <ParallaxSwiperPage
+            key={location.id}
+            BackgroundComponent={(
+              <DashboardBackground iconKey={R.path(['weather', 'currently', 'icon'], location)} />
+            )}
+            ForegroundComponent={(
+              <DashboardSlide
+                location={location}
+              />
+            )}
+          />
+        ))}
+      </ParallaxSwiper>
+    );
+  }
+}
+
+const DashboardCarousel = ({ locations, onPressSettings }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <Box flex={1}>
-      <Carousel
-        style={{ flex: 1, backgroundColor: 'blue' }}
-        data={locations}
-        renderItem={({ item }) => (
-          <DashboardSlide
-            location={item}
-          />
-        )}
-        onSnapToItem={(index) => {
-          refreshWeather(index);
-          setCurrentSlide(index);
-        }}
-        sliderWidth={width}
-        itemWidth={width}
-        inactiveSlideScale={1}
-        inactiveSlideOpacity={0.9}
-      />
+      <Carousel locations={locations} setCurrentSlide={setCurrentSlide} />
       <Box position="absolute" right={0} mt={4} mr={3} pt={3}>
         <SlideIndicator total={locations.length} current={currentSlide + 1} />
       </Box>
@@ -46,7 +63,6 @@ DashboardCarousel.defaultProps = {
 };
 
 DashboardCarousel.propTypes = {
-  refreshWeather: PropTypes.func.isRequired,
   onPressSettings: PropTypes.func.isRequired,
   locations: PropTypes.arrayOf(
     PropTypes.shape({

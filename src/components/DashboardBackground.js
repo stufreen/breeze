@@ -1,7 +1,8 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import ThemedImage from './ThemedImage';
+import { Box } from './design-system';
 
 const clearDayWine = require('../assets/backgrounds/wine/clear-day-wine.jpg');
 const clearNightWine = require('../assets/backgrounds/wine/clear-night-wine.jpg');
@@ -120,28 +121,29 @@ class DashboardBackground extends React.Component {
   render() {
     const { iconKey } = this.props;
     const { bgOpacity } = this.state;
+    const { width, height } = Dimensions.get('screen');
     return iconKey
       ? (
-        <Animated.View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: -1,
-            right: 0,
-            bottom: -1,
-            resizeMode: 'cover',
-            opacity: bgOpacity,
-          }}
-        >
-          {}
-          <ThemedImage
-            sources={getImage(iconKey)}
-            resizeMode="cover"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </Animated.View>
+        <Box width={width} height={height} bg="mainBackground">
+          <Animated.View
+            style={{
+              flex: 1,
+              resizeMode: 'cover',
+              position: 'relative',
+              opacity: bgOpacity,
+              height,
+              width,
+            }}
+          >
+            <ThemedImage
+              sources={getImage(iconKey)}
+              resizeMode="cover"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Animated.View>
+        </Box>
       )
-      : null;
+      : <Box flex={1} width={width} height={height} bg="mainBackground" />;
   }
 }
 

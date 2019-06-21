@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components/native';
 import { Box, ScrollBox } from './design-system';
@@ -7,7 +7,6 @@ import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
 import LongTerm from './LongTerm';
 import Alert from './Alert';
-import DashboardBackground from './DashboardBackground';
 
 class DashboardSlide extends React.Component {
   constructor() {
@@ -33,15 +32,15 @@ class DashboardSlide extends React.Component {
   render() {
     const { location, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
+    const { width } = Dimensions.get('screen');
 
     if (!location.weather) {
       return null;
     }
 
     return (
-      <Box flex={1} position="relative" bg="mainBackground">
+      <Box flex={1} position="relative" width={width}>
         <StatusBar barStyle={theme.statusBarMain} />
-        <DashboardBackground iconKey={location.weather.currently.icon} />
         <Box
           position={heroHeight ? 'absolute' : 'relative'}
           width="100%"

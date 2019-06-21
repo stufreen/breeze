@@ -7,10 +7,9 @@ import LocationIcon from './icons/LocationIcon';
 
 const LocationSelectItem = ({
   onPressRemove,
-  onPressMove,
-  onPressMoveOut,
   location,
   disableButtons,
+  toggleRowActive,
 }) => (
   <Box
     mb="2px"
@@ -20,8 +19,7 @@ const LocationSelectItem = ({
     height={55}
   >
     <TouchableOpacity
-      onPressIn={onPressMove}
-      onPressOut={onPressMoveOut}
+      onPressIn={toggleRowActive}
       style={{ flex: 1 }}
       disabled={disableButtons}
     >
@@ -82,14 +80,13 @@ LocationSelectItem.defaultProps = {
 
 LocationSelectItem.propTypes = {
   onPressRemove: PropTypes.func.isRequired,
-  onPressMove: PropTypes.func.isRequired,
-  onPressMoveOut: PropTypes.func.isRequired,
   location: PropTypes.shape({
     location: PropTypes.shape({
       address_components: PropTypes.arrayOf(PropTypes.object),
     }),
   }),
   disableButtons: PropTypes.bool,
+  toggleRowActive: PropTypes.func.isRequired,
 };
 
 export default LocationSelectItem;
