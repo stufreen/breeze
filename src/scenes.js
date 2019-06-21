@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import Dashboard from './scenes/Dashboard';
 import Settings from './scenes/Settings';
 import LocationSearch from './scenes/LocationSearch';
@@ -6,7 +7,7 @@ import LocationSearch from './scenes/LocationSearch';
 const getRegisterFunction = (Provider, store) => (screenId, component) => {
   Navigation.registerComponentWithRedux(
     screenId,
-    () => component,
+    () => gestureHandlerRootHOC(component),
     Provider,
     store,
   );

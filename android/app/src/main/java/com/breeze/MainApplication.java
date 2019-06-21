@@ -7,6 +7,7 @@ import com.horcrux.svg.SvgPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,8 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
             new SvgPackage(),
-            new RNFusedLocationPackage()
+            new RNFusedLocationPackage(),
+            new RNGestureHandlerPackage()
     );
   }
 
