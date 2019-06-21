@@ -24,49 +24,75 @@ const confirmDelete = (location, onDelete) => {
   );
 };
 
-const LocationSelect = ({
-  onPressAddLocation,
-  locations,
-  deleteLocation,
-  moveLocation,
-  onReorderStart,
-  onReorderEnd,
-}) => {
-  const locationsObj = locations.reduce((accumulator, location) => ({
-    ...accumulator,
-    [location.id]: location,
-  }), {});
-  const locationsOrder = locations.map(location => location.id);
-  return (
-    <Box my={3}>
-      <SettingHeader textKey="settings:selectLocation" />
-      <SortableList
-        data={locationsObj}
-        order={locationsOrder}
-        onActivateRow={() => {
-          onReorderStart();
-        }}
-        onReleaseRow={(key, currentOrder) => {
-          onReorderEnd();
-          const oldIndex = locationsOrder.indexOf(key);
-          const newIndex = currentOrder.indexOf(key);
-          moveLocation(oldIndex, newIndex);
-        }}
-        manuallyActivateRows
-        renderRow={({ data: location, index }) => (
-          <LocationSelectItem
-            key={location.id}
-            location={location}
-            onPressRemove={() => confirmDelete(location.location, () => deleteLocation(index))}
-            disableButtons={locations.length < 2}
-          />
-        )}
-        scrollEnabled={false}
-      />
-      <AddLocationButton onPress={onPressAddLocation} />
-    </Box>
-  );
-};
+class LocationSelect extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      locationsOrder: props.locations.map(location => location.id),
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.locations.length !== state.locationsOrder.length) {
+      return {
+        ...state,
+        locationsOrder: props.locations.map(location => location.id),
+      };
+    }
+    return state;
+  }
+
+  render() {
+    const {
+      onPressAddLocation,
+      locations,
+      deleteLocation,
+      moveLocation,
+      onReorderStart,
+      onReorderEnd,
+    } = this.props;
+    const locationsObj = locations.reduce((accumulator, location) => ({
+      ...accumulator,
+      [location.id]: location,
+    }), {});
+    const { locationsOrder } = this.state;
+    return (
+      <Box my={3}>
+        <SettingHeader textKey="settings:selectLocation" />
+        <SortableList
+          data={locationsObj}
+          order={locationsOrder}
+          onActivateRow={() => {
+            onReorderStart();
+          }}
+          onReleaseRow={(key, currentOrder) => {
+            onReorderEnd();
+            const oldIndex = locationsOrder.indexOf(key);
+            const newIndex = currentOrder.indexOf(key);
+            this.setState({
+              locationsOrder: currentOrder,
+            });
+            // Delay the redux update since it can block the UI thread
+            setTimeout(() => {
+              moveLocation(oldIndex, newIndex);
+            }, 300);
+          }}
+          manuallyActivateRows
+          renderRow={({ data: location, index }) => (
+            <LocationSelectItem
+              key={location.id}
+              location={location}
+              onPressRemove={() => confirmDelete(location.location, () => deleteLocation(index))}
+              disableButtons={locations.length < 2}
+            />
+          )}
+          scrollEnabled={false}
+        />
+        <AddLocationButton onPress={onPressAddLocation} />
+      </Box>
+    );
+  }
+}
 
 LocationSelect.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.object).isRequired,

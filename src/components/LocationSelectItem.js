@@ -76,6 +76,7 @@ LocationSelectItem.defaultProps = {
     },
   },
   disableButtons: false,
+  toggleRowActive: () => {},
 };
 
 LocationSelectItem.propTypes = {
@@ -86,7 +87,7 @@ LocationSelectItem.propTypes = {
     }),
   }),
   disableButtons: PropTypes.bool,
-  toggleRowActive: PropTypes.func.isRequired,
+  toggleRowActive: PropTypes.func,
 };
 
 export default LocationSelectItem;
