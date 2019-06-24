@@ -4,7 +4,6 @@ import initializeNavigation from './scenes';
 import { refreshWeather, fetchAndSetUserCoords, addCurrentLocation } from './common/locations/locations.thunks';
 import { getThemedProvider } from './theme';
 import { initializeLocalization } from './services/localization';
-import { listenForActiveState } from './services/app-state-watcher';
 
 // Create redux store
 const { store } = configureStore((store) => {
@@ -15,6 +14,7 @@ const { store } = configureStore((store) => {
     store.dispatch(fetchAndSetUserCoords(0));
   } else {
     store.dispatch(refreshWeather(0));
+    store.dispatch(addCurrentLocation());
   }
 });
 
@@ -26,8 +26,3 @@ initializeLocalization()
     // Register scenes with react-native-navigation
     initializeNavigation(ThemedProvider, store);
   });
-
-listenForActiveState(() => {
-  store.dispatch(refreshWeather(0)); // TO DO: Should active slide
-  store.dispatch(addCurrentLocation());
-});

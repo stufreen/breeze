@@ -124,7 +124,7 @@ class DashboardBackground extends React.Component {
     const { width, height } = Dimensions.get('screen');
     return iconKey
       ? (
-        <Box width={width} height={height} bg="mainBackground">
+        <Box position="absolute" width={width} height={height} bg="mainBackground">
           <Animated.View
             style={{
               flex: 1,
@@ -143,7 +143,7 @@ class DashboardBackground extends React.Component {
           </Animated.View>
         </Box>
       )
-      : <Box flex={1} width={width} height={height} bg="mainBackground" />;
+      : <Box flex={1} position="absolute" width={width} height={height} bg="mainBackground" />;
   }
 }
 

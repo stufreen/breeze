@@ -1,4 +1,5 @@
 import React from 'react';
+import * as R from 'ramda';
 import { StatusBar, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components/native';
@@ -7,6 +8,7 @@ import DashboardHero from './DashboardHero';
 import Hourly from './Hourly';
 import LongTerm from './LongTerm';
 import Alert from './Alert';
+import DashboardBackground from './DashboardBackground';
 
 class DashboardSlide extends React.Component {
   constructor() {
@@ -41,6 +43,7 @@ class DashboardSlide extends React.Component {
     return (
       <Box flex={1} position="relative" width={width}>
         <StatusBar barStyle={theme.statusBarMain} />
+        <DashboardBackground iconKey={R.path(['weather', 'currently', 'icon'], location)} />
         <Box
           position={heroHeight ? 'absolute' : 'relative'}
           width="100%"

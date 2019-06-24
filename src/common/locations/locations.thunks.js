@@ -4,6 +4,7 @@ import {
   getLocationByLatLong,
   getLocationByPlaceID,
   getCountryFromLocation,
+  checkLocationPermission,
 } from '../../services/geocode';
 import { getWeather } from '../../services/weather';
 import {
@@ -19,11 +20,11 @@ import {
 export const fetchAndSetWeather = index => (dispatch, getState) => {
   const { locations, settings } = getState();
 
-  // Don't get weather if it has been less than 2 minutes since the last check
-  const TWO_MINUTES_MS = 1000 * 60 * 2;
+  // Don't get weather if it has been less than 1 minute since the last check
+  const ONE_MINUTE_MS = 1000 * 60;
   const now = Date.now();
   if (locations[index].weather
-    && locations[index].weather.lastChecked + TWO_MINUTES_MS > now) {
+    && locations[index].weather.lastChecked + ONE_MINUTE_MS > now) {
     dispatch(setFetchingWeather(false, index));
     return;
   }
@@ -134,7 +135,6 @@ export const addCurrentLocation = () => (dispatch, getState) => {
     return;
   }
 
-  // If there is no current location, check if we can get the current location
   getCurrentPosition()
     .then(({ coords }) => {
       // If getCurrentPosition was successful, we will add a current position location

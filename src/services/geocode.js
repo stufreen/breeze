@@ -33,14 +33,6 @@ export const getCurrentPosition = (args) => {
   if (Platform.OS === 'android') {
     return PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Breeze Geolocation',
-        message:
-          'Breeze Weather would like to use your current' +
-          'location to get local weather information.',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      },
     ).then(() => geolocate(args));
   }
   return geolocate(args);

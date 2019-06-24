@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { setFetchError } from '../common/locations/locations.actions';
 import { refreshWeather } from '../common/locations/locations.thunks';
 import Splash from './Splash';
-import DashboardCarousel from './DashboardCarousel';
+import Dashboard from './Dashboard';
 
 const DashboardMainPanel = props => (props.locations[0].weather
-  ? <DashboardCarousel {...props} />
+  ? <Dashboard {...props} />
   : <Splash />);
 
 DashboardMainPanel.defaultProps = {

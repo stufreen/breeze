@@ -1,16 +1,15 @@
 import { AppState } from 'react-native';
 
-let appState = 'init';
-
-export const handleStateChange = (nextState, callback) => {
-  if (appState === 'background' && nextState === 'active') {
+export const handleStateChange = callback => (nextState) => {
+  if (nextState === 'active') {
     callback();
   }
-  appState = nextState;
 };
 
 export const listenForActiveState = (callback) => {
-  AppState.addEventListener('change', (nextState) => {
-    handleStateChange(nextState, callback);
-  });
+  AppState.addEventListener('change', handleStateChange(callback));
+};
+
+export const removeStateListener = (callback) => {
+  AppState.removeEventListener('change', handleStateChange(callback));
 };
