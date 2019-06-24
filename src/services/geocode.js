@@ -33,7 +33,12 @@ export const getCurrentPosition = (args) => {
   if (Platform.OS === 'android') {
     return PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    ).then(() => geolocate(args));
+    ).then((result) => {
+      if (result === PermissionsAndroid.RESULTS.GRANTED) {
+        return geolocate(args);
+      }
+      throw new Error('Location permission denied');
+    });
   }
   return geolocate(args);
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Dimensions } from 'react-native';
+import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import ThemedImage from './ThemedImage';
 import { Box } from './design-system';
@@ -121,29 +121,25 @@ class DashboardBackground extends React.Component {
   render() {
     const { iconKey } = this.props;
     const { bgOpacity } = this.state;
-    const { width, height } = Dimensions.get('screen');
     return iconKey
       ? (
-        <Box position="absolute" width={width} height={height} bg="mainBackground">
+        <Box position="absolute" left={0} right={0} top={0} bottom={0} bg="mainBackground">
           <Animated.View
             style={{
               flex: 1,
-              resizeMode: 'cover',
-              position: 'relative',
               opacity: bgOpacity,
-              height,
-              width,
+              width: '100%',
             }}
           >
             <ThemedImage
               sources={getImage(iconKey)}
               resizeMode="cover"
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%', flex: 1 }}
             />
           </Animated.View>
         </Box>
       )
-      : <Box flex={1} position="absolute" width={width} height={height} bg="mainBackground" />;
+      : <Box flex={1} position="absolute" left={0} right={0} top={0} bottom={0} bg="mainBackground" />;
   }
 }
 

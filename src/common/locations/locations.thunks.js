@@ -146,5 +146,6 @@ export const addCurrentLocation = () => (dispatch, getState) => {
       }, newLocationIndex));
       dispatch(setIsCurrentLocation(true, newLocationIndex));
       dispatch(fetchAndSetLocation(newLocationIndex));
-    });
+    })
+    .catch(() => {});
 };

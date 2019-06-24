@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box } from './design-system';
 import SettingsButton from './SettingsButton';
 import SlideIndicator from './SlideIndicator';
-import { listenForActiveState, removeStateListener } from '../services/app-state-watcher';
+import { activeStateWatcher } from '../services/app-state-watcher';
 import DashboardCarousel from './DashboardCarousel';
 
 class Dashboard extends React.Component {
@@ -12,14 +12,17 @@ class Dashboard extends React.Component {
     this.state = {
       currentSlide: 0,
     };
+    this.stateWatcher = null;
   }
 
   componentDidMount() {
-    listenForActiveState(this.refresh);
+    this.stateWatcher = activeStateWatcher(this.refresh);
   }
 
   componentWillUnmount() {
-    removeStateListener(this.refresh);
+    if (this.stateWatcher !== null) {
+      this.stateWatcher.destroy();
+    }
   }
 
   refresh = () => {

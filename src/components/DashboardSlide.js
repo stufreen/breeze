@@ -1,6 +1,6 @@
 import React from 'react';
 import * as R from 'ramda';
-import { StatusBar, Dimensions } from 'react-native';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components/native';
 import { Box, ScrollBox } from './design-system';
@@ -34,14 +34,13 @@ class DashboardSlide extends React.Component {
   render() {
     const { location, theme } = this.props;
     const { scrollY, heroHeight } = this.state;
-    const { width } = Dimensions.get('screen');
 
     if (!location.weather) {
       return null;
     }
 
     return (
-      <Box flex={1} position="relative" width={width}>
+      <Box flex={1} position="relative">
         <StatusBar barStyle={theme.statusBarMain} />
         <DashboardBackground iconKey={R.path(['weather', 'currently', 'icon'], location)} />
         <Box
