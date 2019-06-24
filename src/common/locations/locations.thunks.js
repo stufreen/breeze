@@ -4,7 +4,6 @@ import {
   getLocationByLatLong,
   getLocationByPlaceID,
   getCountryFromLocation,
-  checkLocationPermission,
 } from '../../services/geocode';
 import { getWeather } from '../../services/weather';
 import {

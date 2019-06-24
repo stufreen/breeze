@@ -36,6 +36,6 @@ const SlideIndicator = ({ current, total }) => {
 SlideIndicator.propTypes = {
   current: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-}
-  
+};
+
 export default SlideIndicator;

@@ -48,7 +48,7 @@ test('it can set a fetch error', () => {
 });
 
 test('it can set if the location is the current location', () => {
-  expect(locationsReducer(initialState, setIsCurrentLocation(true))).toEqual([{
+  expect(locationsReducer(initialState, setIsCurrentLocation(true, 0))).toEqual([{
     ...initialState[0],
     isCurrentLocation: true,
   }]);

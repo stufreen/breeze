@@ -5,6 +5,8 @@ test('it fires a callback when state goes from background to active', (done) => 
     done();
   };
 
-  handleStateChange('background');
-  handleStateChange('active', myCallback);
+  const handler = handleStateChange(myCallback);
+
+  handler('background');
+  handler('active');
 });
