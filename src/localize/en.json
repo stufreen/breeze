@@ -10,7 +10,8 @@
   },
   "settings": {
     "header": "Settings",
-    "selectLocation": "Select Location",
+    "selectLocation": "Locations",
+    "addLocation": "Add Location +",
     "unitHeading": "Units",
     "theme": "Theme",
     "themes": {
@@ -30,7 +31,7 @@
     "buildLocation": "Toronto, Canada"
   },
   "locationSearch": {
-    "header": "Search Location",
+    "add": "Add Location",
     "typeAbove": "Type a city name in the space above",
     "currentLocation": "Current Location"
   },

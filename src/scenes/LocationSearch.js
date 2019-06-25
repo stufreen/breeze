@@ -27,7 +27,11 @@ class LocationSearch extends Component {
   }
 
   render() {
-    return <LocationSearchPanel onPressBack={this.onPressBack} />;
+    return (
+      <LocationSearchPanel
+        onPressBack={this.onPressBack}
+      />
+    );
   }
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
 import { Box, Script, LScript } from './design-system';
 import WarningIcon from './icons/WarningIcon';
 import bp from '../services/breakpoints';
@@ -53,10 +52,4 @@ Alert.propTypes = {
   }),
 };
 
-const mapStateToProps = state => ({
-  weather: state.locations[0].weather,
-});
-
-const ConnectedAlert = connect(mapStateToProps)(Alert);
-
-export default ConnectedAlert;
+export default Alert;

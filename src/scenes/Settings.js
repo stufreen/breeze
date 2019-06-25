@@ -26,7 +26,7 @@ class Dashboard extends Component {
     Navigation.pop(componentId);
   }
 
-  onPressLocation = () => {
+  onPressAddLocation = () => {
     const { componentId } = this.props;
     Navigation.push(componentId, {
       component: {
@@ -43,7 +43,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    return <SettingsPanel onPressBack={this.onPressBack} onPressLocation={this.onPressLocation} />;
+    return (
+      <SettingsPanel
+        onPressBack={this.onPressBack}
+        onPressAddLocation={this.onPressAddLocation}
+      />
+    );
   }
 }
 

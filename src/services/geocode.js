@@ -1,4 +1,4 @@
-import { Platform, PermissionsAndroid } from 'react-native';
+import Permissions from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 
@@ -29,22 +29,16 @@ const preferLocality = (a, b) => {
   return 1;
 };
 
-export const getCurrentPosition = (args) => {
-  if (Platform.OS === 'android') {
-    return PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Breeze Geolocation',
-        message:
-          'Breeze Weather would like to use your current' +
-          'location to get local weather information.',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      },
-    ).then(() => geolocate(args));
-  }
-  return geolocate(args);
-};
+export const getCurrentPosition = args => Permissions.request('location')
+  .then((response) => {
+    if (response === 'authorized') {
+      return geolocate(args);
+    }
+    throw new Error('Location permission denied');
+  });
+
+export const checkLocationPermission = () => Permissions.check('location')
+  .then(response => response === 'authorized');
 
 export const autoComplete = (searchString, sessionToken) => {
   const encodedSearchString = encodeURIComponent(searchString);

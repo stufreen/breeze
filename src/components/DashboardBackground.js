@@ -2,6 +2,7 @@ import React from 'react';
 import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import ThemedImage from './ThemedImage';
+import { Box } from './design-system';
 
 const clearDayWine = require('../assets/backgrounds/wine/clear-day-wine.jpg');
 const clearNightWine = require('../assets/backgrounds/wine/clear-night-wine.jpg');
@@ -122,26 +123,23 @@ class DashboardBackground extends React.Component {
     const { bgOpacity } = this.state;
     return iconKey
       ? (
-        <Animated.View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: -1,
-            right: 0,
-            bottom: -1,
-            resizeMode: 'cover',
-            opacity: bgOpacity,
-          }}
-        >
-          {}
-          <ThemedImage
-            sources={getImage(iconKey)}
-            resizeMode="cover"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </Animated.View>
+        <Box position="absolute" left={0} right={0} top={0} bottom={0} bg="mainBackground">
+          <Animated.View
+            style={{
+              flex: 1,
+              opacity: bgOpacity,
+              width: '100%',
+            }}
+          >
+            <ThemedImage
+              sources={getImage(iconKey)}
+              resizeMode="cover"
+              style={{ width: '100%', flex: 1 }}
+            />
+          </Animated.View>
+        </Box>
       )
-      : null;
+      : <Box flex={1} position="absolute" left={0} right={0} top={0} bottom={0} bg="mainBackground" />;
   }
 }
 

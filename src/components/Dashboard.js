@@ -1,68 +1,51 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components/native';
-import { Box, ScrollBox } from './design-system';
-import DashboardHero from './DashboardHero';
-import Hourly from './Hourly';
+import { Box } from './design-system';
 import SettingsButton from './SettingsButton';
-import LongTerm from './LongTerm';
-import Alert from './Alert';
-import DashboardBackground from './DashboardBackground';
+import SlideIndicator from './SlideIndicator';
+import { activeStateWatcher } from '../services/app-state-watcher';
+import DashboardCarousel from './DashboardCarousel';
 
 class Dashboard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      scrollY: 0,
-      heroHeight: 0,
+      currentSlide: 0,
     };
+    this.stateWatcher = null;
   }
 
-  handleScroll = (e) => {
-    this.setState({
-      scrollY: e.nativeEvent.contentOffset.y,
-    });
+  componentDidMount() {
+    this.stateWatcher = activeStateWatcher(this.refresh);
   }
 
-  affixHero = ({ nativeEvent }) => {
-    this.setState({
-      heroHeight: nativeEvent.layout.height,
-    });
+  componentWillUnmount() {
+    if (this.stateWatcher !== null) {
+      this.stateWatcher.destroy();
+    }
+  }
+
+  refresh = () => {
+    const { currentSlide } = this.state;
+    const { refreshWeather, addCurrentLocation } = this.props;
+    refreshWeather(currentSlide);
+    addCurrentLocation();
   }
 
   render() {
-    const { weather, onPressSettings, theme } = this.props;
-    const { scrollY, heroHeight } = this.state;
+    const { locations, onPressSettings, refreshWeather } = this.props;
+    const { currentSlide } = this.state;
     return (
-      <Box flex={1} position="relative" bg="mainBackground">
-        <StatusBar barStyle={theme.statusBarMain} />
-        <DashboardBackground iconKey={weather.currently.icon} />
-        <Box
-          position={heroHeight ? 'absolute' : 'relative'}
-          width="100%"
-          pt={4}
-          onLayout={this.affixHero}
-        >
-          <DashboardHero opacity={heroHeight ? 1 - (scrollY / (heroHeight / 3)) : 1} />
+      <Box flex={1}>
+        <DashboardCarousel
+          locations={locations}
+          setCurrentSlide={index => this.setState({ currentSlide: index })}
+          currentSlide={currentSlide}
+          refreshWeather={refreshWeather}
+        />
+        <Box position="absolute" right={0} mt={4} mr={3} pt={3}>
+          <SlideIndicator total={locations.length} current={currentSlide + 1} />
         </Box>
-        <ScrollBox
-          flex={1}
-          contentContainerStyle={{
-            minHeight: '100%',
-            paddingTop: heroHeight,
-          }}
-          scrollEventThrottle={32}
-          onScroll={this.handleScroll}
-          onMomentumScrollEnd={this.handleScroll}
-          contentInsetAdjustmentBehavior="never"
-        >
-          <Box>
-            <Alert />
-            <Hourly />
-            <LongTerm />
-          </Box>
-        </ScrollBox>
         <Box position="absolute" mt={4} ml={3} pt={2}>
           <SettingsButton
             onPress={onPressSettings}
@@ -73,10 +56,20 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
-  onPressSettings: PropTypes.func.isRequired,
-  weather: PropTypes.shape({ currently: PropTypes.object }).isRequired,
-  theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
+Dashboard.defaultProps = {
+  locations: [],
 };
 
-export default withTheme(Dashboard);
+Dashboard.propTypes = {
+  onPressSettings: PropTypes.func.isRequired,
+  refreshWeather: PropTypes.func.isRequired,
+  addCurrentLocation: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(
+    PropTypes.shape({
+      weather: PropTypes.object,
+      location: PropTypes.object,
+    }),
+  ),
+};
+
+export default Dashboard;

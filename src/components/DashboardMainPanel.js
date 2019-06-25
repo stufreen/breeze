@@ -2,31 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setFetchError } from '../common/locations/locations.actions';
-import { refreshWeather } from '../common/locations/locations.thunks';
+import { refreshWeather, addCurrentLocation } from '../common/locations/locations.thunks';
 import Splash from './Splash';
 import Dashboard from './Dashboard';
 
-const DashboardMainPanel = props => (props.weather && props.location
+const DashboardMainPanel = props => (props.locations[0].weather
   ? <Dashboard {...props} />
   : <Splash />);
 
 DashboardMainPanel.defaultProps = {
-  weather: null,
-  location: null,
+  locations: null,
 };
 
 DashboardMainPanel.propTypes = {
-  weather: PropTypes.shape({ currently: PropTypes.object }),
-  location: PropTypes.shape({ currently: PropTypes.object }),
+  onPressSettings: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(
+    PropTypes.shape({
+      weather: PropTypes.object,
+      location: PropTypes.object,
+    }),
+  ),
 };
 
 const mapStateToProps = state => ({
-  weather: state.locations[0].weather,
-  location: state.locations[0].location,
+  locations: state.locations,
 });
 
 const mapDispatchToProps = {
   refreshWeather,
+  addCurrentLocation,
   setFetchError,
 };
 

@@ -1,16 +1,19 @@
 import { AppState } from 'react-native';
 
-let appState = 'init';
+// When the app goes from 'background' to 'active' the callback will be called
+export const activeStateWatcher = (callback) => {
+  let appState = 'init';
 
-export const handleStateChange = (nextState, callback) => {
-  if (appState === 'background' && nextState === 'active') {
-    callback();
-  }
-  appState = nextState;
-};
+  const handleStateChange = callback => (nextState) => {
+    if (nextState === 'active' && appState === 'background') {
+      callback();
+    }
+    appState = nextState;
+  };
 
-export const listenForActiveState = (callback) => {
-  AppState.addEventListener('change', (nextState) => {
-    handleStateChange(nextState, callback);
-  });
+  AppState.addEventListener('change', handleStateChange(callback));
+
+  return {
+    destroy: () => { AppState.removeEventListener('change', handleStateChange(callback)); },
+  };
 };

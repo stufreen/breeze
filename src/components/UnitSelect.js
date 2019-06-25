@@ -27,7 +27,7 @@ const UnitSelect = ({
           isSelected={units === unitKey}
           onPress={() => {
             setUnits(unitKey);
-            fetchAndSetWeather();
+            fetchAndSetWeather(0);
           }}
           key={unitKey}
           textKey={`settings:units.${unitKey}`}

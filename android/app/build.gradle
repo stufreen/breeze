@@ -102,8 +102,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 5
+        versionName "1.1.0"
     }
     splits {
         abi {
@@ -147,6 +147,7 @@ dependencies {
     implementation project(':react-native-navigation')
     implementation project(':react-native-svg')
     implementation project(':react-native-geolocation-service')
+    implementation project(':react-native-gesture-handler')
 }
 
 // Run this once to be able to run the application with BUCK
