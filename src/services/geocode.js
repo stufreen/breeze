@@ -1,4 +1,5 @@
-import { Platform, PermissionsAndroid } from 'react-native';
+import { Platform } from 'react-native';
+import Permissions from 'react-native-permissions'
 import Geolocation from 'react-native-geolocation-service';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 
@@ -30,17 +31,16 @@ const preferLocality = (a, b) => {
 };
 
 export const getCurrentPosition = (args) => {
-  if (Platform.OS === 'android') {
-    return PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    ).then((result) => {
-      if (result === PermissionsAndroid.RESULTS.GRANTED) {
-        return geolocate(args);
-      }
-      throw new Error('Location permission denied');
-    });
-  }
-  return geolocate(args);
+  return Permissions.request('location').then((response) => {
+    if (response === 'authorized') {
+      return geolocate(args);
+    }
+    throw new Error('Location permission denied');
+  });
+};
+
+export const checkLocationPermission = () => {
+  return Permissions.check('location').then(response => response === 'authorized');
 };
 
 export const autoComplete = (searchString, sessionToken) => {

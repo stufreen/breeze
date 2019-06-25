@@ -4,6 +4,7 @@ import {
   getLocationByLatLong,
   getLocationByPlaceID,
   getCountryFromLocation,
+  checkLocationPermission,
 } from '../../services/geocode';
 import { getWeather } from '../../services/weather';
 import {
@@ -117,6 +118,10 @@ export const fetchAndSetUserCoords = index => (dispatch, getState) => {
 
 export const refreshWeather = index => (dispatch, getState) => {
   const { locations } = getState();
+  if (typeof locations[index] === 'undefined') {
+    return;
+  }
+
   if (locations[index].isCurrentLocation) {
     dispatch(setFetchingWeather(true, index));
     dispatch(fetchAndSetUserCoords(index));
@@ -130,22 +135,23 @@ export const addCurrentLocation = () => (dispatch, getState) => {
   // Check if there is a current location already
   const { locations } = getState();
   const currentLocationIndex = R.find(location => location.isCurrentLocation)(locations);
-  if (typeof currentLocationIndex !== 'undefined') {
-    return;
-  }
 
-  getCurrentPosition()
-    .then(({ coords }) => {
-      // If getCurrentPosition was successful, we will add a current position location
-      dispatch(addLocation());
-      const state = getState();
-      const newLocationIndex = state.locations.length - 1;
-      dispatch(setCoords({
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      }, newLocationIndex));
-      dispatch(setIsCurrentLocation(true, newLocationIndex));
-      dispatch(fetchAndSetLocation(newLocationIndex));
-    })
-    .catch(() => {});
+  checkLocationPermission().then((isAuthorized) => {
+    if (isAuthorized && typeof currentLocationIndex === 'undefined') {
+      getCurrentPosition()
+        .then(({ coords }) => {
+          // If getCurrentPosition was successful, we will add a current position location
+          dispatch(addLocation());
+          const state = getState();
+          const newLocationIndex = state.locations.length - 1;
+          dispatch(setCoords({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+          }, newLocationIndex));
+          dispatch(setIsCurrentLocation(true, newLocationIndex));
+          dispatch(fetchAndSetLocation(newLocationIndex));
+        })
+        .catch(() => { });
+    }
+  });
 };

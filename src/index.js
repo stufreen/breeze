@@ -4,7 +4,6 @@ import initializeNavigation from './scenes';
 import { refreshWeather, fetchAndSetUserCoords, addCurrentLocation } from './common/locations/locations.thunks';
 import { getThemedProvider } from './theme';
 import { initializeLocalization } from './services/localization';
-import { activeStateWatcher } from './services/app-state-watcher';
 
 // Create redux store
 const { store } = configureStore((store) => {

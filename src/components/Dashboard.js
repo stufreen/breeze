@@ -27,8 +27,9 @@ class Dashboard extends React.Component {
 
   refresh = () => {
     const { currentSlide } = this.state;
-    const { refreshWeather } = this.props;
+    const { refreshWeather, addCurrentLocation } = this.props;
     refreshWeather(currentSlide);
+    addCurrentLocation();
   }
 
   render() {
@@ -62,6 +63,7 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
   onPressSettings: PropTypes.func.isRequired,
   refreshWeather: PropTypes.func.isRequired,
+  addCurrentLocation: PropTypes.func.isRequired,
   locations: PropTypes.arrayOf(
     PropTypes.shape({
       weather: PropTypes.object,
