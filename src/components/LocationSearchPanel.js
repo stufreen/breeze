@@ -12,9 +12,7 @@ import {
 } from './design-system';
 import BackButton from './BackButton';
 import LocationResultList from './LocationResultList';
-import {
-  addLocationAndLookup,
-} from '../common/locations/locations.thunks';
+import { addLocationAndLookup } from '../common/locations/locations.thunks';
 import { autoComplete } from '../services/geocode';
 
 class LocationSearchPanel extends React.Component {

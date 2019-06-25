@@ -15,18 +15,6 @@ const LocationResultList = ({ places, onSelectPlace }) => (
         </Box>
       </TouchableOpacity>
     )) }
-    {/* <TouchableOpacity onPress={onSelectCurrent}>
-      <Box p={3} mb="1px" position="relative" flexDirection="row" alignItems="center">
-        <Box position="absolute" bg="settingsUnselected" top={0} bottom={0} left={0} right={0} />
-        <LocationIcon size={12} color="settingsText" />
-        <LScript
-          color="settingsText"
-          fontSize={2}
-          ml={2}
-          textKey="locationSearch:currentLocation"
-        />
-      </Box>
-    </TouchableOpacity> */}
   </Box>
 );
 

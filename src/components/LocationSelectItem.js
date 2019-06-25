@@ -16,7 +16,6 @@ const LocationSelectItem = ({
     flexDirection="row"
     alignItems="stretch"
     width="100%"
-    height={55}
   >
     <TouchableOpacity
       onPressIn={toggleRowActive}
@@ -31,7 +30,7 @@ const LocationSelectItem = ({
         pl={3}
       >
         {location.location && (
-          <Box flexDirection="row" alignItems="center">
+          <Box flexDirection="row" alignItems="center" p={3}>
             {location.isCurrentLocation
               ? (
                 <Box mr={2}>
