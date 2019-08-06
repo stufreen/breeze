@@ -16,9 +16,15 @@ export const getWeather = ({ latitude, longitude }, units = 'auto', location = {
     safeUnits = 'si';
   }
 
-  const url = `https://api.darksky.net/forecast/${DARK_SKY_SECRET_KEY}/${latitude},${longitude}?units=${safeUnits}&exclude=minutely`;
+  const url = `https://api.darksky.net/forecast/${DARK_SKY_SECRET_KEY}/${latitude},${longitude}?units=${safeUnits}`;
+
   return fetch(url, { cache: 'no-store' })
-    .then(response => response.json());
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error('Error fetching weather from Darksky');
+      }
+      return response.json();
+    });
 };
 
 export const formatTemp = rawTemp => Math.round(rawTemp);

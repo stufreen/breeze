@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './reducers';
 
 const persistConfig = {
-  key: 'breeze-3',
+  key: 'breeze-4',
   storage,
 };
 
