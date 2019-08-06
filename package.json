@@ -1,13 +1,15 @@
 {
   "name": "Breeze",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint src",
     "ios": "react-native run-ios",
-    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug"
+    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
+    "test:ios": "detox test --configuration ios.sim.debug",
+    "e2e:ios": "npm run build:ios && npm run test:ios"
   },
   "dependencies": {
     "i18next": "^15.0.4",
@@ -37,6 +39,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "24.1.0",
+    "detox": "^13.2.0",
     "eslint": "5.3.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -44,9 +47,22 @@
     "eslint-plugin-react": "^7.11.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.51.1",
+    "mocha": "^6.2.0",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "detox": {
+    "test-runner": "mocha",
+    "runner-config": "e2e/mocha.opts",
+    "configurations": {
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/Breeze.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project ios/Breeze.xcodeproj -UseNewBuildSystem=NO -scheme 'Breeze Prod' -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      }
+    }
   }
 }
