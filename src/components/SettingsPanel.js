@@ -50,7 +50,7 @@ SettingsPanel.propTypes = {
   onPressAddLocation: PropTypes.func.isRequired,
   theme: PropTypes.shape({
     statusBarMain: PropTypes.string,
-    statusBarSettings: PropTypes.object,
+    statusBarSettings: PropTypes.string,
   }).isRequired,
 };
 
