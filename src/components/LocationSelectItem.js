@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { Box, Script } from './design-system';
 import Close from './icons/CloseIcon';
 import LocationIcon from './icons/LocationIcon';
+import bp from '../services/breakpoints';
 
 const LocationSelectItem = ({
   onPressRemove,
@@ -16,6 +17,7 @@ const LocationSelectItem = ({
     flexDirection="row"
     alignItems="stretch"
     width="100%"
+    height={bp([53, 63])}
   >
     <TouchableOpacity
       onPressIn={toggleRowActive}
@@ -30,7 +32,7 @@ const LocationSelectItem = ({
         pl={3}
       >
         {location.location && (
-          <Box flexDirection="row" alignItems="center" p={3}>
+          <Box flexDirection="row" alignItems="center" ph={3}>
             {location.isCurrentLocation
               ? (
                 <Box mr={2}>

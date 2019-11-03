@@ -123,7 +123,7 @@ class DashboardBackground extends React.Component {
     const { bgOpacity } = this.state;
     return iconKey
       ? (
-        <Box position="absolute" left={0} right={0} top={0} bottom={0} bg="mainBackground">
+        <Box position="absolute" left={-1} right={-1} top={-1} bottom={-1} bg="mainBackground">
           <Animated.View
             style={{
               flex: 1,
