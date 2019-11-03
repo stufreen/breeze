@@ -22,8 +22,11 @@ LocationAddress.defaultProps = {
 
 LocationAddress.propTypes = {
   location: PropTypes.shape({
-    address_components: PropTypes.array,
     isCurrentLocation: PropTypes.bool,
+    location: PropTypes.shape({
+      address_components: PropTypes.array,
+      isCurrentLocation: PropTypes.bool,
+    }),
   }),
 };
 

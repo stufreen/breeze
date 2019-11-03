@@ -21,6 +21,7 @@ LongTerm.defaultProps = {
 
 LongTerm.propTypes = {
   weather: PropTypes.shape({
+    timezone: PropTypes.string,
     daily: PropTypes.object,
   }),
 };

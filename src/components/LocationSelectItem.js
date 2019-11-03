@@ -83,6 +83,7 @@ LocationSelectItem.defaultProps = {
 LocationSelectItem.propTypes = {
   onPressRemove: PropTypes.func.isRequired,
   location: PropTypes.shape({
+    isCurrentLocation: PropTypes.bool,
     location: PropTypes.shape({
       address_components: PropTypes.arrayOf(PropTypes.object),
     }),

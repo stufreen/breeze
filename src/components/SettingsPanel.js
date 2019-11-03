@@ -48,7 +48,10 @@ const SettingsPanel = ({
 SettingsPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
   onPressAddLocation: PropTypes.func.isRequired,
-  theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
+  theme: PropTypes.shape({
+    statusBarMain: PropTypes.string,
+    statusBarSettings: PropTypes.object,
+  }).isRequired,
 };
 
 export default withTheme(SettingsPanel);

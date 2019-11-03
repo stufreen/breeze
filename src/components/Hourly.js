@@ -33,6 +33,10 @@ Hourly.defaultProps = {
 Hourly.propTypes = {
   weather: PropTypes.shape({
     hourly: PropTypes.object,
+    currently: PropTypes.shape({
+      time: PropTypes.number,
+    }),
+    timezone: PropTypes.string,
   }),
 };
 

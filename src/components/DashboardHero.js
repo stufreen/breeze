@@ -46,6 +46,10 @@ DashboardHero.propTypes = {
     }),
     weather: PropTypes.shape({
       currently: PropTypes.object,
+      flags: PropTypes.shape({
+        units: PropTypes.string,
+      }),
+      timezone: PropTypes.string,
     }),
   }),
   opacity: PropTypes.number.isRequired,

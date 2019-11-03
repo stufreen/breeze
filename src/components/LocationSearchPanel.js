@@ -108,7 +108,10 @@ class LocationSearchPanel extends React.Component {
 LocationSearchPanel.propTypes = {
   onPressBack: PropTypes.func.isRequired,
   addLocationAndLookup: PropTypes.func.isRequired,
-  theme: PropTypes.shape({ statusBarMain: PropTypes.string }).isRequired,
+  theme: PropTypes.shape({
+    statusBarMain: PropTypes.string,
+    statusBarSettings: PropTypes.object,
+  }).isRequired,
 };
 
 const mapDispatchToProps = {

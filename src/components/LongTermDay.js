@@ -49,6 +49,7 @@ LongTermDay.propTypes = {
     icon: PropTypes.string.isRequired,
     temperatureHigh: PropTypes.number.isRequired,
     temperatureLow: PropTypes.number.isRequired,
+    precipProbability: PropTypes.number.isRequired,
   }).isRequired,
   theme: PropTypes.shape({ colors: PropTypes.object }).isRequired,
   timezone: PropTypes.string.isRequired,
