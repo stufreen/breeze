@@ -1,48 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Breeze Weather</title>
-    <meta name="description" content="A weather app for iOS and Android with a simple and bold user interface.">
-    <meta name="author" content="Stu Freen">
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta
+      name="description"
+      content="A weather app for iOS and Android with a simple and bold user interface."
+    />
+    <meta name="author" content="Stu Freen" />
+    <meta name="viewport" content="initial-scale=1.0" />
     <meta property="og:title" content="Breeze Weather" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.breeze-weather.com" />
-    <meta property="og:image" content="https://www.breeze-weather.com/assets/open-graph-image.jpg" />
-    <meta property="og:description" content="A weather app for iOS and Android with a simple and bold user interface." />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#000729">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300|Montserrat:600" rel="stylesheet">
+    <meta
+      property="og:image"
+      content="https://www.breeze-weather.com/assets/open-graph-image.jpg"
+    />
+    <meta
+      property="og:description"
+      content="A weather app for iOS and Android with a simple and bold user interface."
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#000729" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="css/styles.css?v=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300|Montserrat:600"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <header class="eol-notice">
+      <div class="eol-notice__modal">
+        <h1 class="eol-notice__heading">End of life notice</h1>
+        <p class="eol-notice__body">
+          Breeze has reached its end of life and is no longer being actively
+          maintained. Thanks for coming along for the ride, Breezers!
+        </p>
+        <button id="eol-notice__button">Okay</button>
+      </div>
+    </header>
     <main>
       <img src="assets/splash-logo.png" class="logo" alt="breeze-logo" />
       <section class="preview-images">
-        <img src="assets/iphone-black.png" class="iphone" alt="Breeze screenshot on iPhone X" />
+        <img
+          src="assets/iphone-black.png"
+          class="iphone"
+          alt="Breeze screenshot on iPhone X"
+        />
       </section>
       <section class="badges">
-        <a href="https://itunes.apple.com/us/app/breeze-weather/id1454806704?mt=8" class="badge-link" target="_blank">
-          <img src="assets/apple-store-badge.svg" class="badge apple-store-badge" alt="Apple store badge" />
+        <a
+          href="https://itunes.apple.com/us/app/breeze-weather/id1454806704?mt=8"
+          class="badge-link"
+          target="_blank"
+        >
+          <img
+            src="assets/apple-store-badge.svg"
+            class="badge apple-store-badge"
+            alt="Apple store badge"
+          />
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.breeze" class="badge-link" target="_blank">
-          <img src="assets/google-play-badge.png" class="badge google-play-badge" />
+        <a
+          href="https://play.google.com/store/apps/details?id=com.breeze"
+          class="badge-link"
+          target="_blank"
+        >
+          <img
+            src="assets/google-play-badge.png"
+            class="badge google-play-badge"
+          />
         </a>
       </section>
       <section class="description">
-        <p class="headline"><img src="assets/breeze.svg" class="breeze" />is a weather app with a simple and bold user interface.</p>
+        <p class="headline">
+          <img src="assets/breeze.svg" class="breeze" />is a weather app with a
+          simple and bold user interface.
+        </p>
         <p>Available on iOS and Android phones and tablets.</p>
-        <p>Powered by Dark Sky, Breeze brings the most accurate weather to your device and presents it in a minimal and easy-use way.</p>
-        <p>Choose between the relaxing Wine theme and the vibrant Electric theme.</p>
+        <p>
+          Powered by Dark Sky, Breeze brings the most accurate weather to your
+          device and presents it in a minimal and easy-use way.
+        </p>
+        <p>
+          Choose between the relaxing Wine theme and the vibrant Electric theme.
+        </p>
       </section>
       <section class="about">
-        <h6>Built by <a href="https://www.stufreen.com" target="_blank">Stu Freen</a> in Toronto, Canada</h6>
+        <h6>
+          Built by
+          <a href="https://www.stufreen.com" target="_blank">Stu Freen</a> in
+          Toronto, Canada
+        </h6>
       </section>
     </main>
     <script src="js/scripts.js"></script>
